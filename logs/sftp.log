@@ -1,0 +1,587 @@
+Sep  5 10:54:43 10.71.56.0 tmp113421199-6303 Connection from 10.71.56.0 port 54954 on 82.165.89.103 port 22
+Sep  5 10:54:43 10.71.56.0 tmp113421199-6303 Accepted password for tmp113421199-6303 from 10.71.56.0 port 54954 ssh2
+Sep  5 10:54:43 10.71.56.0 tmp113421199-6303 Starting session: subsystem 'sftp' for tmp113421199-6303 from 10.71.56.0 port 54954 id 0
+Sep  5 10:54:43 10.71.56.0 tmp113421199-6303 session opened for local user tmp113421199-6303 from [10.71.56.0]
+Sep  5 10:59:43 10.71.56.0 tmp113421199-6303 session closed for local user tmp113421199-6303 from [10.71.56.0]
+Sep  5 10:59:43 10.71.56.0 tmp113421199-6303 Connection closed by 10.71.56.0 port 54954
+Sep  5 11:46:34 10.71.56.0 tmp113421199-199 Connection from 10.71.56.0 port 47218 on 82.165.89.103 port 22
+Sep  5 11:46:34 10.71.56.0 tmp113421199-199 Accepted password for tmp113421199-199 from 10.71.56.0 port 47218 ssh2
+Sep  5 11:46:34 10.71.56.0 tmp113421199-199 Starting session: subsystem 'sftp' for tmp113421199-199 from 10.71.56.0 port 47218 id 0
+Sep  5 11:46:34 10.71.56.0 tmp113421199-199 session opened for local user tmp113421199-199 from [10.71.56.0]
+Sep  5 11:51:34 10.71.56.0 tmp113421199-199 Connection closed by 10.71.56.0 port 47218
+Sep  5 11:51:34 10.71.56.0 tmp113421199-199 session closed for local user tmp113421199-199 from [10.71.56.0]
+Sep  5 13:00:14 10.71.56.0 tmp113421199-4725 Connection from 10.71.56.0 port 58838 on 82.165.89.103 port 22
+Sep  5 13:00:14 10.71.56.0 tmp113421199-4725 Accepted password for tmp113421199-4725 from 10.71.56.0 port 58838 ssh2
+Sep  5 13:00:14 10.71.56.0 tmp113421199-4725 Starting session: subsystem 'sftp' for tmp113421199-4725 from 10.71.56.0 port 58838 id 0
+Sep  5 13:00:14 10.71.56.0 tmp113421199-4725 session opened for local user tmp113421199-4725 from [10.71.56.0]
+Sep  5 13:00:21 10.71.56.0 tmp113421199-4725 open "/index.html" flags READ mode 0666
+Sep  5 13:00:21 10.71.56.0 tmp113421199-4725 close "/index.html" bytes read 336 written 0
+Sep  5 13:00:21 10.71.56.0 tmp113421199-4725 [10.71.56.0|get|0|336|0|0|0|2f696e6465782e68746d6c|]
+Sep  5 13:05:21 10.71.56.0 tmp113421199-4725 session closed for local user tmp113421199-4725 from [10.71.56.0]
+Sep  5 13:05:21 10.71.56.0 tmp113421199-4725 Connection closed by 10.71.56.0 port 58838
+Sep  5 13:35:12 10.71.56.0 tmp113421199-7508 Connection from 10.71.56.0 port 34838 on 82.165.89.103 port 22
+Sep  5 13:35:12 10.71.56.0 tmp113421199-7508 Accepted password for tmp113421199-7508 from 10.71.56.0 port 34838 ssh2
+Sep  5 13:35:12 10.71.56.0 tmp113421199-7508 Starting session: subsystem 'sftp' for tmp113421199-7508 from 10.71.56.0 port 34838 id 0
+Sep  5 13:35:12 10.71.56.0 tmp113421199-7508 session opened for local user tmp113421199-7508 from [10.71.56.0]
+Sep  5 13:39:33 10.71.56.0 tmp113421199-7508 open "/index.html" flags READ mode 0666
+Sep  5 13:39:33 10.71.56.0 tmp113421199-7508 close "/index.html" bytes read 336 written 0
+Sep  5 13:39:33 10.71.56.0 tmp113421199-7508 [10.71.56.0|get|0|336|0|0|0|2f696e6465782e68746d6c|]
+Sep  5 13:39:43 10.71.56.0 tmp113421199-7508 open "/index.html" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 13:39:43 10.71.56.0 tmp113421199-7508 close "/index.html" bytes read 0 written 343
+Sep  5 13:39:43 10.71.56.0 tmp113421199-7508 [10.71.56.0|put|0|343|0|0|0|2f696e6465782e68746d6c|]
+Sep  5 13:41:00 10.71.56.0 acc2021251760 Connection from 10.71.56.0 port 56656 on 82.165.89.103 port 22
+Sep  5 13:41:04 10.71.56.0 acc2021251760 Accepted password for acc2021251760 from 10.71.56.0 port 56656 ssh2
+Sep  5 13:41:05 10.71.56.0 acc2021251760 Starting session: subsystem 'sftp' for acc2021251760 from 10.71.56.0 port 56656 id 0
+Sep  5 13:41:05 10.71.56.0 acc2021251760 session opened for local user acc2021251760 from [10.71.56.0]
+Sep  5 13:41:18 10.71.56.0 acc2021251760 sent status No such file
+Sep  5 13:41:23 10.71.56.0 acc2021251760 Connection from 10.71.56.0 port 56872 on 82.165.89.103 port 22
+Sep  5 13:41:25 10.71.56.0 acc2021251760 Accepted password for acc2021251760 from 10.71.56.0 port 56872 ssh2
+Sep  5 13:41:25 10.71.56.0 acc2021251760 Starting session: subsystem 'sftp' for acc2021251760 from 10.71.56.0 port 56872 id 0
+Sep  5 13:41:25 10.71.56.0 acc2021251760 session opened for local user acc2021251760 from [10.71.56.0]
+Sep  5 13:41:28 10.71.56.0 acc2021251760 sent status No such file
+Sep  5 13:41:28 10.71.56.0 acc2021251760 sent status No such file
+Sep  5 13:41:28 10.71.56.0 acc2021251760 open "/test.php.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 13:41:29 10.71.56.0 acc2021251760 close "/test.php.filepart" bytes read 0 written 2
+Sep  5 13:41:29 10.71.56.0 acc2021251760 [10.71.56.0|put|1|2|0|0|0|2f746573742e7068702e66696c6570617274|]
+Sep  5 13:41:29 10.71.56.0 acc2021251760 rename old "/test.php.filepart" new "/test.php"
+Sep  5 13:41:29 10.71.56.0 acc2021251760 [10.71.56.0|rename|0|0|0|0|0|2f746573742e7068702e66696c6570617274|2f746573742e706870]
+Sep  5 13:41:30 10.71.56.0 acc2021251760 set "/test.php" modtime 20230905-13:41:21
+Sep  5 13:45:39 10.71.56.0 tmp113421199-7508 session closed for local user tmp113421199-7508 from [10.71.56.0]
+Sep  5 13:45:39 10.71.56.0 tmp113421199-7508 Connection closed by 10.71.56.0 port 34838
+Sep  5 13:48:56 10.71.56.0 acc2021251760 Connection closed by 10.71.56.0 port 56656
+Sep  5 13:48:56 10.71.56.0 acc2021251760 session closed for local user acc2021251760 from [10.71.56.0]
+Sep  5 13:49:18 10.71.56.0 acc2021251760 Connection closed by 10.71.56.0 port 56872
+Sep  5 13:49:18 10.71.56.0 acc2021251760 session closed for local user acc2021251760 from [10.71.56.0]
+Sep  5 13:50:23 10.71.56.0 acc2021251760 Connection from 10.71.56.0 port 60972 on 82.165.89.103 port 22
+Sep  5 13:50:24 10.71.56.0 acc2021251760 Accepted password for acc2021251760 from 10.71.56.0 port 60972 ssh2
+Sep  5 13:50:25 10.71.56.0 acc2021251760 Starting session: subsystem 'sftp' for acc2021251760 from 10.71.56.0 port 60972 id 0
+Sep  5 13:50:25 10.71.56.0 acc2021251760 session opened for local user acc2021251760 from [10.71.56.0]
+Sep  5 13:50:41 10.71.56.0 acc2021251760 mkdir name "/app-demo" mode 0777
+Sep  5 13:50:41 10.71.56.0 acc2021251760 [10.71.56.0|mkdir|0|0|511|0|0|2f6170702d64656d6f|]
+Sep  5 13:51:09 10.71.56.0 acc2021251760 Connection from 10.71.56.0 port 40230 on 82.165.89.103 port 22
+Sep  5 13:51:10 10.71.56.0 acc2021251760 Accepted password for acc2021251760 from 10.71.56.0 port 40230 ssh2
+Sep  5 13:51:11 10.71.56.0 acc2021251760 Starting session: subsystem 'sftp' for acc2021251760 from 10.71.56.0 port 40230 id 0
+Sep  5 13:51:11 10.71.56.0 acc2021251760 session opened for local user acc2021251760 from [10.71.56.0]
+Sep  5 13:51:13 10.71.56.0 acc2021251760 sent status No such file
+Sep  5 13:51:13 10.71.56.0 acc2021251760 sent status No such file
+Sep  5 13:51:13 10.71.56.0 acc2021251760 open "/app-demo/chathaandco.zip.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 14:09:03 10.71.56.0 tmp113421199-8145 Connection from 10.71.56.0 port 61670 on 82.165.89.103 port 22
+Sep  5 14:09:03 10.71.56.0 tmp113421199-8145 Accepted password for tmp113421199-8145 from 10.71.56.0 port 61670 ssh2
+Sep  5 14:09:03 10.71.56.0 tmp113421199-8145 Starting session: subsystem 'sftp' for tmp113421199-8145 from 10.71.56.0 port 61670 id 0
+Sep  5 14:09:03 10.71.56.0 tmp113421199-8145 session opened for local user tmp113421199-8145 from [10.71.56.0]
+Sep  5 14:14:06 10.71.56.0 tmp113421199-8145 session closed for local user tmp113421199-8145 from [10.71.56.0]
+Sep  5 14:14:06 10.71.56.0 tmp113421199-8145 Connection closed by 10.71.56.0 port 61670
+Sep  5 14:24:04 10.71.56.0 acc2021251760 Connection closed by 10.71.56.0 port 40230
+Sep  5 14:24:04 10.71.56.0 acc2021251760 forced close "/app-demo/chathaandco.zip.filepart" bytes read 0 written 186857088
+Sep  5 14:24:04 10.71.56.0 acc2021251760 [10.71.56.0|put|1971|186857088|0|0|0|2f6170702d64656d6f2f636861746861616e64636f2e7a69702e66696c6570617274|]
+Sep  5 14:24:04 10.71.56.0 acc2021251760 session closed for local user acc2021251760 from [10.71.56.0]
+Sep  5 14:24:06 10.71.56.0 acc2021251760 Connection from 10.71.56.0 port 57502 on 82.165.89.103 port 22
+Sep  5 14:24:08 10.71.56.0 acc2021251760 Accepted password for acc2021251760 from 10.71.56.0 port 57502 ssh2
+Sep  5 14:24:09 10.71.56.0 acc2021251760 Starting session: subsystem 'sftp' for acc2021251760 from 10.71.56.0 port 57502 id 0
+Sep  5 14:24:09 10.71.56.0 acc2021251760 session opened for local user acc2021251760 from [10.71.56.0]
+Sep  5 14:24:10 10.71.56.0 acc2021251760 sent status No such file
+Sep  5 14:24:11 10.71.56.0 acc2021251760 open "/app-demo/chathaandco.zip.filepart" flags WRITE,CREATE mode 0666
+Sep  5 14:25:30 10.71.56.0 acc2021251760 close "/app-demo/chathaandco.zip.filepart" bytes read 0 written 15818331
+Sep  5 14:25:30 10.71.56.0 acc2021251760 [10.71.56.0|put|79|15818331|0|0|0|2f6170702d64656d6f2f636861746861616e64636f2e7a69702e66696c6570617274|]
+Sep  5 14:25:30 10.71.56.0 acc2021251760 rename old "/app-demo/chathaandco.zip.filepart" new "/app-demo/chathaandco.zip"
+Sep  5 14:25:30 10.71.56.0 acc2021251760 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f636861746861616e64636f2e7a69702e66696c6570617274|2f6170702d64656d6f2f636861746861616e64636f2e7a6970]
+Sep  5 14:25:31 10.71.56.0 acc2021251760 set "/app-demo/chathaandco.zip" modtime 20230905-12:26:06
+Sep  5 14:25:43 10.71.56.0 acc2021251760 sent status No such file
+Sep  5 14:25:47 10.71.56.0 acc2021251760 sent status No such file
+Sep  5 14:25:47 10.71.56.0 acc2021251760 sent status No such file
+Sep  5 14:25:48 10.71.56.0 acc2021251760 open "/app-demo/index.html.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 14:25:48 10.71.56.0 acc2021251760 close "/app-demo/index.html.filepart" bytes read 0 written 2
+Sep  5 14:25:48 10.71.56.0 acc2021251760 [10.71.56.0|put|0|2|0|0|0|2f6170702d64656d6f2f696e6465782e68746d6c2e66696c6570617274|]
+Sep  5 14:25:48 10.71.56.0 acc2021251760 rename old "/app-demo/index.html.filepart" new "/app-demo/index.html"
+Sep  5 14:25:48 10.71.56.0 acc2021251760 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f696e6465782e68746d6c2e66696c6570617274|2f6170702d64656d6f2f696e6465782e68746d6c]
+Sep  5 14:25:48 10.71.56.0 acc2021251760 set "/app-demo/index.html" modtime 20230905-14:25:46
+Sep  5 14:25:56 10.71.56.0 acc2021251760 sent status No such file
+Sep  5 14:26:02 10.71.56.0 acc2021251760 sent status No such file
+Sep  5 14:26:02 10.71.56.0 acc2021251760 sent status No such file
+Sep  5 14:26:02 10.71.56.0 acc2021251760 open "/app-demo/test.php.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 14:26:03 10.71.56.0 acc2021251760 close "/app-demo/test.php.filepart" bytes read 0 written 4
+Sep  5 14:26:03 10.71.56.0 acc2021251760 [10.71.56.0|put|1|4|0|0|0|2f6170702d64656d6f2f746573742e7068702e66696c6570617274|]
+Sep  5 14:26:03 10.71.56.0 acc2021251760 rename old "/app-demo/test.php.filepart" new "/app-demo/test.php"
+Sep  5 14:26:03 10.71.56.0 acc2021251760 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f746573742e7068702e66696c6570617274|2f6170702d64656d6f2f746573742e706870]
+Sep  5 14:26:04 10.71.56.0 acc2021251760 set "/app-demo/test.php" modtime 20230905-14:25:59
+Sep  5 14:29:39 10.71.56.0 tmp113421199-802 Connection from 10.71.56.0 port 21890 on 82.165.89.103 port 22
+Sep  5 14:29:39 10.71.56.0 tmp113421199-802 Accepted password for tmp113421199-802 from 10.71.56.0 port 21890 ssh2
+Sep  5 14:29:39 10.71.56.0 tmp113421199-802 Starting session: subsystem 'sftp' for tmp113421199-802 from 10.71.56.0 port 21890 id 0
+Sep  5 14:29:39 10.71.56.0 tmp113421199-802 session opened for local user tmp113421199-802 from [10.71.56.0]
+Sep  5 14:30:13 10.71.56.0 tmp113421199-802 Connection from 10.71.56.0 port 22142 on 82.165.89.103 port 22
+Sep  5 14:30:13 10.71.56.0 tmp113421199-802 Accepted password for tmp113421199-802 from 10.71.56.0 port 22142 ssh2
+Sep  5 14:31:19 10.71.56.0 acc2021251760 Connection closed by 10.71.56.0 port 57502
+Sep  5 14:31:19 10.71.56.0 acc2021251760 session closed for local user acc2021251760 from [10.71.56.0]
+Sep  5 14:31:34 10.71.56.0 acc2021251760 Connection closed by 10.71.56.0 port 60972
+Sep  5 14:31:34 10.71.56.0 acc2021251760 session closed for local user acc2021251760 from [10.71.56.0]
+Sep  5 14:32:21 10.71.56.0 acc2021251760 Connection from 10.71.56.0 port 26692 on 82.165.89.103 port 22
+Sep  5 14:32:22 10.71.56.0 acc2021251760 Accepted password for acc2021251760 from 10.71.56.0 port 26692 ssh2
+Sep  5 14:32:23 10.71.56.0 acc2021251760 Starting session: subsystem 'sftp' for acc2021251760 from 10.71.56.0 port 26692 id 0
+Sep  5 14:32:23 10.71.56.0 acc2021251760 session opened for local user acc2021251760 from [10.71.56.0]
+Sep  5 14:32:29 10.71.56.0 acc2021251760 open "/app-demo/.env" flags READ mode 0666
+Sep  5 14:32:31 10.71.56.0 acc2021251760 close "/app-demo/.env" bytes read 1137 written 0
+Sep  5 14:32:31 10.71.56.0 acc2021251760 [10.71.56.0|get|2|1137|0|0|0|2f6170702d64656d6f2f2e656e76|]
+Sep  5 14:33:10 10.71.56.0 acc2021251760 Connection from 10.71.56.0 port 62662 on 82.165.89.103 port 22
+Sep  5 14:33:11 10.71.56.0 acc2021251760 Accepted password for acc2021251760 from 10.71.56.0 port 62662 ssh2
+Sep  5 14:33:12 10.71.56.0 acc2021251760 Starting session: subsystem 'sftp' for acc2021251760 from 10.71.56.0 port 62662 id 0
+Sep  5 14:33:12 10.71.56.0 acc2021251760 session opened for local user acc2021251760 from [10.71.56.0]
+Sep  5 14:33:14 10.71.56.0 acc2021251760 sent status No such file
+Sep  5 14:33:14 10.71.56.0 acc2021251760 open "/app-demo/.env.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 14:33:14 10.71.56.0 acc2021251760 close "/app-demo/.env.filepart" bytes read 0 written 1133
+Sep  5 14:33:14 10.71.56.0 acc2021251760 [10.71.56.0|put|0|1133|0|0|0|2f6170702d64656d6f2f2e656e762e66696c6570617274|]
+Sep  5 14:33:15 10.71.56.0 acc2021251760 remove name "/app-demo/.env"
+Sep  5 14:33:15 10.71.56.0 acc2021251760 [10.71.56.0|rm|0|0|0|0|0|2f6170702d64656d6f2f2e656e76|]
+Sep  5 14:33:15 10.71.56.0 acc2021251760 rename old "/app-demo/.env.filepart" new "/app-demo/.env"
+Sep  5 14:33:15 10.71.56.0 acc2021251760 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f2e656e762e66696c6570617274|2f6170702d64656d6f2f2e656e76]
+Sep  5 14:33:15 10.71.56.0 acc2021251760 set "/app-demo/.env" mode 0644
+Sep  5 14:33:15 10.71.56.0 acc2021251760 [10.71.56.0|chmod|0|0|420|0|0|2f6170702d64656d6f2f2e656e76|]
+Sep  5 14:33:15 10.71.56.0 acc2021251760 set "/app-demo/.env" modtime 20230905-14:33:07
+Sep  5 14:33:26 10.71.56.0 acc2021251760 sent status No such file
+Sep  5 14:33:26 10.71.56.0 acc2021251760 open "/app-demo/.env.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 14:33:26 10.71.56.0 acc2021251760 close "/app-demo/.env.filepart" bytes read 0 written 1123
+Sep  5 14:33:26 10.71.56.0 acc2021251760 [10.71.56.0|put|0|1123|0|0|0|2f6170702d64656d6f2f2e656e762e66696c6570617274|]
+Sep  5 14:33:27 10.71.56.0 acc2021251760 remove name "/app-demo/.env"
+Sep  5 14:33:27 10.71.56.0 acc2021251760 [10.71.56.0|rm|0|0|0|0|0|2f6170702d64656d6f2f2e656e76|]
+Sep  5 14:33:27 10.71.56.0 acc2021251760 rename old "/app-demo/.env.filepart" new "/app-demo/.env"
+Sep  5 14:33:27 10.71.56.0 acc2021251760 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f2e656e762e66696c6570617274|2f6170702d64656d6f2f2e656e76]
+Sep  5 14:33:27 10.71.56.0 acc2021251760 set "/app-demo/.env" mode 0644
+Sep  5 14:33:27 10.71.56.0 acc2021251760 [10.71.56.0|chmod|0|0|420|0|0|2f6170702d64656d6f2f2e656e76|]
+Sep  5 14:33:27 10.71.56.0 acc2021251760 set "/app-demo/.env" modtime 20230905-14:33:24
+Sep  5 14:34:11 10.71.56.0 acc2021251760 open "/index.html" flags READ mode 0666
+Sep  5 14:34:13 10.71.56.0 acc2021251760 close "/index.html" bytes read 343 written 0
+Sep  5 14:34:13 10.71.56.0 acc2021251760 [10.71.56.0|get|2|343|0|0|0|2f696e6465782e68746d6c|]
+Sep  5 14:34:20 10.71.56.0 acc2021251760 sent status No such file
+Sep  5 14:34:20 10.71.56.0 acc2021251760 open "/index.html.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 14:34:20 10.71.56.0 acc2021251760 close "/index.html.filepart" bytes read 0 written 336
+Sep  5 14:34:20 10.71.56.0 acc2021251760 [10.71.56.0|put|0|336|0|0|0|2f696e6465782e68746d6c2e66696c6570617274|]
+Sep  5 14:34:21 10.71.56.0 acc2021251760 remove name "/index.html"
+Sep  5 14:34:21 10.71.56.0 acc2021251760 [10.71.56.0|rm|0|0|0|0|0|2f696e6465782e68746d6c|]
+Sep  5 14:34:21 10.71.56.0 acc2021251760 rename old "/index.html.filepart" new "/index.html"
+Sep  5 14:34:21 10.71.56.0 acc2021251760 [10.71.56.0|rename|0|0|0|0|0|2f696e6465782e68746d6c2e66696c6570617274|2f696e6465782e68746d6c]
+Sep  5 14:34:21 10.71.56.0 acc2021251760 set "/index.html" mode 0604
+Sep  5 14:34:21 10.71.56.0 acc2021251760 [10.71.56.0|chmod|0|0|388|0|0|2f696e6465782e68746d6c|]
+Sep  5 14:34:21 10.71.56.0 acc2021251760 set "/index.html" modtime 20230905-14:34:17
+Sep  5 14:36:42 10.71.56.0 acc2021251760 Connection closed by 10.71.56.0 port 26692
+Sep  5 14:36:42 10.71.56.0 acc2021251760 session closed for local user acc2021251760 from [10.71.56.0]
+Sep  5 14:36:45 10.71.56.0 tmp113421199-802 Connection closed by 10.71.56.0 port 22142
+Sep  5 14:36:49 10.71.56.0 tmp113421199-802 session closed for local user tmp113421199-802 from [10.71.56.0]
+Sep  5 14:36:49 10.71.56.0 tmp113421199-802 Connection closed by 10.71.56.0 port 21890
+Sep  5 14:41:07 10.71.56.0 acc2021251760 Connection closed by 10.71.56.0 port 62662
+Sep  5 14:41:07 10.71.56.0 acc2021251760 session closed for local user acc2021251760 from [10.71.56.0]
+Sep  5 16:25:03 10.71.56.0 acc2021251760 Connection from 10.71.56.0 port 24916 on 82.165.89.103 port 22
+Sep  5 16:25:04 10.71.56.0 acc2021251760 Accepted password for acc2021251760 from 10.71.56.0 port 24916 ssh2
+Sep  5 16:25:05 10.71.56.0 acc2021251760 Starting session: subsystem 'sftp' for acc2021251760 from 10.71.56.0 port 24916 id 0
+Sep  5 16:25:05 10.71.56.0 acc2021251760 session opened for local user acc2021251760 from [10.71.56.0]
+Sep  5 16:28:04 10.71.56.0 acc2021251760 open "/app-demo/public/test.php" flags READ mode 0666
+Sep  5 16:28:06 10.71.56.0 acc2021251760 close "/app-demo/public/test.php" bytes read 13031 written 0
+Sep  5 16:28:06 10.71.56.0 acc2021251760 [10.71.56.0|get|2|13031|0|0|0|2f6170702d64656d6f2f7075626c69632f746573742e706870|]
+Sep  5 16:28:29 10.71.56.0 acc2021251760 Connection from 10.71.56.0 port 27658 on 82.165.89.103 port 22
+Sep  5 16:28:32 10.71.56.0 acc2021251760 Accepted password for acc2021251760 from 10.71.56.0 port 27658 ssh2
+Sep  5 16:28:33 10.71.56.0 acc2021251760 Starting session: subsystem 'sftp' for acc2021251760 from 10.71.56.0 port 27658 id 0
+Sep  5 16:28:33 10.71.56.0 acc2021251760 session opened for local user acc2021251760 from [10.71.56.0]
+Sep  5 16:28:36 10.71.56.0 acc2021251760 sent status No such file
+Sep  5 16:28:38 10.71.56.0 acc2021251760 open "/app-demo/public/test.php.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 16:28:47 10.71.56.0 acc2021251760 close "/app-demo/public/test.php.filepart" bytes read 0 written 13479
+Sep  5 16:28:47 10.71.56.0 acc2021251760 [10.71.56.0|put|9|13479|0|0|0|2f6170702d64656d6f2f7075626c69632f746573742e7068702e66696c6570617274|]
+Sep  5 16:28:48 10.71.56.0 acc2021251760 remove name "/app-demo/public/test.php"
+Sep  5 16:28:48 10.71.56.0 acc2021251760 [10.71.56.0|rm|0|0|0|0|0|2f6170702d64656d6f2f7075626c69632f746573742e706870|]
+Sep  5 16:28:49 10.71.56.0 acc2021251760 rename old "/app-demo/public/test.php.filepart" new "/app-demo/public/test.php"
+Sep  5 16:28:49 10.71.56.0 acc2021251760 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f7075626c69632f746573742e7068702e66696c6570617274|2f6170702d64656d6f2f7075626c69632f746573742e706870]
+Sep  5 16:28:49 10.71.56.0 acc2021251760 set "/app-demo/public/test.php" mode 0644
+Sep  5 16:28:49 10.71.56.0 acc2021251760 [10.71.56.0|chmod|0|0|420|0|0|2f6170702d64656d6f2f7075626c69632f746573742e706870|]
+Sep  5 16:28:49 10.71.56.0 acc2021251760 set "/app-demo/public/test.php" modtime 20230905-16:28:27
+Sep  5 16:28:51 10.71.56.0 acc2021251760 sent status No such file
+Sep  5 16:28:52 10.71.56.0 acc2021251760 open "/app-demo/public/test.php.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 16:28:54 10.71.56.0 acc2021251760 close "/app-demo/public/test.php.filepart" bytes read 0 written 13474
+Sep  5 16:28:54 10.71.56.0 acc2021251760 [10.71.56.0|put|2|13474|0|0|0|2f6170702d64656d6f2f7075626c69632f746573742e7068702e66696c6570617274|]
+Sep  5 16:28:54 10.71.56.0 acc2021251760 remove name "/app-demo/public/test.php"
+Sep  5 16:28:54 10.71.56.0 acc2021251760 [10.71.56.0|rm|0|0|0|0|0|2f6170702d64656d6f2f7075626c69632f746573742e706870|]
+Sep  5 16:28:54 10.71.56.0 acc2021251760 rename old "/app-demo/public/test.php.filepart" new "/app-demo/public/test.php"
+Sep  5 16:28:54 10.71.56.0 acc2021251760 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f7075626c69632f746573742e7068702e66696c6570617274|2f6170702d64656d6f2f7075626c69632f746573742e706870]
+Sep  5 16:28:55 10.71.56.0 acc2021251760 set "/app-demo/public/test.php" mode 0644
+Sep  5 16:28:55 10.71.56.0 acc2021251760 [10.71.56.0|chmod|0|0|420|0|0|2f6170702d64656d6f2f7075626c69632f746573742e706870|]
+Sep  5 16:28:55 10.71.56.0 acc2021251760 set "/app-demo/public/test.php" modtime 20230905-16:28:38
+Sep  5 16:29:25 10.71.56.0 acc2021251760 open "/app-demo/test.php" flags READ mode 0666
+Sep  5 16:29:28 10.71.56.0 acc2021251760 close "/app-demo/test.php" bytes read 4 written 0
+Sep  5 16:29:28 10.71.56.0 acc2021251760 [10.71.56.0|get|3|4|0|0|0|2f6170702d64656d6f2f746573742e706870|]
+Sep  5 16:36:14 10.71.56.0 acc2021251760 Connection from 10.71.56.0 port 34952 on 82.165.89.103 port 22
+Sep  5 16:36:38 10.71.56.0 acc2021251760 Accepted password for acc2021251760 from 10.71.56.0 port 34952 ssh2
+Sep  5 16:36:39 10.71.56.0 acc2021251760 Connection closed by 10.71.56.0 port 34952
+Sep  5 16:38:56 10.71.56.0 acc2021251760 Connection from 10.71.56.0 port 37046 on 82.165.89.103 port 22
+Sep  5 16:39:15 10.71.56.0 acc2021251760 Accepted password for acc2021251760 from 10.71.56.0 port 37046 ssh2
+Sep  5 16:39:15 10.71.56.0 acc2021251760 Connection closed by 10.71.56.0 port 37046
+Sep  5 16:44:03 10.71.56.0 u113421199 Connection from 10.71.56.0 port 46010 on 82.165.89.103 port 22
+Sep  5 16:44:18 10.71.56.0 u113421199 Accepted password for u113421199 from 10.71.56.0 port 46010 ssh2
+Sep  5 16:45:56 10.71.56.0 u113421199 Connection from 10.71.56.0 port 47734 on 82.165.89.103 port 22
+Sep  5 16:45:57 10.71.56.0 u113421199 Accepted password for u113421199 from 10.71.56.0 port 47734 ssh2
+Sep  5 16:45:58 10.71.56.0 u113421199 Starting session: subsystem 'sftp' for u113421199 from 10.71.56.0 port 47734 id 0
+Sep  5 16:45:58 10.71.56.0 u113421199 session opened for local user u113421199 from [10.71.56.0]
+Sep  5 16:47:10 10.71.56.0 u113421199 sent status No such file
+Sep  5 16:47:11 10.71.56.0 u113421199 rename old "/app-demo/.htaccess" new "/app-demo/.htaccess11"
+Sep  5 16:47:11 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f2e6874616363657373|2f6170702d64656d6f2f2e68746163636573733131]
+Sep  5 16:47:16 10.71.56.0 u113421199 open "/app-demo/test.php" flags READ mode 0666
+Sep  5 16:47:19 10.71.56.0 u113421199 close "/app-demo/test.php" bytes read 4 written 0
+Sep  5 16:47:19 10.71.56.0 u113421199 [10.71.56.0|get|3|4|0|0|0|2f6170702d64656d6f2f746573742e706870|]
+Sep  5 16:47:22 10.71.56.0 u113421199 Connection from 10.71.56.0 port 44618 on 82.165.89.103 port 22
+Sep  5 16:47:23 10.71.56.0 u113421199 Accepted password for u113421199 from 10.71.56.0 port 44618 ssh2
+Sep  5 16:47:24 10.71.56.0 u113421199 Starting session: subsystem 'sftp' for u113421199 from 10.71.56.0 port 44618 id 0
+Sep  5 16:47:24 10.71.56.0 u113421199 session opened for local user u113421199 from [10.71.56.0]
+Sep  5 16:47:26 10.71.56.0 u113421199 sent status No such file
+Sep  5 16:47:26 10.71.56.0 u113421199 open "/app-demo/test.php.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 16:47:26 10.71.56.0 u113421199 close "/app-demo/test.php.filepart" bytes read 0 written 19
+Sep  5 16:47:26 10.71.56.0 u113421199 [10.71.56.0|put|0|19|0|0|0|2f6170702d64656d6f2f746573742e7068702e66696c6570617274|]
+Sep  5 16:47:27 10.71.56.0 u113421199 remove name "/app-demo/test.php"
+Sep  5 16:47:27 10.71.56.0 u113421199 [10.71.56.0|rm|0|0|0|0|0|2f6170702d64656d6f2f746573742e706870|]
+Sep  5 16:47:27 10.71.56.0 u113421199 rename old "/app-demo/test.php.filepart" new "/app-demo/test.php"
+Sep  5 16:47:27 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f746573742e7068702e66696c6570617274|2f6170702d64656d6f2f746573742e706870]
+Sep  5 16:47:27 10.71.56.0 u113421199 set "/app-demo/test.php" mode 0604
+Sep  5 16:47:27 10.71.56.0 u113421199 [10.71.56.0|chmod|0|0|388|0|0|2f6170702d64656d6f2f746573742e706870|]
+Sep  5 16:47:27 10.71.56.0 u113421199 set "/app-demo/test.php" modtime 20230905-16:47:20
+Sep  5 16:47:59 10.71.56.0 u113421199 open "/app-demo/index.html" flags READ mode 0666
+Sep  5 16:48:01 10.71.56.0 u113421199 close "/app-demo/index.html" bytes read 2 written 0
+Sep  5 16:48:01 10.71.56.0 u113421199 [10.71.56.0|get|2|2|0|0|0|2f6170702d64656d6f2f696e6465782e68746d6c|]
+Sep  5 16:48:11 10.71.56.0 u113421199 sent status No such file
+Sep  5 16:48:12 10.71.56.0 u113421199 rename old "/app-demo/index.html" new "/app-demo/indexss.html"
+Sep  5 16:48:12 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f696e6465782e68746d6c|2f6170702d64656d6f2f696e64657873732e68746d6c]
+Sep  5 16:48:16 10.71.56.0 u113421199 open "/app-demo/.htaccess11" flags READ mode 0666
+Sep  5 16:48:18 10.71.56.0 u113421199 close "/app-demo/.htaccess11" bytes read 138 written 0
+Sep  5 16:48:18 10.71.56.0 u113421199 [10.71.56.0|get|2|138|0|0|0|2f6170702d64656d6f2f2e68746163636573733131|]
+Sep  5 16:51:48 10.71.56.0 u113421199 sent status No such file
+Sep  5 16:51:49 10.71.56.0 u113421199 rename old "/app-demo/server.php" new "/app-demo/index.php"
+Sep  5 16:51:49 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f7365727665722e706870|2f6170702d64656d6f2f696e6465782e706870]
+Sep  5 16:52:42 10.71.56.0 u113421199 open "/app-demo/public/favicon.ico" flags READ mode 0666
+Sep  5 16:52:45 10.71.56.0 u113421199 close "/app-demo/public/favicon.ico" bytes read 0 written 0
+Sep  5 16:52:45 10.71.56.0 u113421199 [10.71.56.0|get|3|0|0|0|0|2f6170702d64656d6f2f7075626c69632f66617669636f6e2e69636f|]
+Sep  5 16:52:49 10.71.56.0 u113421199 open "/app-demo/public/.htaccess" flags READ mode 0666
+Sep  5 16:52:52 10.71.56.0 u113421199 close "/app-demo/public/.htaccess" bytes read 624 written 0
+Sep  5 16:52:52 10.71.56.0 u113421199 [10.71.56.0|get|3|624|0|0|0|2f6170702d64656d6f2f7075626c69632f2e6874616363657373|]
+Sep  5 16:53:12 10.71.56.0 u113421199 sent status No such file
+Sep  5 16:53:13 10.71.56.0 u113421199 rename old "/app-demo/public/.htaccess" new "/app-demo/public/.htaccess_old"
+Sep  5 16:53:13 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f7075626c69632f2e6874616363657373|2f6170702d64656d6f2f7075626c69632f2e68746163636573735f6f6c64]
+Sep  5 16:53:22 10.71.56.0 u113421199 sent status No such file
+Sep  5 16:53:22 10.71.56.0 u113421199 sent status No such file
+Sep  5 16:53:22 10.71.56.0 u113421199 open "/app-demo/public/.htaccess.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 16:53:22 10.71.56.0 u113421199 close "/app-demo/public/.htaccess.filepart" bytes read 0 written 138
+Sep  5 16:53:22 10.71.56.0 u113421199 [10.71.56.0|put|0|138|0|0|0|2f6170702d64656d6f2f7075626c69632f2e68746163636573732e66696c6570617274|]
+Sep  5 16:53:23 10.71.56.0 u113421199 rename old "/app-demo/public/.htaccess.filepart" new "/app-demo/public/.htaccess"
+Sep  5 16:53:23 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f7075626c69632f2e68746163636573732e66696c6570617274|2f6170702d64656d6f2f7075626c69632f2e6874616363657373]
+Sep  5 16:53:23 10.71.56.0 u113421199 set "/app-demo/public/.htaccess" modtime 20230905-16:53:19
+Sep  5 16:55:57 10.71.56.0 u113421199 sent status No such file
+Sep  5 16:55:58 10.71.56.0 u113421199 open "/app-demo/public/.htaccess.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 16:55:58 10.71.56.0 u113421199 close "/app-demo/public/.htaccess.filepart" bytes read 0 written 624
+Sep  5 16:55:58 10.71.56.0 u113421199 [10.71.56.0|put|0|624|0|0|0|2f6170702d64656d6f2f7075626c69632f2e68746163636573732e66696c6570617274|]
+Sep  5 16:55:58 10.71.56.0 u113421199 remove name "/app-demo/public/.htaccess"
+Sep  5 16:55:58 10.71.56.0 u113421199 [10.71.56.0|rm|0|0|0|0|0|2f6170702d64656d6f2f7075626c69632f2e6874616363657373|]
+Sep  5 16:55:59 10.71.56.0 u113421199 rename old "/app-demo/public/.htaccess.filepart" new "/app-demo/public/.htaccess"
+Sep  5 16:55:59 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f7075626c69632f2e68746163636573732e66696c6570617274|2f6170702d64656d6f2f7075626c69632f2e6874616363657373]
+Sep  5 16:55:59 10.71.56.0 u113421199 set "/app-demo/public/.htaccess" mode 0604
+Sep  5 16:55:59 10.71.56.0 u113421199 [10.71.56.0|chmod|0|0|388|0|0|2f6170702d64656d6f2f7075626c69632f2e6874616363657373|]
+Sep  5 16:55:59 10.71.56.0 u113421199 set "/app-demo/public/.htaccess" modtime 20230905-16:55:56
+Sep  5 16:56:19 10.71.56.0 u113421199 sent status No such file
+Sep  5 16:56:20 10.71.56.0 u113421199 rename old "/app-demo/.htaccess11" new "/app-demo/.htaccess"
+Sep  5 16:56:20 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f2e68746163636573733131|2f6170702d64656d6f2f2e6874616363657373]
+Sep  5 17:05:38 10.71.56.0 u113421199 open "/app-demo/composer.json" flags READ mode 0666
+Sep  5 17:05:41 10.71.56.0 u113421199 close "/app-demo/composer.json" bytes read 2026 written 0
+Sep  5 17:05:41 10.71.56.0 u113421199 [10.71.56.0|get|3|2026|0|0|0|2f6170702d64656d6f2f636f6d706f7365722e6a736f6e|]
+Sep  5 17:07:04 10.71.56.0 u113421199 sent status No such file
+Sep  5 17:07:04 10.71.56.0 u113421199 rename old "/app-demo/.htaccess" new "/app-demo/.htaccess11"
+Sep  5 17:07:04 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f2e6874616363657373|2f6170702d64656d6f2f2e68746163636573733131]
+Sep  5 17:09:14 10.71.56.0 u113421199 sent status No such file
+Sep  5 17:09:14 10.71.56.0 u113421199 rename old "/app-demo/public/.htaccess" new "/app-demo/public/.htaccess_old1"
+Sep  5 17:09:14 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f7075626c69632f2e6874616363657373|2f6170702d64656d6f2f7075626c69632f2e68746163636573735f6f6c6431]
+Sep  5 17:09:52 10.71.56.0 u113421199 sent status No such file
+Sep  5 17:09:52 10.71.56.0 u113421199 rename old "/app-demo/.htaccess11" new "/app-demo/.htaccess"
+Sep  5 17:09:52 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f2e68746163636573733131|2f6170702d64656d6f2f2e6874616363657373]
+Sep  5 17:09:59 10.71.56.0 u113421199 open "/app-demo/.htaccess" flags READ mode 0666
+Sep  5 17:10:02 10.71.56.0 u113421199 close "/app-demo/.htaccess" bytes read 138 written 0
+Sep  5 17:10:02 10.71.56.0 u113421199 [10.71.56.0|get|3|138|0|0|0|2f6170702d64656d6f2f2e6874616363657373|]
+Sep  5 17:10:15 10.71.56.0 u113421199 sent status No such file
+Sep  5 17:10:15 10.71.56.0 u113421199 open "/app-demo/.htaccess.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 17:10:16 10.71.56.0 u113421199 close "/app-demo/.htaccess.filepart" bytes read 0 written 140
+Sep  5 17:10:16 10.71.56.0 u113421199 [10.71.56.0|put|1|140|0|0|0|2f6170702d64656d6f2f2e68746163636573732e66696c6570617274|]
+Sep  5 17:10:16 10.71.56.0 u113421199 remove name "/app-demo/.htaccess"
+Sep  5 17:10:16 10.71.56.0 u113421199 [10.71.56.0|rm|0|0|0|0|0|2f6170702d64656d6f2f2e6874616363657373|]
+Sep  5 17:10:16 10.71.56.0 u113421199 rename old "/app-demo/.htaccess.filepart" new "/app-demo/.htaccess"
+Sep  5 17:10:16 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f2e68746163636573732e66696c6570617274|2f6170702d64656d6f2f2e6874616363657373]
+Sep  5 17:10:16 10.71.56.0 u113421199 set "/app-demo/.htaccess" mode 0666
+Sep  5 17:10:16 10.71.56.0 u113421199 [10.71.56.0|chmod|0|0|438|0|0|2f6170702d64656d6f2f2e6874616363657373|]
+Sep  5 17:10:16 10.71.56.0 u113421199 set "/app-demo/.htaccess" modtime 20230905-17:10:12
+Sep  5 17:11:21 10.71.56.0 u113421199 sent status No such file
+Sep  5 17:11:21 10.71.56.0 u113421199 open "/app-demo/.htaccess.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 17:11:22 10.71.56.0 u113421199 close "/app-demo/.htaccess.filepart" bytes read 0 written 140
+Sep  5 17:11:22 10.71.56.0 u113421199 [10.71.56.0|put|1|140|0|0|0|2f6170702d64656d6f2f2e68746163636573732e66696c6570617274|]
+Sep  5 17:11:22 10.71.56.0 u113421199 remove name "/app-demo/.htaccess"
+Sep  5 17:11:22 10.71.56.0 u113421199 [10.71.56.0|rm|0|0|0|0|0|2f6170702d64656d6f2f2e6874616363657373|]
+Sep  5 17:11:23 10.71.56.0 u113421199 rename old "/app-demo/.htaccess.filepart" new "/app-demo/.htaccess"
+Sep  5 17:11:23 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f2e68746163636573732e66696c6570617274|2f6170702d64656d6f2f2e6874616363657373]
+Sep  5 17:11:23 10.71.56.0 u113421199 set "/app-demo/.htaccess" mode 0666
+Sep  5 17:11:23 10.71.56.0 u113421199 [10.71.56.0|chmod|0|0|438|0|0|2f6170702d64656d6f2f2e6874616363657373|]
+Sep  5 17:11:23 10.71.56.0 u113421199 set "/app-demo/.htaccess" modtime 20230905-17:11:19
+Sep  5 17:13:29 10.71.56.0 u113421199 open "/app-demo/public/.htaccess_old" flags READ mode 0666
+Sep  5 17:13:31 10.71.56.0 u113421199 close "/app-demo/public/.htaccess_old" bytes read 624 written 0
+Sep  5 17:13:31 10.71.56.0 u113421199 [10.71.56.0|get|2|624|0|0|0|2f6170702d64656d6f2f7075626c69632f2e68746163636573735f6f6c64|]
+Sep  5 17:13:58 10.71.56.0 u113421199 sent status No such file
+Sep  5 17:13:58 10.71.56.0 u113421199 rename old "/app-demo/public/.htaccess_old" new "/app-demo/public/.htaccess"
+Sep  5 17:13:58 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f7075626c69632f2e68746163636573735f6f6c64|2f6170702d64656d6f2f7075626c69632f2e6874616363657373]
+Sep  5 17:14:09 10.71.56.0 u113421199 open "/app-demo/public/.htaccess" flags READ mode 0666
+Sep  5 17:14:12 10.71.56.0 u113421199 close "/app-demo/public/.htaccess" bytes read 624 written 0
+Sep  5 17:14:12 10.71.56.0 u113421199 [10.71.56.0|get|3|624|0|0|0|2f6170702d64656d6f2f7075626c69632f2e6874616363657373|]
+Sep  5 17:14:15 10.71.56.0 u113421199 sent status No such file
+Sep  5 17:14:16 10.71.56.0 u113421199 open "/app-demo/public/.htaccess.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 17:14:16 10.71.56.0 u113421199 close "/app-demo/public/.htaccess.filepart" bytes read 0 written 140
+Sep  5 17:14:16 10.71.56.0 u113421199 [10.71.56.0|put|0|140|0|0|0|2f6170702d64656d6f2f7075626c69632f2e68746163636573732e66696c6570617274|]
+Sep  5 17:14:16 10.71.56.0 u113421199 remove name "/app-demo/public/.htaccess"
+Sep  5 17:14:16 10.71.56.0 u113421199 [10.71.56.0|rm|0|0|0|0|0|2f6170702d64656d6f2f7075626c69632f2e6874616363657373|]
+Sep  5 17:14:17 10.71.56.0 u113421199 rename old "/app-demo/public/.htaccess.filepart" new "/app-demo/public/.htaccess"
+Sep  5 17:14:17 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f7075626c69632f2e68746163636573732e66696c6570617274|2f6170702d64656d6f2f7075626c69632f2e6874616363657373]
+Sep  5 17:14:17 10.71.56.0 u113421199 set "/app-demo/public/.htaccess" mode 0666
+Sep  5 17:14:17 10.71.56.0 u113421199 [10.71.56.0|chmod|0|0|438|0|0|2f6170702d64656d6f2f7075626c69632f2e6874616363657373|]
+Sep  5 17:14:17 10.71.56.0 u113421199 set "/app-demo/public/.htaccess" modtime 20230905-17:14:13
+Sep  5 17:15:45 10.71.56.0 u113421199 open "/app-demo/.htaccess" flags READ mode 0666
+Sep  5 17:15:47 10.71.56.0 u113421199 close "/app-demo/.htaccess" bytes read 140 written 0
+Sep  5 17:15:47 10.71.56.0 u113421199 [10.71.56.0|get|2|140|0|0|0|2f6170702d64656d6f2f2e6874616363657373|]
+Sep  5 17:15:54 10.71.56.0 u113421199 sent status No such file
+Sep  5 17:15:54 10.71.56.0 u113421199 open "/app-demo/.htaccess.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 17:15:54 10.71.56.0 u113421199 close "/app-demo/.htaccess.filepart" bytes read 0 written 97
+Sep  5 17:15:54 10.71.56.0 u113421199 [10.71.56.0|put|0|97|0|0|0|2f6170702d64656d6f2f2e68746163636573732e66696c6570617274|]
+Sep  5 17:15:54 10.71.56.0 u113421199 remove name "/app-demo/.htaccess"
+Sep  5 17:15:54 10.71.56.0 u113421199 [10.71.56.0|rm|0|0|0|0|0|2f6170702d64656d6f2f2e6874616363657373|]
+Sep  5 17:15:55 10.71.56.0 u113421199 rename old "/app-demo/.htaccess.filepart" new "/app-demo/.htaccess"
+Sep  5 17:15:55 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f2e68746163636573732e66696c6570617274|2f6170702d64656d6f2f2e6874616363657373]
+Sep  5 17:15:55 10.71.56.0 u113421199 set "/app-demo/.htaccess" mode 0666
+Sep  5 17:15:55 10.71.56.0 u113421199 [10.71.56.0|chmod|0|0|438|0|0|2f6170702d64656d6f2f2e6874616363657373|]
+Sep  5 17:15:55 10.71.56.0 u113421199 set "/app-demo/.htaccess" modtime 20230905-17:15:51
+Sep  5 17:17:08 10.71.56.0 u113421199 sent status No such file
+Sep  5 17:17:09 10.71.56.0 u113421199 open "/app-demo/public/.htaccess.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 17:17:09 10.71.56.0 u113421199 close "/app-demo/public/.htaccess.filepart" bytes read 0 written 624
+Sep  5 17:17:09 10.71.56.0 u113421199 [10.71.56.0|put|0|624|0|0|0|2f6170702d64656d6f2f7075626c69632f2e68746163636573732e66696c6570617274|]
+Sep  5 17:17:09 10.71.56.0 u113421199 remove name "/app-demo/public/.htaccess"
+Sep  5 17:17:09 10.71.56.0 u113421199 [10.71.56.0|rm|0|0|0|0|0|2f6170702d64656d6f2f7075626c69632f2e6874616363657373|]
+Sep  5 17:17:09 10.71.56.0 u113421199 rename old "/app-demo/public/.htaccess.filepart" new "/app-demo/public/.htaccess"
+Sep  5 17:17:09 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f7075626c69632f2e68746163636573732e66696c6570617274|2f6170702d64656d6f2f7075626c69632f2e6874616363657373]
+Sep  5 17:17:10 10.71.56.0 u113421199 set "/app-demo/public/.htaccess" mode 0666
+Sep  5 17:17:10 10.71.56.0 u113421199 [10.71.56.0|chmod|0|0|438|0|0|2f6170702d64656d6f2f7075626c69632f2e6874616363657373|]
+Sep  5 17:17:10 10.71.56.0 u113421199 set "/app-demo/public/.htaccess" modtime 20230905-17:17:06
+Sep  5 17:21:04 10.71.56.0 u113421199 sent status No such file
+Sep  5 17:21:04 10.71.56.0 u113421199 open "/app-demo/.htaccess.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 17:21:04 10.71.56.0 u113421199 close "/app-demo/.htaccess.filepart" bytes read 0 written 71
+Sep  5 17:21:04 10.71.56.0 u113421199 [10.71.56.0|put|0|71|0|0|0|2f6170702d64656d6f2f2e68746163636573732e66696c6570617274|]
+Sep  5 17:21:04 10.71.56.0 u113421199 remove name "/app-demo/.htaccess"
+Sep  5 17:21:04 10.71.56.0 u113421199 [10.71.56.0|rm|0|0|0|0|0|2f6170702d64656d6f2f2e6874616363657373|]
+Sep  5 17:21:05 10.71.56.0 u113421199 rename old "/app-demo/.htaccess.filepart" new "/app-demo/.htaccess"
+Sep  5 17:21:05 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f2e68746163636573732e66696c6570617274|2f6170702d64656d6f2f2e6874616363657373]
+Sep  5 17:21:05 10.71.56.0 u113421199 set "/app-demo/.htaccess" mode 0666
+Sep  5 17:21:05 10.71.56.0 u113421199 [10.71.56.0|chmod|0|0|438|0|0|2f6170702d64656d6f2f2e6874616363657373|]
+Sep  5 17:21:05 10.71.56.0 u113421199 set "/app-demo/.htaccess" modtime 20230905-17:21:02
+Sep  5 17:22:06 10.71.56.0 u113421199 open "/app-demo/public/.htaccess" flags READ mode 0666
+Sep  5 17:22:08 10.71.56.0 u113421199 close "/app-demo/public/.htaccess" bytes read 624 written 0
+Sep  5 17:22:08 10.71.56.0 u113421199 [10.71.56.0|get|2|624|0|0|0|2f6170702d64656d6f2f7075626c69632f2e6874616363657373|]
+Sep  5 17:22:26 10.71.56.0 u113421199 sent status No such file
+Sep  5 17:22:27 10.71.56.0 u113421199 open "/app-demo/public/.htaccess.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 17:22:27 10.71.56.0 u113421199 close "/app-demo/public/.htaccess.filepart" bytes read 0 written 589
+Sep  5 17:22:27 10.71.56.0 u113421199 [10.71.56.0|put|0|589|0|0|0|2f6170702d64656d6f2f7075626c69632f2e68746163636573732e66696c6570617274|]
+Sep  5 17:22:27 10.71.56.0 u113421199 remove name "/app-demo/public/.htaccess"
+Sep  5 17:22:27 10.71.56.0 u113421199 [10.71.56.0|rm|0|0|0|0|0|2f6170702d64656d6f2f7075626c69632f2e6874616363657373|]
+Sep  5 17:22:27 10.71.56.0 u113421199 rename old "/app-demo/public/.htaccess.filepart" new "/app-demo/public/.htaccess"
+Sep  5 17:22:27 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f7075626c69632f2e68746163636573732e66696c6570617274|2f6170702d64656d6f2f7075626c69632f2e6874616363657373]
+Sep  5 17:22:28 10.71.56.0 u113421199 set "/app-demo/public/.htaccess" mode 0666
+Sep  5 17:22:28 10.71.56.0 u113421199 [10.71.56.0|chmod|0|0|438|0|0|2f6170702d64656d6f2f7075626c69632f2e6874616363657373|]
+Sep  5 17:22:28 10.71.56.0 u113421199 set "/app-demo/public/.htaccess" modtime 20230905-17:22:24
+Sep  5 17:22:40 10.71.56.0 u113421199 sent status No such file
+Sep  5 17:22:40 10.71.56.0 u113421199 open "/app-demo/public/.htaccess.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 17:22:41 10.71.56.0 u113421199 close "/app-demo/public/.htaccess.filepart" bytes read 0 written 0
+Sep  5 17:22:41 10.71.56.0 u113421199 [10.71.56.0|put|1|0|0|0|0|2f6170702d64656d6f2f7075626c69632f2e68746163636573732e66696c6570617274|]
+Sep  5 17:22:41 10.71.56.0 u113421199 remove name "/app-demo/public/.htaccess"
+Sep  5 17:22:41 10.71.56.0 u113421199 [10.71.56.0|rm|0|0|0|0|0|2f6170702d64656d6f2f7075626c69632f2e6874616363657373|]
+Sep  5 17:22:42 10.71.56.0 u113421199 rename old "/app-demo/public/.htaccess.filepart" new "/app-demo/public/.htaccess"
+Sep  5 17:22:42 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f7075626c69632f2e68746163636573732e66696c6570617274|2f6170702d64656d6f2f7075626c69632f2e6874616363657373]
+Sep  5 17:22:42 10.71.56.0 u113421199 set "/app-demo/public/.htaccess" mode 0666
+Sep  5 17:22:42 10.71.56.0 u113421199 [10.71.56.0|chmod|0|0|438|0|0|2f6170702d64656d6f2f7075626c69632f2e6874616363657373|]
+Sep  5 17:22:42 10.71.56.0 u113421199 set "/app-demo/public/.htaccess" modtime 20230905-17:22:38
+Sep  5 17:23:02 10.71.56.0 u113421199 open "/app-demo/.htaccess" flags READ mode 0666
+Sep  5 17:23:04 10.71.56.0 u113421199 close "/app-demo/.htaccess" bytes read 71 written 0
+Sep  5 17:23:04 10.71.56.0 u113421199 [10.71.56.0|get|2|71|0|0|0|2f6170702d64656d6f2f2e6874616363657373|]
+Sep  5 17:23:21 10.71.56.0 u113421199 sent status No such file
+Sep  5 17:23:21 10.71.56.0 u113421199 open "/app-demo/public/.htaccess.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 17:23:22 10.71.56.0 u113421199 close "/app-demo/public/.htaccess.filepart" bytes read 0 written 624
+Sep  5 17:23:22 10.71.56.0 u113421199 [10.71.56.0|put|1|624|0|0|0|2f6170702d64656d6f2f7075626c69632f2e68746163636573732e66696c6570617274|]
+Sep  5 17:23:22 10.71.56.0 u113421199 remove name "/app-demo/public/.htaccess"
+Sep  5 17:23:22 10.71.56.0 u113421199 [10.71.56.0|rm|0|0|0|0|0|2f6170702d64656d6f2f7075626c69632f2e6874616363657373|]
+Sep  5 17:23:22 10.71.56.0 u113421199 rename old "/app-demo/public/.htaccess.filepart" new "/app-demo/public/.htaccess"
+Sep  5 17:23:22 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f7075626c69632f2e68746163636573732e66696c6570617274|2f6170702d64656d6f2f7075626c69632f2e6874616363657373]
+Sep  5 17:23:23 10.71.56.0 u113421199 set "/app-demo/public/.htaccess" mode 0666
+Sep  5 17:23:23 10.71.56.0 u113421199 [10.71.56.0|chmod|0|0|438|0|0|2f6170702d64656d6f2f7075626c69632f2e6874616363657373|]
+Sep  5 17:23:23 10.71.56.0 u113421199 set "/app-demo/public/.htaccess" modtime 20230905-17:23:19
+Sep  5 17:25:11 10.71.56.0 u113421199 sent status No such file
+Sep  5 17:25:15 10.71.56.0 u113421199 sent status No such file
+Sep  5 17:25:15 10.71.56.0 u113421199 sent status No such file
+Sep  5 17:25:16 10.71.56.0 u113421199 open "/app-demo/php.ini.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 17:25:16 10.71.56.0 u113421199 close "/app-demo/php.ini.filepart" bytes read 0 written 1
+Sep  5 17:25:16 10.71.56.0 u113421199 [10.71.56.0|put|0|1|0|0|0|2f6170702d64656d6f2f7068702e696e692e66696c6570617274|]
+Sep  5 17:25:16 10.71.56.0 u113421199 rename old "/app-demo/php.ini.filepart" new "/app-demo/php.ini"
+Sep  5 17:25:16 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f7068702e696e692e66696c6570617274|2f6170702d64656d6f2f7068702e696e69]
+Sep  5 17:25:16 10.71.56.0 u113421199 set "/app-demo/php.ini" modtime 20230905-17:25:14
+Sep  5 17:25:49 10.71.56.0 u113421199 sent status No such file
+Sep  5 17:25:49 10.71.56.0 u113421199 open "/app-demo/php.ini.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 17:25:50 10.71.56.0 u113421199 close "/app-demo/php.ini.filepart" bytes read 0 written 137
+Sep  5 17:25:50 10.71.56.0 u113421199 [10.71.56.0|put|1|137|0|0|0|2f6170702d64656d6f2f7068702e696e692e66696c6570617274|]
+Sep  5 17:25:50 10.71.56.0 u113421199 remove name "/app-demo/php.ini"
+Sep  5 17:25:50 10.71.56.0 u113421199 [10.71.56.0|rm|0|0|0|0|0|2f6170702d64656d6f2f7068702e696e69|]
+Sep  5 17:25:50 10.71.56.0 u113421199 rename old "/app-demo/php.ini.filepart" new "/app-demo/php.ini"
+Sep  5 17:25:50 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f7068702e696e692e66696c6570617274|2f6170702d64656d6f2f7068702e696e69]
+Sep  5 17:25:50 10.71.56.0 u113421199 set "/app-demo/php.ini" mode 0604
+Sep  5 17:25:50 10.71.56.0 u113421199 [10.71.56.0|chmod|0|0|388|0|0|2f6170702d64656d6f2f7068702e696e69|]
+Sep  5 17:25:50 10.71.56.0 u113421199 set "/app-demo/php.ini" modtime 20230905-17:25:47
+Sep  5 17:28:09 10.71.56.0 u113421199 sent status No such file
+Sep  5 17:28:10 10.71.56.0 u113421199 open "/app-demo/php.ini.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 17:28:11 10.71.56.0 u113421199 close "/app-demo/php.ini.filepart" bytes read 0 written 127
+Sep  5 17:28:11 10.71.56.0 u113421199 [10.71.56.0|put|1|127|0|0|0|2f6170702d64656d6f2f7068702e696e692e66696c6570617274|]
+Sep  5 17:28:12 10.71.56.0 u113421199 remove name "/app-demo/php.ini"
+Sep  5 17:28:12 10.71.56.0 u113421199 [10.71.56.0|rm|0|0|0|0|0|2f6170702d64656d6f2f7068702e696e69|]
+Sep  5 17:28:13 10.71.56.0 u113421199 rename old "/app-demo/php.ini.filepart" new "/app-demo/php.ini"
+Sep  5 17:28:13 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f7068702e696e692e66696c6570617274|2f6170702d64656d6f2f7068702e696e69]
+Sep  5 17:28:13 10.71.56.0 u113421199 set "/app-demo/php.ini" mode 0604
+Sep  5 17:28:13 10.71.56.0 u113421199 [10.71.56.0|chmod|0|0|388|0|0|2f6170702d64656d6f2f7068702e696e69|]
+Sep  5 17:28:13 10.71.56.0 u113421199 set "/app-demo/php.ini" modtime 20230905-17:27:55
+Sep  5 17:29:22 10.71.56.0 u113421199 open "/app-demo/public/test.php" flags READ mode 0666
+Sep  5 17:29:26 10.71.56.0 u113421199 close "/app-demo/public/test.php" bytes read 13474 written 0
+Sep  5 17:29:26 10.71.56.0 u113421199 [10.71.56.0|get|5|13474|0|0|0|2f6170702d64656d6f2f7075626c69632f746573742e706870|]
+Sep  5 17:30:03 10.71.56.0 u113421199 sent status No such file
+Sep  5 17:30:03 10.71.56.0 u113421199 open "/app-demo/public/test.php.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 17:30:10 10.71.56.0 u113421199 close "/app-demo/public/test.php.filepart" bytes read 0 written 13546
+Sep  5 17:30:10 10.71.56.0 u113421199 [10.71.56.0|put|7|13546|0|0|0|2f6170702d64656d6f2f7075626c69632f746573742e7068702e66696c6570617274|]
+Sep  5 17:30:10 10.71.56.0 u113421199 remove name "/app-demo/public/test.php"
+Sep  5 17:30:10 10.71.56.0 u113421199 [10.71.56.0|rm|0|0|0|0|0|2f6170702d64656d6f2f7075626c69632f746573742e706870|]
+Sep  5 17:30:11 10.71.56.0 u113421199 rename old "/app-demo/public/test.php.filepart" new "/app-demo/public/test.php"
+Sep  5 17:30:11 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f7075626c69632f746573742e7068702e66696c6570617274|2f6170702d64656d6f2f7075626c69632f746573742e706870]
+Sep  5 17:30:11 10.71.56.0 u113421199 set "/app-demo/public/test.php" mode 0644
+Sep  5 17:30:11 10.71.56.0 u113421199 [10.71.56.0|chmod|0|0|420|0|0|2f6170702d64656d6f2f7075626c69632f746573742e706870|]
+Sep  5 17:30:11 10.71.56.0 u113421199 set "/app-demo/public/test.php" modtime 20230905-17:29:59
+Sep  5 17:30:45 10.71.56.0 u113421199 sent status No such file
+Sep  5 17:30:45 10.71.56.0 u113421199 open "/app-demo/php.ini.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 17:30:46 10.71.56.0 u113421199 close "/app-demo/php.ini.filepart" bytes read 0 written 126
+Sep  5 17:30:46 10.71.56.0 u113421199 [10.71.56.0|put|1|126|0|0|0|2f6170702d64656d6f2f7068702e696e692e66696c6570617274|]
+Sep  5 17:30:46 10.71.56.0 u113421199 remove name "/app-demo/php.ini"
+Sep  5 17:30:46 10.71.56.0 u113421199 [10.71.56.0|rm|0|0|0|0|0|2f6170702d64656d6f2f7068702e696e69|]
+Sep  5 17:30:47 10.71.56.0 u113421199 rename old "/app-demo/php.ini.filepart" new "/app-demo/php.ini"
+Sep  5 17:30:47 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f7068702e696e692e66696c6570617274|2f6170702d64656d6f2f7068702e696e69]
+Sep  5 17:30:47 10.71.56.0 u113421199 set "/app-demo/php.ini" mode 0604
+Sep  5 17:30:47 10.71.56.0 u113421199 [10.71.56.0|chmod|0|0|388|0|0|2f6170702d64656d6f2f7068702e696e69|]
+Sep  5 17:30:47 10.71.56.0 u113421199 set "/app-demo/php.ini" modtime 20230905-17:30:43
+Sep  5 17:31:29 10.71.56.0 u113421199 sent status No such file
+Sep  5 17:31:39 10.71.56.0 u113421199 sent status No such file
+Sep  5 17:31:42 10.71.56.0 u113421199 sent status No such file
+Sep  5 17:31:42 10.71.56.0 u113421199 open "/app-demo/php-errors.log.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 17:31:46 10.71.56.0 u113421199 close "/app-demo/php-errors.log.filepart" bytes read 0 written 1
+Sep  5 17:31:46 10.71.56.0 u113421199 [10.71.56.0|put|4|1|0|0|0|2f6170702d64656d6f2f7068702d6572726f72732e6c6f672e66696c6570617274|]
+Sep  5 17:31:48 10.71.56.0 u113421199 rename old "/app-demo/php-errors.log.filepart" new "/app-demo/php-errors.log"
+Sep  5 17:31:48 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f7068702d6572726f72732e6c6f672e66696c6570617274|2f6170702d64656d6f2f7068702d6572726f72732e6c6f67]
+Sep  5 17:31:50 10.71.56.0 u113421199 set "/app-demo/php-errors.log" modtime 20230905-17:31:37
+Sep  5 17:32:06 10.71.56.0 u113421199 open "/app-demo/php-errors.log" flags READ mode 0666
+Sep  5 17:32:09 10.71.56.0 u113421199 close "/app-demo/php-errors.log" bytes read 1 written 0
+Sep  5 17:32:09 10.71.56.0 u113421199 [10.71.56.0|get|3|1|0|0|0|2f6170702d64656d6f2f7068702d6572726f72732e6c6f67|]
+Sep  5 17:33:39 10.71.56.0 u113421199 sent status No such file
+Sep  5 17:33:39 10.71.56.0 u113421199 open "/app-demo/.htaccess.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 17:33:39 10.71.56.0 u113421199 close "/app-demo/.htaccess.filepart" bytes read 0 written 257
+Sep  5 17:33:39 10.71.56.0 u113421199 [10.71.56.0|put|0|257|0|0|0|2f6170702d64656d6f2f2e68746163636573732e66696c6570617274|]
+Sep  5 17:33:40 10.71.56.0 u113421199 remove name "/app-demo/.htaccess"
+Sep  5 17:33:40 10.71.56.0 u113421199 [10.71.56.0|rm|0|0|0|0|0|2f6170702d64656d6f2f2e6874616363657373|]
+Sep  5 17:33:40 10.71.56.0 u113421199 rename old "/app-demo/.htaccess.filepart" new "/app-demo/.htaccess"
+Sep  5 17:33:40 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f2e68746163636573732e66696c6570617274|2f6170702d64656d6f2f2e6874616363657373]
+Sep  5 17:33:40 10.71.56.0 u113421199 set "/app-demo/.htaccess" mode 0666
+Sep  5 17:33:40 10.71.56.0 u113421199 [10.71.56.0|chmod|0|0|438|0|0|2f6170702d64656d6f2f2e6874616363657373|]
+Sep  5 17:33:40 10.71.56.0 u113421199 set "/app-demo/.htaccess" modtime 20230905-17:33:37
+Sep  5 17:34:03 10.71.56.0 u113421199 sent status No such file
+Sep  5 17:34:04 10.71.56.0 u113421199 open "/app-demo/.htaccess.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 17:34:04 10.71.56.0 u113421199 close "/app-demo/.htaccess.filepart" bytes read 0 written 190
+Sep  5 17:34:04 10.71.56.0 u113421199 [10.71.56.0|put|0|190|0|0|0|2f6170702d64656d6f2f2e68746163636573732e66696c6570617274|]
+Sep  5 17:34:05 10.71.56.0 u113421199 remove name "/app-demo/.htaccess"
+Sep  5 17:34:05 10.71.56.0 u113421199 [10.71.56.0|rm|0|0|0|0|0|2f6170702d64656d6f2f2e6874616363657373|]
+Sep  5 17:34:05 10.71.56.0 u113421199 rename old "/app-demo/.htaccess.filepart" new "/app-demo/.htaccess"
+Sep  5 17:34:05 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f2e68746163636573732e66696c6570617274|2f6170702d64656d6f2f2e6874616363657373]
+Sep  5 17:34:05 10.71.56.0 u113421199 set "/app-demo/.htaccess" mode 0666
+Sep  5 17:34:05 10.71.56.0 u113421199 [10.71.56.0|chmod|0|0|438|0|0|2f6170702d64656d6f2f2e6874616363657373|]
+Sep  5 17:34:05 10.71.56.0 u113421199 set "/app-demo/.htaccess" modtime 20230905-17:34:01
+Sep  5 17:34:14 10.71.56.0 u113421199 sent status No such file
+Sep  5 17:34:15 10.71.56.0 u113421199 open "/app-demo/.htaccess.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 17:34:17 10.71.56.0 u113421199 close "/app-demo/.htaccess.filepart" bytes read 0 written 73
+Sep  5 17:34:17 10.71.56.0 u113421199 [10.71.56.0|put|2|73|0|0|0|2f6170702d64656d6f2f2e68746163636573732e66696c6570617274|]
+Sep  5 17:34:20 10.71.56.0 u113421199 remove name "/app-demo/.htaccess"
+Sep  5 17:34:20 10.71.56.0 u113421199 [10.71.56.0|rm|0|0|0|0|0|2f6170702d64656d6f2f2e6874616363657373|]
+Sep  5 17:34:22 10.71.56.0 u113421199 rename old "/app-demo/.htaccess.filepart" new "/app-demo/.htaccess"
+Sep  5 17:34:22 10.71.56.0 u113421199 [10.71.56.0|rename|0|0|0|0|0|2f6170702d64656d6f2f2e68746163636573732e66696c6570617274|2f6170702d64656d6f2f2e6874616363657373]
+Sep  5 17:34:23 10.71.56.0 u113421199 set "/app-demo/.htaccess" mode 0666
+Sep  5 17:34:23 10.71.56.0 u113421199 [10.71.56.0|chmod|0|0|438|0|0|2f6170702d64656d6f2f2e6874616363657373|]
+Sep  5 17:34:23 10.71.56.0 u113421199 set "/app-demo/.htaccess" modtime 20230905-17:34:13
+Sep  5 17:36:53 10.71.56.0 u113421199 open "/logs/access.log.36.1.gz" flags READ mode 0666
+Sep  5 17:36:55 10.71.56.0 u113421199 close "/logs/access.log.36.1.gz" bytes read 263 written 0
+Sep  5 17:36:55 10.71.56.0 u113421199 [10.71.56.0|get|2|263|0|0|0|2f6c6f67732f6163636573732e6c6f672e33362e312e677a|]
+Sep  5 17:37:56 10.71.56.0 u113421199 Connection from 10.71.56.0 port 25970 on 82.165.89.103 port 22
+Sep  5 17:37:58 10.71.56.0 u113421199 Accepted password for u113421199 from 10.71.56.0 port 25970 ssh2
+Sep  5 17:38:41 10.71.56.0 u113421199 mkdir name "/app-demo/logs" mode 0777
+Sep  5 17:38:41 10.71.56.0 u113421199 [10.71.56.0|mkdir|0|0|511|0|0|2f6170702d64656d6f2f6c6f6773|]
+Sep  5 17:40:21 10.71.56.0 u113421199 set "/app-demo/logs" mode 0737
+Sep  5 17:40:21 10.71.56.0 u113421199 [10.71.56.0|chmod|0|0|479|0|0|2f6170702d64656d6f2f6c6f6773|]
+Sep  5 17:40:33 10.71.56.0 u113421199 set "/logs" mode 0777
+Sep  5 17:40:33 10.71.56.0 u113421199 [10.71.56.0|chmod|0|0|511|0|1|2f6c6f6773|]
+Sep  5 17:40:33 10.71.56.0 u113421199 sent status Permission denied
+Sep  5 17:41:48 10.71.57.0 u113421199 Connection from 10.71.57.0 port 62994 on 82.165.89.103 port 22
+Sep  5 17:41:50 10.71.57.0 u113421199 Accepted password for u113421199 from 10.71.57.0 port 62994 ssh2
+Sep  5 17:41:50 10.71.57.0 u113421199 Starting session: subsystem 'sftp' for u113421199 from 10.71.57.0 port 62994 id 0
+Sep  5 17:41:50 10.71.57.0 u113421199 session opened for local user u113421199 from [10.71.57.0]
+Sep  5 17:43:31 10.71.57.0 u113421199 open "/logs/access.log.36.2" flags READ mode 0666
+Sep  5 17:43:33 10.71.57.0 u113421199 close "/logs/access.log.36.2" bytes read 96906 written 0
+Sep  5 17:43:33 10.71.57.0 u113421199 [10.71.57.0|get|2|96906|0|0|0|2f6c6f67732f6163636573732e6c6f672e33362e32|]
+Sep  5 17:44:52 10.71.57.0 u113421199 open "/logs/sftp.log" flags READ mode 0666
+Sep  5 17:44:55 10.71.57.0 u113421199 close "/logs/sftp.log" bytes read 55574 written 0
+Sep  5 17:44:55 10.71.57.0 u113421199 [10.71.57.0|get|3|55574|0|0|0|2f6c6f67732f736674702e6c6f67|]
+Sep  5 17:45:51 10.71.57.0 u113421199 open "/app-demo/php-errors.log" flags READ mode 0666
+Sep  5 17:45:54 10.71.57.0 u113421199 close "/app-demo/php-errors.log" bytes read 1 written 0
+Sep  5 17:45:54 10.71.57.0 u113421199 [10.71.57.0|get|3|1|0|0|0|2f6170702d64656d6f2f7068702d6572726f72732e6c6f67|]
+Sep  5 17:46:02 10.71.56.0 u113421199 Connection closed by 10.71.56.0 port 46010
+Sep  5 17:46:08 10.71.57.0 u113421199 open "/app-demo/.htaccess" flags READ mode 0666
+Sep  5 17:46:10 10.71.57.0 u113421199 close "/app-demo/.htaccess" bytes read 73 written 0
+Sep  5 17:46:10 10.71.57.0 u113421199 [10.71.57.0|get|2|73|0|0|0|2f6170702d64656d6f2f2e6874616363657373|]
+Sep  5 17:46:13 10.71.57.0 u113421199 open "/app-demo/php.ini" flags READ mode 0666
+Sep  5 17:46:15 10.71.56.0 u113421199 Connection closed by 10.71.56.0 port 25970
+Sep  5 17:46:16 10.71.57.0 u113421199 close "/app-demo/php.ini" bytes read 126 written 0
+Sep  5 17:46:16 10.71.57.0 u113421199 [10.71.57.0|get|3|126|0|0|0|2f6170702d64656d6f2f7068702e696e69|]
+Sep  5 17:46:24 10.71.56.0 u113421199 Connection closed by 10.71.56.0 port 47734
+Sep  5 17:46:24 10.71.56.0 u113421199 session closed for local user u113421199 from [10.71.56.0]
+Sep  5 17:46:34 10.71.57.0 u113421199 Connection from 10.71.57.0 port 63270 on 82.165.89.103 port 22
+Sep  5 17:46:36 10.71.57.0 u113421199 Accepted password for u113421199 from 10.71.57.0 port 63270 ssh2
+Sep  5 17:46:37 10.71.56.0 acc2021251760 Connection closed by 10.71.56.0 port 27658
+Sep  5 17:46:37 10.71.56.0 acc2021251760 session closed for local user acc2021251760 from [10.71.56.0]
+Sep  5 17:46:37 10.71.57.0 u113421199 Starting session: subsystem 'sftp' for u113421199 from 10.71.57.0 port 63270 id 0
+Sep  5 17:46:37 10.71.57.0 u113421199 session opened for local user u113421199 from [10.71.57.0]
+Sep  5 17:46:39 10.71.57.0 u113421199 sent status No such file
+Sep  5 17:46:39 10.71.57.0 u113421199 open "/app-demo/php.ini.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 17:46:40 10.71.57.0 u113421199 close "/app-demo/php.ini.filepart" bytes read 0 written 135
+Sep  5 17:46:40 10.71.57.0 u113421199 [10.71.57.0|put|1|135|0|0|0|2f6170702d64656d6f2f7068702e696e692e66696c6570617274|]
+Sep  5 17:46:40 10.71.57.0 u113421199 remove name "/app-demo/php.ini"
+Sep  5 17:46:40 10.71.57.0 u113421199 [10.71.57.0|rm|0|0|0|0|0|2f6170702d64656d6f2f7068702e696e69|]
+Sep  5 17:46:41 10.71.57.0 u113421199 rename old "/app-demo/php.ini.filepart" new "/app-demo/php.ini"
+Sep  5 17:46:41 10.71.57.0 u113421199 [10.71.57.0|rename|0|0|0|0|0|2f6170702d64656d6f2f7068702e696e692e66696c6570617274|2f6170702d64656d6f2f7068702e696e69]
+Sep  5 17:46:41 10.71.57.0 u113421199 set "/app-demo/php.ini" mode 0604
+Sep  5 17:46:41 10.71.57.0 u113421199 [10.71.57.0|chmod|0|0|388|0|0|2f6170702d64656d6f2f7068702e696e69|]
+Sep  5 17:46:41 10.71.57.0 u113421199 set "/app-demo/php.ini" modtime 20230905-17:46:32
+Sep  5 17:48:29 10.71.57.0 u113421199 open "/app-demo/config/app.php" flags READ mode 0666
+Sep  5 17:48:31 10.71.57.0 u113421199 close "/app-demo/config/app.php" bytes read 9833 written 0
+Sep  5 17:48:31 10.71.57.0 u113421199 [10.71.57.0|get|2|9833|0|0|0|2f6170702d64656d6f2f636f6e6669672f6170702e706870|]
+Sep  5 17:48:43 10.71.57.0 u113421199 sent status No such file
+Sep  5 17:48:43 10.71.57.0 u113421199 open "/app-demo/config/app.php.filepart" flags WRITE,CREATE,TRUNCATE mode 0666
+Sep  5 17:48:44 10.71.57.0 u113421199 close "/app-demo/config/app.php.filepart" bytes read 0 written 9832
+Sep  5 17:48:44 10.71.57.0 u113421199 [10.71.57.0|put|1|9832|0|0|0|2f6170702d64656d6f2f636f6e6669672f6170702e7068702e66696c6570617274|]
+Sep  5 17:48:44 10.71.57.0 u113421199 remove name "/app-demo/config/app.php"
+Sep  5 17:48:44 10.71.57.0 u113421199 [10.71.57.0|rm|0|0|0|0|0|2f6170702d64656d6f2f636f6e6669672f6170702e706870|]
+Sep  5 17:48:45 10.71.57.0 u113421199 rename old "/app-demo/config/app.php.filepart" new "/app-demo/config/app.php"
+Sep  5 17:48:45 10.71.57.0 u113421199 [10.71.57.0|rename|0|0|0|0|0|2f6170702d64656d6f2f636f6e6669672f6170702e7068702e66696c6570617274|2f6170702d64656d6f2f636f6e6669672f6170702e706870]
+Sep  5 17:48:45 10.71.57.0 u113421199 set "/app-demo/config/app.php" mode 0666
+Sep  5 17:48:45 10.71.57.0 u113421199 [10.71.57.0|chmod|0|0|438|0|0|2f6170702d64656d6f2f636f6e6669672f6170702e706870|]
+Sep  5 17:48:45 10.71.57.0 u113421199 set "/app-demo/config/app.php" modtime 20230905-17:48:39
+Sep  5 17:51:59 10.71.56.0 tmp113421199-5266 Connection from 10.71.56.0 port 47958 on 82.165.89.103 port 22
+Sep  5 17:51:59 10.71.56.0 tmp113421199-5266 Accepted password for tmp113421199-5266 from 10.71.56.0 port 47958 ssh2
+Sep  5 17:51:59 10.71.56.0 tmp113421199-5266 Starting session: subsystem 'sftp' for tmp113421199-5266 from 10.71.56.0 port 47958 id 0
+Sep  5 17:51:59 10.71.56.0 tmp113421199-5266 session opened for local user tmp113421199-5266 from [10.71.56.0]
+Sep  5 17:52:32 10.71.56.0 tmp113421199-5266 Connection from 10.71.56.0 port 48386 on 82.165.89.103 port 22
+Sep  5 17:52:32 10.71.56.0 tmp113421199-5266 Accepted password for tmp113421199-5266 from 10.71.56.0 port 48386 ssh2

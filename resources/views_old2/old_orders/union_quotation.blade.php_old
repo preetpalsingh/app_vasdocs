@@ -1,0 +1,510 @@
+<html><head>
+    <meta charset="utf-8">
+    <title>Quotation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!--link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" /-->
+    <!--link href="{{ base_path().'/css/print_bootstrap.min.css' }}" rel="stylesheet" type="text/css" /-->
+    <!--script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script-->
+
+    <style>
+    body {
+        margin-top: 20px;
+        color: #2e323c;
+        background: #f5f6fa;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 40px;
+		font-family: 'IBM Plex Sans Thai';
+    }
+
+    .invoice-container {
+        padding: 1rem;
+    }
+
+    .invoice-container .invoice-header .invoice-logo {
+        margin: 0.8rem 0 0 0;
+        display: inline-block;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #2e323c;
+    }
+
+    .invoice-container .invoice-header .invoice-logo img {
+        max-width: 130px;
+    }
+
+    .invoice-container .invoice-header address {
+        font-size: 12pt;
+        color: #000 !important;
+        margin: 0;
+		font-weight: 700;
+    }
+
+    .invoice-container .invoice-details {
+        margin: 45px 0 0 0;
+        padding: 1rem;
+        line-height: 180%;
+        background: transparent;
+        color: #000 !important;
+        font-size: 16px !important;
+    }
+
+    .invoice-container .invoice-details .invoice-num {
+        text-align: right;
+        font-size: 15px;
+    }
+
+    .invoice-container .invoice-body {
+        padding: 45px 0 0 0;
+    }
+
+    .invoice-container .invoice-footer {
+        text-align: center;
+        font-size: 0.7rem;
+        margin: 5px 0 0 0;
+    }
+
+    .invoice-status {
+        text-align: center;
+        padding: 1rem;
+        background: #ffffff;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+    }
+
+    .invoice-status h2.status {
+        margin: 0 0 0.8rem 0;
+    }
+
+    .invoice-status h5.status-title {
+        margin: 0 0 0.8rem 0;
+        color: #9fa8b9;
+    }
+
+    .invoice-status p.status-type {
+        margin: 0.5rem 0 0 0;
+        padding: 0;
+        line-height: 150%;
+    }
+
+    .invoice-status i {
+        font-size: 1.5rem;
+        margin: 0 0 1rem 0;
+        display: inline-block;
+        padding: 1rem;
+        background: #f5f6fa;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        border-radius: 50px;
+    }
+
+    .invoice-status .badge {
+        text-transform: uppercase;
+    }
+
+
+
+
+    .custom-table {
+        border: 1px solid #e0e3ec;
+    }
+
+    .custom-table thead {
+        background: #007ae1;
+    }
+
+    .custom-table thead th {
+        border: 0;
+        color: #000;
+        background: #eee !important;
+        font-size: 16px;
+    }
+
+    .custom-table>tbody tr:hover {
+        background: #fafafa;
+    }
+
+    .custom-table>tbody tr:nth-of-type(even) {
+        background-color: #ffffff;
+    }
+
+    .custom-table>tbody td {
+        border: 1px solid #fff;
+        font-size: 11pt;
+        font-weight: 700;
+        color: #000 !important;
+    }
+
+
+    .card {
+        background: #ffffff;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        border: 0;
+        margin-bottom: 1rem;
+    }
+
+    .text-success {
+        color: #000 !important;
+    }
+
+    .text-muted {
+        color: #9fa8b9 !important;
+    }
+
+    .custom-actions-btns {
+        margin: auto;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .custom-actions-btns .btn {
+        margin: .3rem 0 .3rem .3rem;
+    }
+
+    .invoice-inner-container {
+        border: 1px solid #000;
+    }
+	.ns_list_no li {
+		list-style: auto;
+		padding-left: 7px;
+	}
+	.ns_list_no li:nth-last-of-type(2){
+           list-style: none;list-style: none;
+    }
+   .ns_list_no li:nth-last-of-type(1){
+	   list-style: none;list-style: none;
+    }
+	.logo_headding {
+		font-size: 71px;
+		color: #0a6b4e;
+	}
+	
+
+    .col-md-6 {
+        width: 50% !important;
+        float: left;
+    }
+
+    div#sp_print {
+        width: 1130px !important;
+        padding-top: 10px;
+        
+    padding-left: 10px !important;
+    padding-right: 10px;
+    }
+
+    .row {
+    width: 100%;
+        display: block;
+        float: left;
+        
+    margin-left: 0px;
+    margin-top: 0px;
+    }
+
+    .col-md-4 {
+        width: 33%;
+        float: left;
+    }
+
+    .col-12.bg-light.text-white.p-5.pt-2.shadow.mb-5.rounded-bottom {
+        
+        display: block;
+        float: left;
+    }
+
+    .card {
+        display: block;
+        float: left;
+    }
+
+    table.table.table-bordered.col-5 {
+        width: 41.666667%;
+    }
+
+    @media print {
+
+        body {
+            background: #f5f6fa;
+            -webkit-print-color-adjust: exact !important;
+            color-adjust: exact !important;
+            padding-top: 20px;
+        }
+
+        .custom-table thead {
+            background-color: #007ae1 !important;
+            -webkit-print-color-adjust: exact;
+        }
+
+        a#clickbind {
+            display: none;
+        }
+
+        .sp_btn_container{
+            display: none !important;
+        }
+    }
+
+
+    </style>
+
+
+</head>
+
+<body cz-shortcut-listen="true">
+
+  <div class="container" id="sp_print">
+      
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-0">
+                <div class="card-body p-0">
+                    <div class="row pt-5 pl-5 pr-5 ">
+                        <div class="col-md-6">
+                           <h1 class="logo_headding">UNION 1001</h1>
+                        </div>
+
+                        <div class="col-md-6 text-right pt-3">
+                           <!--  <p class="font-weight-bold mb-1">Invoice #550</p>
+                            <p class="text-muted">Due to: 4 Dec, 2019</p> -->
+							
+							<p class="font-weight-bold mb-0">PURCHASE ORDER: STR-000001</p>
+                            <p class="mb-1"><span class="text-muted"></p>
+                        </div>
+                    </div>
+					
+					
+
+                   
+
+                    <div class="row pt-0 pl-5 pr-5 pb-5">
+                        <div class="col-md-6">
+                            <p class="font-weight-bold mb-0">สหกรณ์ออมทรัพย์ครูกรมสามัญศึกษา จำกัด 319 พิษณุโลก แขวง ดุสิต เขตดุสิต กรุงเทพมหานคร 10300 สหกรณ์ออมทรัพย์ครูกรมสามัญศึกษา จำกัด</p>               
+                            <p class="mb-0">9999999999</p>
+                            <!--p class="mb-0">[Fax Number]</p-->
+                        </div>
+
+                        <div class="col-md-6 text-right p-l-5">
+                          
+                        </div>
+                    </div>
+					
+					
+					<!-- ----------------- -->
+					
+					<div class="row px-5">
+                        
+                           
+								<div class="col-md-4">
+									<p class="font-weight-bold mb-0">To:</p>               
+									<p class="mb-0"><b>Strongroot</b></p>
+									<p class="mb-0">Strong root Company Limited </p>
+									<p class="mb-0">60 Ramkhamheang 12 Huamak Bangkapi </p>
+									<p class="mb-0">Bangkok 10240</p>
+									<p class="mb-0"><b>Tel (66)23181026</b></p>
+								</div>
+
+								
+								
+								<div class="col-md-4">
+									<p class="font-weight-bold mb-0">SHIP TO:</p>               
+									<p class="mb-0">Receiver Name</p>
+									<p class="mb-0">Delivery Address</p>
+								</div>
+
+								
+								
+								<div class="col-md-4">
+									<p class="font-weight-bold mb-0">P.O. NUMBER:</p>               
+									<p class="mb-0"><b>[leave for user to fill]</b></p>
+									<p><i>[refer to quotation number]</i></p>
+									
+								</div>
+
+							
+                    </div>
+					
+					
+					
+					<!-- ----------------- -->
+
+                    <div class="row  pt-5 pb-0 pl-5 pr-5">
+                        <div class="col-md-12">
+                            <table class="table table-bordered mb-0">
+                                <thead class="thead-light border-dark">
+                                    <tr>
+                                        <th class=" text-uppercase small font-weight-bold">NO</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">NAME</th>
+                                        <th class=" text-uppercase small font-weight-bold">รายละเอียด[DESCRIPTION]</th>
+                                        <th class=" text-uppercase small font-weight-bold">SIM</th>
+                                        <th class=" text-uppercase small font-weight-bold">VOLเครื่อง</th>
+                                        <th class=" text-uppercase small font-weight-bold">UNIT PRICE</th>
+                                        <th class=" text-uppercase small font-weight-bold text-right">Total</th>
+                                    </tr>
+									
+									
+
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Samsung Galaxy A03s</td>
+										<td>Ram 16GB</td>
+                                        <td>AIS<br>DTAC</td>
+                                        <td>20<br>30</td>
+                                        <td class="">899<br>890</td>
+                                        <td class="text-right">1,789</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+										<td class="">Alternative </td>
+                                        <td class="">Union 1 Test 99999999 </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+									<!--  -->
+                                    <!--tr>
+                                        <td>2</td>
+                                        <td>Samsung A5</td>
+										<td>Ram 16GB</td>
+                                        <td>DTAC</td>
+                                        <td>2</td>
+                                        <td class="">4.00</td>
+                                        <td class="text-right">4.00</td>
+                                    </tr-->
+									
+									
+							<table class="table table-bordered col-5" align="right">
+                               
+							    <tbody >
+                                    
+									
+									<!-- total -->
+									 <tr class="col-5">
+                                        <td class="col-6">SUBTOTAL</td>
+										 <td class="col-3 text-right">1,789</td>
+                                       
+                                    </tr>
+									<tr class="col-5">
+                                        
+										 <td class="col-6">SALES TAX (7%) </td>
+                                        <td class="col-3  text-right">125.23</td>
+										
+                                    </tr>
+									<tr class="col-5">
+                                        <td class="col-6">TOTAL</td>
+                                        <td class="col-3 text-right">$1,914.23</td>
+                                       
+                                    </tr>
+									<!-- total -->
+									
+                                </tbody>
+                            </table>
+									
+									
+									
+							  </tbody>
+							 </table>
+							
+					 
+					 </div>
+                </div>
+				
+				  <div class="row pt-0 pb-5 pl-5 pr-5 mb-5 ml-5">
+				  
+					<div class="col-md-6">
+								
+								
+						<ul class="list-group col-12 ns_list_no">
+						  <li class="border-0 py-0">Please send two copies of your invoice.</li>
+						  <li class="border-0 py-0">Enter this order in accordance with the prices, terms, delivery method, and specifications listed above.</li>
+						  <li class="border-0 py-0">Please notify us immediately if you are unable to ship as specified.</li>
+						  <li class="border-0 py-0">Send all correspondence to:	Laurel Yan</li>
+						  <li class="border-0 py-0">Strong root Company Limited	60 Ramkhamheang 12 Huamak Bangkapi Bangkok 10240</li>
+						  <li class="border-0 py-0">[Phone Number]</li>
+						  <li class="border-0 py-0">[Fax Number]</li>
+						</ul>
+								
+					</div>
+					
+					
+					<div class="col-md-6 d-flex lex-column align-items-end" style="margin-top: 250px;">
+								
+							<div class="row col-12">
+		
+								<div class="col-12 border-top d-flex justify-content-between">	
+									<p class="" style="width: 50%;float: left;">Authorized signatory</p><p style="width: 50%;text-align:right; float: left;">Signature</p>	
+								
+								</div>
+								
+							</div>
+							
+							
+					</div>
+				
+            </div>
+        </div>
+    </div>
+
+    @php
+
+    if( $data['options'] == 'show' ){
+
+    @endphp
+	
+	
+	<div class="col-12  bg-light text-white p-5 pt-2 shadow mb-5 rounded-bottom sp_btn_container">
+					
+		<div class="row justify-content-end" style="display: flex;">
+		
+			<div class="col-2 d-flex flex-column ">
+			 
+			
+				<a href="{{ route('admin.vieworderUQ',['download'=>'pdf']) }}" class="btn btn-success mb-4 float-right">SAVE</a>
+				
+				
+				<button onclick="window.print()" type="button" class="btn btn-primary mb-4 float-right clickbind">PRINT</button>
+				
+				
+				<button type="button" class="btn btn-danger mb-0 float-right">BACK</button>
+		
+			</div>
+			
+		</div>
+	
+	</div>
+
+    @php
+
+    }
+
+    @endphp
+					
+					
+					
+					
+					
+    
+    <!--div class="text-light mt-5 mb-5 text-center small">by : <a class="text-light" target="_blank" href="http://totoprayogo.com">totoprayogo.com</a></div-->
+
+</div>
+
+
+
+
+    </div>
+
+
+
+    
+
+
+
+
+</body></html>

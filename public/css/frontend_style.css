@@ -1,0 +1,738 @@
+
+@font-face {
+    font-family: "Teko, sans-serif";
+    src: url("https://fonts.googleapis.com/css2?family=Teko:wght@300;500;600&display=swap")
+      format("truetype");
+  }
+  
+  @font-face {
+    font-family: "BarlowSemiCondensed-Black";
+    src: url("ns_fonts/BarlowSemiCondensed-Black.ttf")
+      format("truetype");
+  }
+  
+  @font-face {
+    font-family: "BarlowSemiCondensed-BlackItalic";
+    src: url("ns_fonts/BarlowSemiCondensed-BlackItalic.ttf")
+      format("truetype");
+  }
+  
+  @font-face {
+    font-family: "BarlowSemiCondensed-Bold";
+    src: url("ns_fonts/BarlowSemiCondensed-Bold.ttf")
+      format("truetype");
+  }
+  
+  @font-face {
+    font-family: "BarlowSemiCondensed-BoldItalic";
+    src: url("ns_fonts/BarlowSemiCondensed-BoldItalic.ttf")
+      format("truetype");
+  }
+  
+  @font-face {
+    font-family: "BarlowSemiCondensed-ExtraBold";
+    src: url("ns_fonts/BarlowSemiCondensed-ExtraBold.ttf")
+      format("truetype");
+  }
+  
+  @font-face {
+    font-family: "BarlowSemiCondensed-ExtraBoldItalic";
+    src: url("ns_fonts/BarlowSemiCondensed-ExtraBoldItalic.ttf")
+      format("truetype");
+  }
+  
+  @font-face {
+    font-family: "BarlowSemiCondensed-ExtraLight";
+    src: url("ns_fonts/BarlowSemiCondensed-ExtraLight.ttf")
+      format("truetype");
+  }
+  
+  @font-face {
+    font-family: "BarlowSemiCondensed-ExtraLightItalic";
+    src: url("ns_fonts/BarlowSemiCondensed-ExtraLightItalic.ttf")
+      format("truetype");
+  }
+  
+  @font-face {
+    font-family: "BarlowSemiCondensed-Italic";
+    src: url("ns_fonts/BarlowSemiCondensed-Italic.ttf")
+      format("truetype");
+  }
+  
+  /* @font-face {
+    font-family: "BarlowSemiCondensed-Light";
+    src: url("ns_fonts/BarlowSemiCondensed-Light.ttf")
+      format("truetype");
+  } */
+  
+  @font-face {
+    font-family: "BarlowSemiCondensed-LightItalic";
+    src: url("ns_fonts/BarlowSemiCondensed-LightItalic.ttf")
+      format("truetype");
+  }
+  
+  @font-face {
+    font-family: "BarlowSemiCondensed-Medium";
+    src: url("ns_fonts/BarlowSemiCondensed-Medium.ttf")
+      format("truetype");
+  }
+  
+  @font-face {
+    font-family: "BarlowSemiCondensed-MediumItalic";
+    src: url("ns_fonts/BarlowSemiCondensed-MediumItalic.ttf")
+      format("truetype");
+  }
+  
+  @font-face {
+    font-family: "BarlowSemiCondensed-Regular";
+    src: url("ns_fonts/BarlowSemiCondensed-Regular.ttf")
+      format("truetype");
+  }
+  
+  @font-face {
+    font-family: "BarlowSemiCondensed-SemiBold";
+    src: url("ns_fonts/BarlowSemiCondensed-SemiBold.ttf")
+      format("truetype");
+  }
+  
+  @font-face {
+    font-family: "BarlowSemiCondensed-SemiBoldItalic";
+    src: url("ns_fonts/BarlowSemiCondensed-SemiBoldItalic.ttf")
+      format("truetype");
+  }
+  
+  @font-face {
+    font-family: "BarlowSemiCondensed-Thin";
+    src: url("ns_fonts/BarlowSemiCondensed-Thin.ttf")
+      format("truetype");
+  }
+  
+  @font-face {
+    font-family: "BarlowSemiCondensed-ThinItalic";
+    src: url("ns_fonts/BarlowSemiCondensed-ThinItalic.ttf")
+      format("truetype");
+  }
+  
+  
+   ul.nav.navbar-nav a{
+          border: none;
+  }
+  
+  
+  
+  img.h_s {
+      width: 100%;
+  }
+  
+  
+  
+  .number {
+      width: 40%;
+      text-align: center;
+      font-family: "IBM Plex Sans Thai";
+      outline: none;
+      padding: 3px;
+      color: #000;
+      border-radius: 5px;
+      border: 2px solid #521b5f !important;
+      margin: 0 7px;
+  }
+  
+  
+  .ADD {
+     width: 40%;
+      text-align: center;
+      background: #1189e8;
+      outline: none;
+      padding: 3px;
+      color:#fff;
+      border-radius: 5px;
+      border: 2px solid green;
+      margin: 0 7px;
+	  font-family: "IBM Plex Sans Thai";
+  }
+
+  .Package .ns-card_1 label.active {
+    border: 2px solid #1189e8 !important;	
+	background: #ffffff;	
+	font-family: "IBM Plex Sans Thai";
+    }
+  
+  .Package .ns-card_1 label {
+     *padding: 4px 18px;
+      background: #e7e7e7;
+      margin: 7px 0px;
+      width: 69px;
+      text-align: center;
+      border: 2px solid #e7e7e7;
+        cursor: pointer;	
+        font-family: "IBM Plex Sans Thai";
+  }
+  
+  section.solution .Package {
+      box-sizing: border-box;
+      width: 100%;
+      border-radius: 15px;
+      background: #f0f0f0;
+      padding: 0px 0px 40px;
+  }
+  .headding {
+      font-size: 80px;
+      font-family: "BarlowSemiCondensed-Light";
+  }
+  
+  p.pera {
+    font-size: 18px;
+	font-family: "IBM Plex Sans Thai";
+  }
+  
+  
+  .ns-card_1 h2 {
+      font-size: 20px;
+      line-height: 1.5;
+      margin-top: -24px;
+      font-family: "IBM Plex Sans Thai";
+
+  }
+  img.h_s {
+      width: 100%;
+      float: right;
+      height: auto;
+  }
+  
+  .ns_height {
+      padding-top: 30px;
+      font-family: "IBM Plex Sans Thai";
+  }
+  .ns_card_4 {
+      text-align: center;
+  }
+  .ns-card_1 {
+      background: #fff;
+      padding: 30px 20px 10px;
+      min-height: 526px;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-evenly;
+      flex-direction: column;
+  }
+  
+  
+  .ns_card_3 p.pera {
+      width: 84%;
+       margin: 22px 0 0px;
+       font-size: 15px;
+      padding-left: 20px !important;
+      color: #000;
+  }
+  .ns-card_web {
+      display: flex;
+      justify-content: space-between;
+  }
+  .n_two {
+      padding-bottom: 20px;
+  }
+  p.ap {
+      font-size: 18px;
+      font-family: "IBM Plex Sans Thai";
+  }
+  .ns-card.headding h2 {
+     font-size: 38px;
+      padding: 16px 20px;
+      color: #fff;
+      border-radius: 8px 8px 0px 0px;
+      font-family: "IBM Plex Sans Thai";
+  }
+  .in_side {
+     box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
+      height: 520px;
+      margin-bottom: 20px;
+  }
+  .ns-card.pera {
+      padding: 20px;
+      margin-bottom: 40px;
+      font-family: "IBM Plex Sans Thai";
+  }
+  
+  .banner {
+      width: 100%;
+  }
+  
+  .n_three {
+      padding-top: 15px;
+  }
+  ul.ns_menu {
+      position: absolute;
+     padding-left: 26px;
+      list-style: none;
+      width: 399px;
+  }
+  a {
+      font-size: 23px;
+      color: #000;
+  }
+  
+  
+  li.list {
+      padding: 0 31px;
+  }
+  img.logo {
+      width: 320px;
+  }
+  h2.one {
+      background: #21b7ea;
+  }
+  h2.two{
+       background: #94cf37;
+  }
+  h2.three{
+       background: #fd678d;
+  }
+  
+  a.btn.center {
+      padding: 9px 40px;
+      background: green;
+      color: #fff;
+      text-transform: uppercase;
+  }
+  
+  .ns_last-text h2 {
+      font-size: 57px;
+      color: #fff;
+      float: left;
+      border-right: 6px solid #fff;
+      margin: 15px 0px 0px;
+      padding-right: 26px;
+      font-family: "BarlowSemiCondensed-Light";
+  }
+  section.Questions {
+      background:#0D5E02 !important;
+      padding: 20px 0px 5px;
+      margin-top: 50px;
+  }
+  .panel-body {
+      padding: 15px;
+      display: flex;
+      color: #fff;
+      font-size: 14px;
+      padding-left: 20px;
+      font-family: "IBM Plex Sans Thai";
+  }
+  
+  h2.sub_headding {
+      font-size: 30px;
+      font-family: "BarlowSemiCondensed-Light";
+  }
+  
+  .ns_Voluptatum {
+      padding-top: 43px;
+  }
+  p.Issue {
+      font-size: 20px;
+  }
+  .closebtn {
+     display:none;
+  }
+  span.icon {
+      display: none;
+  }
+  @media only screen and (max-width: 768px) {
+   
+   span.icon {
+      display: block !important;
+  }
+   .headding {
+      font-size: 45px;
+  }
+  
+  .ns_last-text h2 {
+      font-size: 38px;
+      color: #fff;
+      float: none;
+      border-right: none;
+      margin: 17px 19px 0px;
+      padding-right: 26px;
+  }
+   
+   .ns-card_1 {
+     padding: 30px 20px 30px;
+     
+     
+  }
+   img.logo {
+      width: 296px;
+      margin-left: -16px;
+  }
+  div#myNavbar {
+      display: block;
+  }
+  ul.ns_menu {
+      position: relative;
+      padding-left: 26px;
+      list-style: none;
+      width: 399px;
+  }
+  div#myNavbar {
+      display: block;
+      margin-top: 61px;
+  }
+   ul.nav.navbar-nav a{
+      font-size: 17px;
+      color: #000;
+          border: none;
+  }
+   .n_three {
+      padding-top: 50px;
+  }
+  section.Questions {
+     
+      margin-top: 50px;
+  }
+  .ns-card_1 h2 {
+    
+      margin-bottom: 20px;
+  }
+  
+  .ns_card_3 p.pera {
+      padding-left: 10px !important;
+      
+  }
+  
+   section.solution .Package {
+     
+      padding: 0px 0px 40px;
+  }
+   
+   .ns_height br {
+      display: none;
+  }
+   
+   
+   
+   label {
+      padding: 4px 18px;
+      margin: 17px 1.6% 0;
+      width: 69px;
+  }
+   
+   
+   
+   .ns-card_web {
+     
+      flex-direction: column;
+  }
+   
+   img.h_s {
+      float: right;
+      height: auto;
+      width: 100%;
+  }
+   .ns_card_2, .ns_card_4 {
+      margin-top: -15px;
+  }
+  
+  
+  div#navbarSupportedContent {
+      position: absolute;
+      width: 300px;
+      height: 100vh;
+      top: 0px;
+      padding-left: 20px;
+      padding-top: 90px;
+      background: black;
+      left: -100%;
+     
+  }
+  ul.navbar-nav .nav-item .nav-link {
+      color: #ffffff !important;
+      font-weight: 700;
+      padding: 20px 0;
+  }
+  .in_side {
+     
+      height: initial !important;
+  }
+  
+  
+  span.icon {
+     color: #fff;
+      margin: 13px;
+  }
+  
+  
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+   
+  }
+  
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  ul.navbar-nav {
+      padding-left: 20px;
+  }
+
+  
+
+.product_search_box {
+
+	flex-direction: column;
+	margin: 40px 15px 20px 15px;
+
+}
+.select_cloum, .form-outline {
+    margin: 10px 0;
+    width: 80%;
+}
+
+
+
+  }
+  
+  li.nav-item:hover .dropdown-menu {
+      position: absolute;
+      display: block;
+      border: none;
+      border-radius: 0px;
+      margin: 0px !important;
+      padding: 0px;
+  }
+
+  ul.navbar-nav .nav-item .dropdown-menu a {
+    padding: 10px 20px !important;
+}
+
+ul.navbar-nav .nav-item .nav-link:hover {
+    color: #db545a !important;
+}
+
+ul.navbar-nav .nav-item .dropdown-menu a:hover {
+    background-color: #e6e6e6 !important;
+    cursor: pointer;
+}
+  
+  nav.navbar.navbar-expand-lg.bg-light {
+      background: #0D5E02 !important;
+  }
+  nav img.logo {
+      width: 200px;
+  }
+  ul.navbar-nav .nav-item .nav-link {
+      color: #ffffff !important;
+      font-weight: normal;
+        font-size: 18px;
+        padding: 10px 28px;
+  }
+  ul.navbar-nav .nav-item .dropdown-menu .nav-link {
+      color: #000 !important;
+  }
+
+
+.sp_sweet_alert_success .swal-icon--success__ring {
+    border: 4px solid hsl(98deg 74% 37%) !important;
+}
+
+.sp_sweet_alert_success .swal-icon--success__line {
+    background-color: #429016 !important;
+}
+
+.sp_sweet_alert_success .swal-title {
+    color: #429016 !important;
+}
+
+.sp_sweet_alert_success .swal-button {
+    background-color: #429016 !important;
+}
+
+
+.sp_sweet_alert_danger .swal-icon--error {
+    border: 4px solid #ff2020 !important;
+}
+
+.sp_sweet_alert_danger .swal-icon--error__line {
+    background-color: #ff2020 !important;
+}
+
+.sp_sweet_alert_danger .swal-title {
+    color: #ff2020 !important;
+}
+
+.sp_sweet_alert_danger .swal-button {
+    background-color: #ff2020 !important;
+}
+
+.swal-overlay--show-modal .swal-modal {
+    top: -20% !important;
+    position: relative;
+}
+
+/* sweet alert deign end */
+
+/* sweet alert deign start */
+
+.modal-header {
+    background: rgb(255, 193, 2);
+    border: 0;
+    -webkit-box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+    padding: 25px 15px !important;
+}
+
+.modal-header h1#exampleModalLabel {
+    color: #fff;
+}
+
+button.close {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    border-radius: 0;
+    border: none !important;
+    background: rgb(255, 193, 2);
+    color: #fff !important;
+    font-size: 30px;
+}
+
+button.btn.btn-warning {
+    background-color: #fb3 !important;
+    color: #fff;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+    padding: 10px 50px;
+    font-size: 20px;
+    border-radius: 1px !important;
+}
+
+button.btn-outline-warning {
+    color: #fb3 !important;
+    background-color: transparent !important;
+    border: 2px solid #fb3 !important;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+    padding: 10px 50px;
+    font-size: 20px;
+    border-radius: 1px !important;
+    margin-right: 20px;
+}
+
+.btn:hover, .btn:focus, .btn:active {
+    outline: 0 !important;
+    -webkit-box-shadow: 0 5px 11px 0 rgb(0 0 0 / 18%), 0 4px 15px 0 rgb(0 0 0 / 15%) !important;
+    box-shadow: 0 5px 11px 0 rgb(0 0 0 / 18%), 0 4px 15px 0 rgb(0 0 0 / 15%) !important;
+}
+
+.modal-lg, .modal-xl {
+    --bs-modal-width: 700px !important;
+}
+.ui-autocomplete {
+    z-index: 99999 !important;
+}
+
+
+
+.product_search_box {
+    display: flex;
+ justify-content: space-between;
+ padding: 20px 20px;
+ background: #fff;
+ align-items: baseline;
+ margin: 20px 0 20px 15px;
+}
+.form-outline {
+ position: relative;
+}
+input#search-focus {
+ padding-left: 30px;
+}
+.form-outline .fas.fa-search {
+ position: absolute;
+ top: 13px;
+ color: gray;
+ font-size: 13px;
+ left: 10px;
+}
+
+/* sweet alert deign end */
+  
+  @media screen and (max-height: 450px) {
+    /* .sidenav {padding-top: 15px;} */
+    .sidenav a {font-size: 18px;}
+  }
+  
+.line{
+      position: fixed;
+      top: 250px;
+      right: 0px;
+  }
+#main-wrapper[data-layout=vertical][data-header-position=fixed] .fixed-header{
+    position: initial !important;
+}
+
+/* HOME PAGE */
+
+img.main_logo {
+    width: 140px;
+}
+.App_Store_anchor {
+    width: 10rem;
+    color: transparent;
+}
+ .App_Store {
+     width: 100% ;
+    margin: 10px 0px;
+ }
+ .App_Store{
+    transform: translate(0px, 0px);
+    transition: 0.3s;
+ }
+ .App_Store:hover{
+    border-radius: 7px;
+    -webkit-box-shadow: 0 5px 11px 0 rgb(0 0 0 / 18%), 0 4px 15px 0 rgb(0 0 0 / 15%) !important;
+    box-shadow: 0 5px 11px 0 rgb(0 0 0 / 18%), 0 4px 15px 0 rgb(0 0 0 / 15%) !important;
+    transform: translate(0px, -5px) !important;
+ }
+
+ @media only screen and (max-device-width: 768px) {
+    
+    .App_Store {
+        width: 60%;
+        margin: 10px 0;
+    }
+} 
+
+ 
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
+
+    .App_Store {
+        width: 30%;
+        margin: 10px 5px;
+    }
+    
+ }
