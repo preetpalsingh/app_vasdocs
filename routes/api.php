@@ -23,12 +23,14 @@ Route::group(['middleware' => 'api'], function ($router) {
 
     $router->post('login', [AuthController::class, 'login']);
     $router->any('get-client-document-list-test/{last_id?}', [AuthController::class, 'GetClientDocumentListTest'])->name('GetClientDocumentListTest');
+    $router->any('generate-pdf', [AuthController::class, 'generatePdf'])->name('generatePdf');
  
 });
 
 Route::middleware(['token.validate', 'auth:api'])->group(function () {
     Route::get('user', [AuthController::class, 'user']);
     Route::post('upload_document', [AuthController::class, 'upload_document']);
+    //Route::post('save_upload_document', [AuthController::class, 'save_upload_document']);
     
     Route::any('get-client-document-list/', [AuthController::class, 'getClientDocumentList'])->name('GetClientDocumentList');
     // Other protected routes...

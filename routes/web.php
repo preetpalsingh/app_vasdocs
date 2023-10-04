@@ -70,6 +70,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function(){
     // DocumentsController
 
     Route::get('documents-view/{invoice_id}', [DocumentsController::class, 'index'])->name('documentsView');
+    Route::get('documents-download/{invoice_id}', [DocumentsController::class, 'download'])->name('documentsDownload');
     Route::get('documents-view-ajax/{invoice_id}', [DocumentsController::class, 'getDetailFromMindee'])->name('documentsViewAjax');
     Route::get('client/{invoice_id}', [DocumentsController::class, 'client'])->name('client');
     Route::get('client_view/', [DocumentsController::class, 'client_view'])->name('client_view');

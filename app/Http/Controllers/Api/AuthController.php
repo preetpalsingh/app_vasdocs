@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller; 
 use App\Models\User;
 use App\Models\ClientDocuments;
+use App\Models\PdfGenerator;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -71,7 +72,7 @@ class AuthController extends Controller
         return response()->json($user);
     }
 
-    public function upload_document(Request $request)
+    public function upload_document_old(Request $request)
     {
         $user = $request->user();
 
@@ -112,6 +113,64 @@ class AuthController extends Controller
                 } else {
                     return response()->json(['message' => 'File upload failed'], 500);
                 }
+
+            } else {
+
+                return response()->json(['message' => 'Invalid file type. Allowed types: jpg, jpeg, png'], 400);
+                
+            }
+        }
+
+        return response()->json(['message' => 'Please select file to upload'], 400);
+    }
+
+    public function upload_document(Request $request)
+    {
+        $user = $request->user();
+
+        //dd($request->file('file'));
+
+        $allowedFileTypes = ['jpg', 'jpeg', 'png'];
+
+        if ($request->hasFile('file')) {
+
+            $file = $request->file('file');
+            $file_path = $file->getPathName();
+            //echo '<pre>';print_r($file->getPathName());die();
+            $originalFileName = $file->getClientOriginalName();
+            $originalFileNameWithoutExt = pathinfo($originalFileName,PATHINFO_FILENAME);
+            $fileExtension = strtolower($file->getClientOriginalExtension());
+    
+            if (in_array($fileExtension, $allowedFileTypes)) {
+
+                $fileName = time() . '_' . str_replace(' ', '_', $originalFileNameWithoutExt).'.pdf';
+                //$file->storeAs('documents', $fileName, 'public');
+                //$path = $request->file('file')->store('public/files');
+ 
+                //if ($file->move(public_path('documents'), $fileName)) {
+
+                    $pdf = new PdfGenerator();
+                    $pdf->SaveSinglePdf( $file_path , $fileName );
+
+                    $this->client_documents->user_id            =   $user->id;
+                    $this->client_documents->file               =   $fileName;
+                    $this->client_documents->created_at         =   date('Y-m-d H:i:s');
+
+                    $this->client_documents->save();
+
+                    $document_size = $this->formatfileConvertsize( filesize(public_path('documents').'/'.$this->client_documents->file) );
+
+                    $files = array(
+                        'title' => $this->client_documents->file,
+                        'size' => $document_size,
+                        'date' => date_format( date_create( $this->client_documents->created_at ), 'Y-m-d' ),
+                        //'image' => 'assets/images/pdf-icon.png',
+                    );
+
+                    return response()->json(['message' => 'File uploaded successfully','files' => $files], 200);
+                /* } else {
+                    return response()->json(['message' => 'File upload failed'], 500);
+                } */
 
             } else {
 
@@ -240,6 +299,13 @@ class AuthController extends Controller
         else {
             return round(($value / 1024000), 1) . " MB";
         }
+    }
+
+    public function generatePdf(Request $request)
+    {
+        $pdf = new PdfGenerator();
+        $content = 'This is the content of your PDF. Customize it as needed.';
+        $pdf->generatePdf($content);
     }
 
 }

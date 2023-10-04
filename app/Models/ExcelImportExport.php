@@ -6,9 +6,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\UnionMembership;
+use App\Models\User;
 
 use Mail;
 
@@ -131,11 +133,21 @@ class ExcelImportExport extends Model
 		
 		require_once 'excel_import_export/php-excel.class.php';
 
+		$user = Auth::user();
+
 		$fileds = array('supplier','invoice_number','invoice_date','due_date','net_amount','tax_amount','total_amount','status', 'code', 'report_code', 'name');
 		
 		$fileds_im = implode( ',' , $fileds);
+
+		if ( Auth::user()->role_id == 3 ) {
 		
-		$row_list = DB::select("SELECT $fileds_im  FROM client_documents t1 LEFT JOIN account_code t2 ON t1.account_code = t2.id where t1.created_at BETWEEN '".$start_date."' and '".$end_date."'");
+			$row_list = DB::select("SELECT $fileds_im  FROM client_documents t1 LEFT JOIN account_code t2 ON t1.account_code = t2.id where t1.user_id = ".$user->id." AND  date(t1.created_at) >= '".$start_date."' AND date(t1.created_at) <=  '".$end_date."'");
+
+		} else {
+
+			$row_list = DB::select("SELECT $fileds_im  FROM client_documents t1 LEFT JOIN account_code t2 ON t1.account_code = t2.id where date(t1.created_at) >= '".$start_date."' AND date(t1.created_at) <=  '".$end_date."'");
+
+		}
 		
 		$file_name = 'ExportList_'.date("YmdHis");
 		

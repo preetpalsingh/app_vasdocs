@@ -230,6 +230,30 @@ class DocumentsController extends Controller
     
     }
 
+    public function download($invoice_id)
+    {
+
+        $invoice_detail = ClientDocuments::where('id', $invoice_id)->orderBy('id', 'desc')->get();
+
+        // Path to your PDF file
+        $pdfPath = public_path('documents').'/'.$invoice_detail[0]->file;
+
+        // Check if the file exists
+        if (file_exists($pdfPath)) {
+            // Define the response headers for downloading the file
+            $headers = [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'attachment; filename="'.$invoice_detail[0]->file.'"',
+            ];
+
+            // Generate a response that forces the file download
+            return response()->file($pdfPath, $headers);
+        } else {
+            // Handle the case where the file does not exist
+            return abort(404);
+        }
+    }
+
     public function client_view($invoice_id)
     {
       

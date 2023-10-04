@@ -173,13 +173,9 @@
 
                     <div class="w-100 d-flex justify-content-md-end  justify-content-end">
 
-                        @if( $_SERVER['REMOTE_ADDR'] == '2401:4900:1c2a:6b78:c55e:f075:d49f:5c4b' )
-
                             <a href="javascript:void(0)" id="show_export" class="btn btn-success d-flex align-items-center me-3" data-bs-toggle="tooltip" title="Export Excel {{$title}}">
                                 <i class="ti ti-file-export text-white me-1 fs-5"></i> Export
                             </a>
-
-                        @endif
 
                         <a href="javascript:void(0)" id="addFeed" class="btn btn-info d-flex align-items-center" data-bs-toggle="tooltip" title="Add {{$title}}">
                             <i class="ti ti-clipboard-plus text-white me-1 fs-5"></i> Add

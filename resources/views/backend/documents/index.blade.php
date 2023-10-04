@@ -69,7 +69,7 @@
             z-index: 100;
         }
 
-        .pdfjs-toolbar button.btn.btn-secondary {
+        .pdfjs-toolbar .btn.btn-secondary {
             background: #000;
             border: #000;
             padding-top: 5px;
@@ -146,6 +146,7 @@
                         <span class="pageno"></span>
                         <button class="btn btn-secondary btn-sm btn-next" onclick="pdfViewer.next(); return false;"><i class="material-icons-outlined">navigate_next</i></button>
                         <button class="btn btn-secondary btn-sm btn-last" onclick="pdfViewer.last()"><i class="material-icons-outlined">skip_next</i></button>
+                        <a class="btn btn-secondary btn-sm btn-last" data-bs-toggle="tooltip" title="Download Invoice" href="{{ route('admin.documentsDownload', ['invoice_id' =>  $invoice_id ]) }}"><i class="material-icons-outlined">download</i></a>
                     </div>
                     <div class="col-12 col-lg-6 my-1">
                         <button class="btn btn-secondary btn-sm" onclick="pdfViewer.setZoom('out')"><i class="material-icons-outlined">zoom_out</i></button>
