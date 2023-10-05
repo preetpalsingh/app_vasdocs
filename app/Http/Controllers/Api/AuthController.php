@@ -130,7 +130,7 @@ class AuthController extends Controller
 
         //dd($request->file('file'));
 
-        $allowedFileTypes = ['jpg', 'jpeg', 'png'];
+        $allowedFileTypes = ['jpg', 'jpeg', 'png', 'pdf'];
 
         if ($request->hasFile('file')) {
 
@@ -143,12 +143,37 @@ class AuthController extends Controller
     
             if (in_array($fileExtension, $allowedFileTypes)) {
 
-                $fileName = time() . '_' . str_replace(' ', '_', $originalFileNameWithoutExt).'.pdf';
-                //$file->storeAs('documents', $fileName, 'public');
-                //$path = $request->file('file')->store('public/files');
- 
-                //if ($file->move(public_path('documents'), $fileName)) {
+                if( $fileExtension == 'pdf' ){
 
+                    $fileName = time() . '_' . str_replace(' ', '_', $originalFileName);
+    
+                    if ($file->move(public_path('documents'), $fileName)) {
+
+                        $this->client_documents->user_id            =   $user->id;
+                        $this->client_documents->file               =   $fileName;
+                        $this->client_documents->created_at         =   date('Y-m-d H:i:s');
+
+                        $this->client_documents->save();
+
+                        $document_size = $this->formatfileConvertsize( filesize(public_path('documents').'/'.$this->client_documents->file) );
+
+                        $files = array(
+                            'title' => $this->client_documents->file,
+                            'size' => $document_size,
+                            'date' => date_format( date_create( $this->client_documents->created_at ), 'Y-m-d' ),
+                            //'image' => 'assets/images/pdf-icon.png',
+                        );
+
+                        return response()->json(['message' => 'File uploaded successfully','files' => $files], 200);
+                    } else {
+                        return response()->json(['message' => 'File upload failed'], 500);
+                    }
+
+
+                } else {
+
+                    $fileName = time() . '_' . str_replace(' ', '_', $originalFileNameWithoutExt).'.pdf';
+                
                     $pdf = new PdfGenerator();
                     $pdf->SaveSinglePdf( $file_path , $fileName );
 
@@ -168,13 +193,12 @@ class AuthController extends Controller
                     );
 
                     return response()->json(['message' => 'File uploaded successfully','files' => $files], 200);
-                /* } else {
-                    return response()->json(['message' => 'File upload failed'], 500);
-                } */
+                }
+
 
             } else {
 
-                return response()->json(['message' => 'Invalid file type. Allowed types: jpg, jpeg, png'], 400);
+                return response()->json(['message' => 'Invalid file type. Allowed types: jpg, jpeg, png, pdf'], 400);
                 
             }
         }

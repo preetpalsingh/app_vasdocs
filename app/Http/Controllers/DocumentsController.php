@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Simcard;
 use App\Models\ClientDocuments;
+use App\Models\PdfGenerator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -512,7 +513,9 @@ class DocumentsController extends Controller
             if ($request->hasFile('file')) {
 
                 $file = $request->file('file');
+                $file_path = $file->getPathName();
                 $originalFileName = $file->getClientOriginalName();
+                $originalFileNameWithoutExt = pathinfo($originalFileName,PATHINFO_FILENAME);
                 $fileExtension = strtolower($file->getClientOriginalExtension());
         
                 if (in_array($fileExtension, $allowedFileTypes)) {
@@ -520,28 +523,51 @@ class DocumentsController extends Controller
                     $fileName = time() . '_' . str_replace(' ', '_', $originalFileName);
                     //$file->storeAs('documents', $fileName, 'public');
                     //$path = $request->file('file')->store('public/files');
-     
-                    if ($file->move(public_path('documents'), $fileName)) {
+
+                    if( $fileExtension == 'pdf' ){
+
+                        if ($file->move(public_path('documents'), $fileName)) {
     
+                            $this->client_documents->user_id            =   $user_id;
+                            $this->client_documents->file               =   $fileName;
+                            $this->client_documents->created_at         =   date('Y-m-d H:i:s');
+        
+                            $this->client_documents->save();
+        
+                            return response()->json([
+                                'status' => true,
+                                'message' => 'File uploaded successfully'
+                            ], 200);
+    
+                        } else {
+    
+                            return response()->json([
+                                'status' => false,
+                                'message' => 'File upload failed'
+                            ], 200);
+    
+                        }
+
+
+                    } else {
+
+                        $fileName = time() . '_' . str_replace(' ', '_', $originalFileNameWithoutExt).'.pdf';
+
+                        $pdf = new PdfGenerator();
+                        $pdf->SaveSinglePdf( $file_path , $fileName );
+
                         $this->client_documents->user_id            =   $user_id;
                         $this->client_documents->file               =   $fileName;
                         $this->client_documents->created_at         =   date('Y-m-d H:i:s');
-    
+
                         $this->client_documents->save();
-    
+
                         return response()->json([
                             'status' => true,
                             'message' => 'File uploaded successfully'
                         ], 200);
-
-                    } else {
-
-                        return response()->json([
-                            'status' => false,
-                            'message' => 'File upload failed'
-                        ], 200);
-
                     }
+     
     
                 } else {
     
@@ -561,7 +587,6 @@ class DocumentsController extends Controller
 
             }
 
-            
 
         } catch(\Exception $e) {
 
