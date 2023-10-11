@@ -245,7 +245,7 @@ class AuthController extends Controller
             ->select('client_documents.*')
             ->orderBy('client_documents.id', 'DESC');
 
-       $documents = $documentsQuery->paginate(2);
+       $documents = $documentsQuery->paginate(10);
 
        //echo '<pre>';print_r($documents);die();
 
@@ -330,6 +330,129 @@ class AuthController extends Controller
         $pdf = new PdfGenerator();
         $content = 'This is the content of your PDF. Customize it as needed.';
         $pdf->generatePdf($content);
+    }
+
+    // reset passowrd for app and send otp
+    
+    public function SendResetPasswordOtp(Request $request)
+    {
+        // Validation, token verification, and user retrieval...
+
+        try {
+
+            $email           =   $request->get('email');
+
+            // Find the user by email
+            $user = User::where('email', $email)->first();
+
+            if (!$user) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Email not found.'
+                ], 200);
+            }
+
+            $otp = str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT);
+
+            $user->reset_password_otp = $otp;
+            $user->save();
+
+
+            // Call the method to send login details
+            $user->SendResetPasswordOtpMail();
+
+            return response()->json([
+                'status' => true,
+                //'msg_arr' => $msg_arr,
+                'message' => 'Reset password OTP sent successfully.' 
+            ], 200);
+
+        } catch (\Throwable $e) {
+
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage()
+            ], 200);
+        }
+
+        
+    }
+
+    public function verifyOtpAndReset(Request $request) {
+        $email = $request->input('email');
+        $otp = $request->input('otp');
+    
+        // Find the user by email
+        $user = User::where('email', $email)->first();
+    
+        if (!$user) {
+            return response()->json([
+                'status' => false,
+                //'msg_arr' => $msg_arr,
+                'message' => 'Email not found.' 
+            ], 200);
+        }
+    
+        // Check if the provided OTP matches the stored OTP
+        if ($otp !== $user->reset_password_otp) {
+            return response()->json([
+                'status' => false,
+                //'msg_arr' => $msg_arr,
+                'message' => 'Invalid OTP.' 
+            ], 200);
+        }
+    
+    
+        return response()->json([
+            'status' => true,
+            //'msg_arr' => $msg_arr,
+            'message' => 'OTP matched.' 
+        ], 200);
+    }
+
+    public function ResetPassword(Request $request) {
+        $email = $request->input('email');
+        $otp = $request->input('otp');
+        $newPassword = $request->input('new_password');
+
+        if ( empty( $newPassword ) ) {
+            return response()->json([
+                'status' => false,
+                //'msg_arr' => $msg_arr,
+                'message' => 'Password should not be empty.' 
+            ], 200);
+        }
+    
+        // Find the user by email
+        $user = User::where('email', $email)->first();
+    
+        if (!$user) {
+            return response()->json([
+                'status' => false,
+                //'msg_arr' => $msg_arr,
+                'message' => 'Email not found.' 
+            ], 200);
+        }
+    
+        // Check if the provided OTP matches the stored OTP
+        if ($otp !== $user->reset_password_otp) {
+            return response()->json([
+                'status' => false,
+                //'msg_arr' => $msg_arr,
+                'message' => 'Invalid OTP.' 
+            ], 200);
+        }
+    
+        // Reset the password for the user
+        $user->password = bcrypt($newPassword);
+        $user->reset_password_otp = null; // Clear the OTP
+        $user->save();
+    
+        return response()->json([
+            'status' => true,
+            //'msg_arr' => $msg_arr,
+            'message' => 'Password reset successful.' 
+        ], 200);
     }
 
 }

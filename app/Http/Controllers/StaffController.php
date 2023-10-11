@@ -196,7 +196,7 @@ class StaffController extends Controller
             'edit_id'           =>      $request->get('edit_id'),
         ], [
             'Name'              =>      'required',
-            'Email'             => 'required',
+            'email'             => 'required',
             //'mobile_number'     =>      'required',
             'edit_id'           =>      'required',
         ]);

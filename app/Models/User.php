@@ -88,15 +88,15 @@ class User extends Authenticatable
 
         // Send custom password reset email
         $emails = [$this->email]; // Put multiple emails comma-separated if needed
-        $subject = 'Invitation - Chatha and Co.';
+        $subject = 'Invitation - VasDocs.';
         $content = '
-Chatha & Co have sent you an  invite to register for their invoice sharing app. Please register using your email as username and set your own password.
+        Vasdocs have sent you an  invite to register for their invoice sharing app. Please register using your email as username and set your own password.
 
 Email: '.$this->email.'
 Reset Password Link: '.$resetUrl.'
 
 -- 
-This e-mail was sent from Chatha & CO.';
+This e-mail was sent from Vasdocs.';
 
         Mail::raw($content, function ($message) {
             $message->to($this->email)
@@ -115,6 +115,27 @@ This e-mail was sent from Chatha & CO.';
         }
         
         return $randomCode;
+    }
+
+    
+
+    public function SendResetPasswordOtpMail()
+    {
+        
+        // Send custom password reset email
+        $reset_password_otp = $this->reset_password_otp;
+        $content = '
+You are receiving this email because we received a password reset request for your account.
+
+Reset Password OTP: '.$reset_password_otp.'
+
+-- 
+This e-mail was sent from Vasdocs.';
+
+        Mail::raw($content, function ($message) {
+            $message->to($this->email)
+                ->subject('Reset Password Notification - VasDocs.');
+        });
     }
 
 

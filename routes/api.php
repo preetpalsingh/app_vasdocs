@@ -22,6 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['middleware' => 'api'], function ($router) {
 
     $router->post('login', [AuthController::class, 'login']);
+    $router->post('/forgot-password/send-otp', [AuthController::class, 'SendResetPasswordOtp']);
+    $router->post('/forgot-password/verify-otp', [AuthController::class, 'verifyOtpAndReset']);
+    $router->post('/forgot-password/reset-password', [AuthController::class, 'ResetPassword']);
+
     $router->any('get-client-document-list-test/{last_id?}', [AuthController::class, 'GetClientDocumentListTest'])->name('GetClientDocumentListTest');
     $router->any('generate-pdf', [AuthController::class, 'generatePdf'])->name('generatePdf');
  
