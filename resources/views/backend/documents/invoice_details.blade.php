@@ -86,6 +86,9 @@
 	display: flex;
 	align-items: center;
 	font-size: 15px;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
 }
 .file-icon {
 	margin-right: 10px;
@@ -334,7 +337,7 @@
                                 </div>
                                 <span class="cannot-upload-message"> <span class="material-icons-outlined">error</span> Please select a file first <span class="material-icons-outlined cancel-alert-button">cancel</span> </span>
                                 <div class="file-block">
-                                    <div class="file-info"> <span class="material-icons-outlined file-icon">description</span> <span class="file-name"> </span> | <span class="file-size">  </span> </div>
+                                    <div class="file-info"> <span class="file-name"> </span><span class="file-size">  </span> </div>
                                     <!--span class="material-icons remove-file-icon">delete</span-->
                                     <div class="progress-bar"> </div>
                                 </div>
@@ -431,6 +434,9 @@ $(".singledate").daterangepicker({
         $('#add_modal').modal('show');
         $('#btn_add_feed').text('Upload');
         $('#first_name').focus();
+
+        $(".dynamic-message").html(' Drag & drop any file here ');
+        $(".file-block").attr('style' , '');
     });
 
     $(document).ready(function() {
@@ -739,18 +745,21 @@ $(".singledate").daterangepicker({
         var data = new FormData(this);
         
             axios.post(url, data).then(function (response) {
-                console.log(response.data+'fetch');
+                //console.log(response.data+'fetch');
                 if (response.data.status == true) {
 
                     $('.msg_status').html('<div class="alert alert-success">'+response.data.message+'</div>');
 
                     //setTimeout(function(){location.reload();},2500);
 
-                    setTimeout(function(){
+                    //setTimeout(function(){
                         
-                        $('#add_modal').modal('hide');
+                        //$('#add_modal').modal('hide');
+                        
+                        $(".dynamic-message").html(' Drag & drop any file here ');
+                        $(".file-block").attr('style' , '');
 
-                    },2000);
+                    //},2000);
 
                     setTimeout(function(){
 

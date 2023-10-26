@@ -16,9 +16,9 @@
         <th>Total Amount</th>
         <th>Status</th>
 
-        @hasrole('Admin')
+        {{-- @hasrole('Admin') --}}
         <th>Action</th>
-        @endhasrole
+        {{-- @endhasrole --}}
 
     </thead>
     <tbody>
@@ -42,7 +42,7 @@
                 </div>
             </td>
             <!--td >{{ $i }}</td-->
-            <td>@php echo 'CH-' . str_pad($row->id, 6, '0', STR_PAD_LEFT) @endphp</td>
+            <td><a href="{{ route('admin.documentsView', ['invoice_id' => $row->id]) }}"  data-bs-toggle="tooltip" title="View Invoice" data-trigger="hover"> @php echo 'CH-' . str_pad($row->id, 6, '0', STR_PAD_LEFT) @endphp </a> </td>
             <td>{{ $row->company_name }}</td>
             <td>{{ $row->supplier }}</td>
             <td>{{ $row->net_amount }}</td>
@@ -60,7 +60,7 @@
                 @endif
             </td>
 
-            @if( Auth::user()->role_id == 1 || Auth::user()->role_id == 4 )
+            {{-- @if( Auth::user()->role_id == 1 || Auth::user()->role_id == 4 ) --}}
 
             <td style="display: flex">
                 
@@ -79,7 +79,8 @@
                 </div>
             </td>
 
-            @endif
+            {{-- 
+                @endif --}}
 
         </tr>
 

@@ -638,10 +638,12 @@ class DocumentsController extends Controller
 			$this->row->invoice_date            =   $request->get('invoice_date');
 			$this->row->due_date                =   $request->get('due_date');
 			$this->row->net_amount              =   $request->get('net_amount');
-			$this->row->tax_percent              =   $request->get('tax_percent');
+			$this->row->tax_percent             =   $request->get('tax_percent');
 			$this->row->tax_amount              =   $request->get('tax_amount');
 			$this->row->total_amount            =   $request->get('total_amount');
 			$this->row->account_code            =   $request->get('account_code');
+			$this->row->payment_method          =   $request->get('payment_method');
+			$this->row->standard_vat            =   $request->get('standard_vat');
 			$this->row->status                  =   $request->get('status');
             $this->row->updated_at              =   date('Y-m-d H:i:s');
 
@@ -680,7 +682,8 @@ class DocumentsController extends Controller
 
             return response()->json([
                 'status' => false,
-                'message' => $e->getMessage()
+                'message' => 'Technical Error!'
+                //'message' => $e->getMessage()
             ], 200);
 
         }
@@ -711,7 +714,21 @@ class DocumentsController extends Controller
     public function destroy(Request $request)
     { 
 
-        $delete_id = $request->get('delete_id');
+        $delete_id = $request->get('delete_id');// check document related to client
+
+        if ( Auth::user()->role_id == 3 ) {
+            
+            $user_id = Auth::user()->id;
+
+            $count_row = ClientDocuments::where('user_id', $user_id)->where('id', $delete_id)->count();
+
+            if( $count_row < 1){
+
+                return response()->json(['status' => false], 200);
+            }
+
+        }
+
 
         $delete_data = DB::table('client_documents')->where('id', $delete_id)->get();
 

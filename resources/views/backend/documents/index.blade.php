@@ -246,7 +246,7 @@
                             </div>
 
                             <div class="mb-3 row">
-                                <label for="example-time-input" class="col-md-3 col-form-label">T. Amount</label>
+                                <label for="example-time-input" class="col-md-3 col-form-label">Gross Amount</label>
                                 <div class="col-md-9">
                                     <input class="form-control" type="number"  value="{{ $data->total_amount }}" name="total_amount" id="total_amount" step="any" />
                                     <small class="">(Net Amount + Tax)</small>
@@ -266,6 +266,13 @@
                             </div>
 
                             <div class="mb-3 row">
+                                <label for="example-week-input" class="col-md-3 col-form-label">Standard Vat</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="number"  value="{{ $data->standard_vat }}" name="standard_vat" id="standard_vat" step="any" />
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
                                 <label for="example-week-input" class="col-md-3 col-form-label">Net Amount</label>
                                 <div class="col-md-9">
                                     <input class="form-control" type="number"  value="{{ $data->net_amount }}" name="net_amount" id="net_amount" step="any" />
@@ -279,7 +286,19 @@
                                 </div>
                             </div-->
 
-                            <input class="form-control" type="hidden"  value="{{ $data->tax_amount }}" name="tax_amount" id="tax_amount" step="any" />
+
+                            @php
+
+                            $tax_amount = '0.00';
+
+                            if( !empty( $data->tax_amount ) ){
+
+                                $tax_amount = $data->tax_amount;
+                            }
+
+                            @endphp
+
+                            <input class="form-control" type="hidden"  value="{{ $tax_amount }}" name="tax_amount" id="tax_amount" step="any" />
                             
                             <div class="mb-3 row">
                                 <label for="example-time-input" class="col-md-3 col-form-label">Status</label>
@@ -289,6 +308,17 @@
                                         <option value="Review" @if($data->status == 'Review') selected @endif>Reviewed</option>
                                         <option value="Ready" @if($data->status == 'Ready') selected @endif>Ready</option>
                                         <option value="Archive" @if($data->status == 'Archive') selected @endif>Archive</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label for="example-time-input" class="col-md-3 col-form-label">Payment Method </label>
+                                <div class="col-md-9">
+                                    <select class="form-select col-12 " name="payment_method" id="payment_method" required>
+                                            <option value="0" @if( $data->payment_method == 'Cash' ) selected @endif>Cash</option>
+                                            <option value="5" @if( $data->payment_method == 'Bank' ) selected @endif>Bank</option>
+                                            <option value="20" @if( $data->payment_method == 'Credit Card' ) selected @endif>Credit Card</option>
                                     </select>
                                 </div>
                             </div>
@@ -486,14 +516,19 @@
                 function calculateTax() {
                     const netAmount = parseFloat($('#net_amount').val());
                     const taxPercent = parseFloat($('#tax_percent').val());
+                    const standard_vat = parseFloat($('#standard_vat').val());
                     const taxAmount = (netAmount * taxPercent) / 100;
-                    $('#tax_amount').val(taxAmount.toFixed(2));
 
                     if( taxAmount > 0){
+
+                        $('#tax_amount').val(taxAmount.toFixed(2));
 
                         $('.sp_tax_amount').html('Tax Value : '+taxAmount.toFixed(2));
 
                     } else {
+
+                        
+                        $('#tax_amount').val('0.00');
 
                         $('.sp_tax_amount').html('');
                     }
@@ -501,7 +536,7 @@
                     
 
                     // Calculate total amount
-                    const totalAmount = netAmount + taxAmount;
+                    const totalAmount = netAmount + taxAmount + standard_vat;
                     $('#total_amount').val(totalAmount.toFixed(2));
 
                 }
@@ -510,14 +545,10 @@
                 calculateTax();
 
                 // Event listener for tax_percent dropdown change
-                $('#tax_percent').on('change', function() {
+                $('#tax_percent,#standard_vat,#net_amount').on('change', function() {
                     calculateTax();
                 });
 
-                // Event listener for net_amount input change
-                $('#net_amount').on('input', function() {
-                    calculateTax();
-                });
             });
 
             

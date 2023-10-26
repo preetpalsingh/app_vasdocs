@@ -1,38 +1,31 @@
 @extends('layouts.login_app')
 
-@section('title', $title)
+@section('title', 'Login')
 
 @section('content')
 
-   
-    <!--  Body Wrapper -->
-    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
-      <div class="position-relative overflow-hidden radial-gradient min-vh-100">
-        <div class="position-relative z-index-5">
-          <div class="row">
-            <div class="col-xl-7 col-xxl-8">
-              <a href="https://vasdocs.co.uk/" class="text-nowrap logo-img d-block px-4 py-9 w-100">
-                <img src="{{asset('dashboard-assets/images/logos/chathaandco-logo.png')}}" width="180" alt="">
-              </a>
-              <div class="d-none d-xl-flex align-items-center justify-content-center" style="height: calc(100vh - 80px);">
-                <img src="{{asset('dashboard-assets/images/backgrounds/login-security.svg')}}" alt="" class="img-fluid" width="500">
-              </div>
-            </div>
-            <div class="col-xl-5 col-xxl-4">
-              <div class="authentication-login min-vh-100 bg-body row justify-content-center align-items-center p-4">
-                <div class="col-sm-8 col-md-6 col-xl-9">
-                  <h2 class="mb-3 fs-7 fw-bolder">Welcome to vasdocs</h2>
-                  <p class=" mb-9">App by Chatha & CO</p>
+    
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
+      <div class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+        <div class="d-flex align-items-center justify-content-center w-100">
+          <div class="row justify-content-center w-100">
+            <div class="col-md-5 col-lg-5">
+              <div class="card mb-0">
+                <div class="card-body">
+                <h2 class="mb-3 fs-7 fw-bolder text-center">{{ env('APP_NAME') }}</h2>
+                
 
-                  @if (session('error'))
-                     <span class="text-danger"> {{ session('error') }}</span>
-                  @endif
-
-                  @if (session('success'))
-                     <span class="text-success"> {{ session('success') }}</span>
-                  @endif
                   
-                  <form method="POST" action="{{ route('login') }}">
+
+                    @if (session('error'))
+                      <span class="text-danger"> {{ session('error') }}</span>
+                    @endif
+
+                    @if (session('success'))
+                      <span class="text-success"> {{ session('success') }}</span>
+                    @endif
+
+                    <form method="POST" action="{{ route('login') }}">
 
                   @csrf
 
@@ -75,7 +68,6 @@
             </div>
           </div>
         </div>
-        
       </div>
     </div>
     

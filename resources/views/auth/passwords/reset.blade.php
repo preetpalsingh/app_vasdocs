@@ -11,7 +11,7 @@
             <div class="col-md-5 col-lg-5">
               <div class="card mb-0">
                 <div class="card-body">
-                <h2 class="mb-3 fs-7 fw-bolder text-center">Welcome to {{ env('APP_NAME') }}</h2>
+                <h2 class="mb-3 fs-7 fw-bolder text-center">{{ env('APP_NAME') }}</h2>
                   
                   <div class="position-relative text-center my-4">
                     <p class="mb-0 fs-4 px-3 d-inline-block bg-white text-dark z-index-5 position-relative">Reset Password</p>
