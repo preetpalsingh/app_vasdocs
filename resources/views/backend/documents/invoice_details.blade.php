@@ -413,7 +413,7 @@ $(".singledate").daterangepicker({
         singleDatePicker: true,
         showDropdowns: true,
         locale: {
-            format: "YYYY-MM-DD",
+            format: "DD-MM-YYYY",
         }
         });
 
@@ -889,8 +889,8 @@ if (willDelete) {
     return false;
     
 } else {
-
-    swal("Cancelled", "This process has been cancelled :)", "error");
+    swal.close();
+    //swal("Cancelled", "This process has been cancelled :)", "error");
 
 }
 });

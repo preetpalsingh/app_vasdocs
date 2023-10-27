@@ -185,7 +185,8 @@
                 <div class="card">
                     <div class="card-body" style="position: relative;">
                         <div id="sp_preloader" style="display: none;"><div class="shapes-8"></div></div>
-                        <h3>Invoice Details:</h3>
+                        <h3 style="display: flex;flex-direction: row;justify-content: space-between;">Invoice Details:<a href="javascript:void(0)" class="btn btn-danger d-flex align-items-center modal-delete-trigger" data-bs-toggle="tooltip" data-bs-original-title="Delete Invoice" data-id="{{ $data->id }}" id="{{ $data->id }}" style="font-size: 14px;">
+                            <i class="fas fa-trash text-white me-1 fs-2"></i>Delete</a></h3>
                         <p class="card-subtitle mb-5"></p>
                         <form class="form sp_form" method="post">
 
@@ -249,7 +250,7 @@
                                 <label for="example-time-input" class="col-md-3 col-form-label">Gross Amount</label>
                                 <div class="col-md-9">
                                     <input class="form-control" type="number"  value="{{ $data->total_amount }}" name="total_amount" id="total_amount" step="any" />
-                                    <small class="">(Net Amount + Tax)</small>
+                                    <small class="">(Net Amount + Tax + Standard Vat)</small>
                                 </div>
                             </div>
 
@@ -313,12 +314,12 @@
                             </div>
 
                             <div class="mb-3 row">
-                                <label for="example-time-input" class="col-md-3 col-form-label">Payment Method </label>
+                                <label for="example-time-input" class="col-md-3 col-form-label">Payment Board </label>
                                 <div class="col-md-9">
                                     <select class="form-select col-12 " name="payment_method" id="payment_method" required>
-                                            <option value="0" @if( $data->payment_method == 'Cash' ) selected @endif>Cash</option>
-                                            <option value="5" @if( $data->payment_method == 'Bank' ) selected @endif>Bank</option>
-                                            <option value="20" @if( $data->payment_method == 'Credit Card' ) selected @endif>Credit Card</option>
+                                            <option value="Cash" @if( $data->payment_method == 'Cash' ) selected @endif>Cash</option>
+                                            <option value="Bank" @if( $data->payment_method == 'Bank' ) selected @endif>Bank</option>
+                                            <option value="Credit Card" @if( $data->payment_method == 'Credit Card' ) selected @endif>Credit Card</option>
                                     </select>
                                 </div>
                             </div>
@@ -630,7 +631,108 @@
             });
 
 
+            $(document).on("click",".modal-delete-trigger",function(event) {	
 
+event.stopPropagation();
+delete_id = $(this).attr('id');
+
+images = $(this).data("images");
+
+swal({
+title: "Delete Permanently",
+text: "Are you Sure You wanted to Delete?",
+icon: "warning",
+buttons: {
+    cancel : 'No, cancel please!',
+    confirm : {text:'Yes, delete it!',className:'sweet-warning',
+closeModal: false,}
+},
+dangerMode: true,
+})
+.then((willDelete) => {
+
+if (willDelete) {
+
+    $(".sa-confirm-button-container .confirm").prop('disabled',true);
+
+    var url = base_url+'/admin/invoice-delete';
+
+    var FormData = {
+        delete_id: delete_id
+        };
+
+    datastring = 'delete_id='+delete_id;
+    $.ajax({
+        url:url,
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: "POST",
+        data:datastring,
+        
+        beforeSend: function()
+        {
+            $(".sa-confirm-button-container .confirm").prop('disabled',true);
+            
+            $('.sa-confirm-button-container .confirm').html('<center><i class="fa fa-refresh fa-spin  fa-fw"></i> Wait...</center>');
+            
+        },
+        
+        success: function(data)   
+        {  
+    
+            //var obs = $.parseJSON(data);
+            var obs = data;
+        
+            if(obs['status']== true)
+            {  
+                swal("Deleted!", 'Record Delete Successfully !', "success");
+
+                /* swal({
+                title: 'Deleted!',
+                text: 'Record Delete Successfully!',
+                type: 'success',
+                timer: 3000, // Set the timer in milliseconds (3 seconds in this example)
+                showConfirmButton: true // Hide the "OK" button
+                }); */
+
+                //setTimeout(function(){location.reload();},3000);
+
+                setTimeout(function(){
+
+                    swal.close();
+
+                    window.location.replace("{{ url()->previous() }}");
+
+
+
+                },2500);
+                    
+            }
+            else{
+                
+                swal("Cancelled", 'Technical Error !', "error");
+            }
+            
+        },
+
+        error: function(data, textStatus, errorThrown)
+        {
+            if(data.status == '403'){
+
+                swal("Cancelled", 'You does not have the right permissions.', "error");
+            }
+        }
+    });
+    
+    return false;
+    
+} else {
+    swal.close();
+    
+    //swal("Cancelled", "This process has been cancelled :)", "error");
+
+}
+});
+});
             
 
 </script>

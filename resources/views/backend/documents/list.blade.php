@@ -11,9 +11,10 @@
         <th>ID</th>
         <th>Company</th>
         <th>Supplier</th>
-        <th>Net Amount</th>
-        <th>Tax</th>
         <th>Total Amount</th>
+        <th>Tax</th>
+        <th>Net Amount</th>
+        <th>Invoice Date</th>
         <th>Status</th>
 
         {{-- @hasrole('Admin') --}}
@@ -45,9 +46,10 @@
             <td><a href="{{ route('admin.documentsView', ['invoice_id' => $row->id]) }}"  data-bs-toggle="tooltip" title="View Invoice" data-trigger="hover"> @php echo 'CH-' . str_pad($row->id, 6, '0', STR_PAD_LEFT) @endphp </a> </td>
             <td>{{ $row->company_name }}</td>
             <td>{{ $row->supplier }}</td>
-            <td>{{ $row->net_amount }}</td>
-            <td>{{ $row->tax_amount }} <small>({{ $row->tax_percent }}%)<small></td>
-            <td>{{ $row->total_amount }}</td>
+            <td>{{ number_format($row->total_amount, 2) }}</td>
+            <td>{{ number_format($row->tax_amount, 2) }} <small>({{ $row->tax_percent }}%)<small></td>
+            <td>{{ number_format($row->net_amount, 2) }}</td>
+            <td>{{ $row->invoice_date }}</td>
             <td>
                 @if ($row->status == 'Processing')
                     <span class="mb-1 badge bg-warning">Processing</span>

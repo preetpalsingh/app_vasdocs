@@ -692,14 +692,17 @@ class DocumentsController extends Controller
     // export Documnets details in excel format
 
     public function export(Request $request) 
-    {
+    { 
         //$user_fileds = array('first_name', 'last_name', 'email', 'mobile_number');
         
         /* $start_date = '2023-09-01';
         $end_date = '2023-09-16'; */
 
-        $start_date = $request->post('start_date');
-        $end_date = $request->post('end_date');
+        $start_date     =    $request->post('start_date');
+        $end_date       =    $request->post('end_date');
+
+        $start_date     =   date("Y-m-d", strtotime($start_date));
+        $end_date       =   date("Y-m-d", strtotime($end_date));
 
         $result = $this->excel_import_export->excel_export_documnets( $start_date, $end_date); 
     }
