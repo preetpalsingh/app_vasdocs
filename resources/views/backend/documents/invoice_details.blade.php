@@ -241,11 +241,25 @@
                                     <input type="text" id="start_date" name="start_date" class="form-control singledate" placeholder="Start Date" required />
                                 </div>
                             </div>
+                            
                             <div class="col-md-12">
                                 <div class="mb-3 contact-phone">
                                     <label for="English ">End Date</label>
                                     <input type="text" id="end_date" name="end_date" class="form-control singledate" placeholder="End Date" required />
                                     <span class="validation-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="mb-3 contact-phone">
+                                    <label for="English ">Status</label>
+                                    <select class="form-select col-12" name="status" id="status" >
+                                        <option value="" >Select</option>
+                                        <option value="Processing" >Processing</option>
+                                        <option value="Review" >Reviewed</option>
+                                        <option value="Ready" >Ready</option>
+                                        <option value="Archive" >Archive</option>
+                                    </select>
                                 </div>
                             </div>
                             
@@ -406,6 +420,13 @@ aria-hidden="true">
     <script src="{{asset('dashboard-assets/libs/bootstrap-material-datetimepicker/node_modules/moment/moment.js')}}"></script>
     <script src="{{asset('dashboard-assets/libs/daterangepicker/daterangepicker.js')}}"></script>
 
+    <!-- ---------------------------------------------- -->
+    <!-- current page js files -->
+    <!-- ---------------------------------------------- -->
+    <script src="{{asset('dashboard-assets/libs/sweetalert2/dist/sweetalert2.min.js')}}"></script>
+    <script src="{{asset('dashboard-assets/js/forms/sweet-alert.init.js')}}"></script>
+    <script src="{{asset('dashboard-assets/js/bootstrap-notify.min.js')}}"></script>
+
 
 <script>
 
@@ -425,6 +446,18 @@ $(".singledate").daterangepicker({
     $('#show_export').click(function () {
         $('#export_modal').modal('show');
         
+    });
+
+    // check all
+
+    
+
+    $(document).on('click', '#contact-check-all', function(e) {
+
+        // Get its current checked state
+        var isChecked = $(this).prop("checked");
+
+        $('.sp_chkbox').prop('checked', isChecked);
     });
 
     var editFeedId = 0;
@@ -791,6 +824,68 @@ $(".singledate").daterangepicker({
             });
         
     });
+
+// Archive Document 
+
+$(document).on('click', '.sp_put_document_to_archive', function(e) {
+
+// Show loader before the request starts
+showLoader();
+
+var edit_id = $(this).attr('data-id');
+
+$.ajax({
+    url: base_url+'/admin/invoice-update-status',
+    type: 'GET',
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    data: { edit_id: edit_id },
+    before:{  },
+    success: function(response) {
+        //console.log(response.message);
+
+        if (response.status == true) {
+
+            $.notify({
+                icon: 'ti ti-circle-check-filled fs-5 sp_notify_icon',
+                message: response.message,
+            },{
+                allow_dismiss: false,
+                type: "success",
+                placement: {
+                    from: "top",
+                    align: "right"
+                },
+                z_index: 9999,
+            });
+
+            var page = $('.pagination .active .page-link').html();
+            sp_load_records($('#search_records').val(), page);
+
+        } else {
+
+            $.notify({
+                icon: 'glyphicon glyphicon-remove-circle',
+                message: response.message,
+            },{
+                allow_dismiss: false,
+                type: "danger",
+                placement: {
+                    from: "top",
+                    align: "right"
+                },
+                z_index: 9999,
+            });
+            
+        }
+
+        hideLoader();
+        
+    }
+});
+
+});
 
 $(document).on("click",".modal-delete-trigger",function(event) {	
 

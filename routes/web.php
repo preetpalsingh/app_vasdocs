@@ -81,6 +81,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function(){
     Route::get('invoice-search-by-status/', [DocumentsController::class, 'search_by_status'])->name('invoiceSearchByStatus');
     Route::any('invoice-add/', [DocumentsController::class, 'invoice_add'])->name('invoiceAdd');
     Route::any('invoice-update/', [DocumentsController::class, 'invoice_update'])->name('invoiceUpdate');
+    Route::any('invoice-update-status/', [DocumentsController::class, 'update_status'])->name('invoiceUpdateStatus');
     Route::post('invoice-export/', [DocumentsController::class, 'export'])->name('invoiceExport');
     Route::post('invoice-delete/', [DocumentsController::class, 'destroy'])->name('invoicedelete');
 

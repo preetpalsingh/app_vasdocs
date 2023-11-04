@@ -205,7 +205,7 @@ class ExcelImportExport extends Model
 
 		if ( Auth::user()->role_id == 3 ) {
 		
-			$row_list = DB::select("SELECT $fileds_im  FROM client_documents t1 LEFT JOIN account_code t2 ON t1.account_code = t2.id where t1.user_id = ".$user->id." AND net_amount != '' AND  date(t1.created_at) >= '".$start_date."' AND date(t1.created_at) <=  '".$end_date."'");
+			$row_list = DB::select("SELECT $fileds_im  FROM client_documents t1 LEFT JOIN account_code t2 ON t1.account_code = t2.id where t1.user_id = ".$user->id." AND net_amount is not null AND  date(t1.created_at) >= '".$start_date."' AND date(t1.created_at) <=  '".$end_date."'");
 
 		} else {
 			

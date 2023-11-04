@@ -60,59 +60,7 @@ class DocumentsController extends Controller
     public function index($invoice_id)
     {
 
-        // Get the full path to the CSV file in the public directory
-        /* $csvFilePath = public_path('ChartOfAccounts.csv');
-
-        // Check if the CSV file exists and can be opened
-        if (($handle = fopen($csvFilePath, 'r')) !== false) {
-            // Initialize an array to store CSV data
-            $csvData = [];
-
-            $i = 0;
-
-            // Read and process each row of the CSV file
-            while (($data = fgetcsv($handle, 1000, ',')) !== false) {
-
-                //print_r($data);die();
-
-                if( $i > 0){
-
-                    
-
-                    //$name = $data[0].'-'.$data[1].'-'.$data[2];
-
-                    $record = [
-                        'code' => $data[0], 
-                        'report_code' => $data[1], 
-                        'name' => $data[2], 
-                        'created_at' => date('Y-m-d H:i:s'),
-                        // Add more columns as needed
-                    ];
-                    
-                    // Insert data into the table using a DB query
-                    DB::table('account_code')->insert($record);
-
-                // Process each row of the CSV file here
-                // For example, you can add the row data to the $csvData array
-                $csvData[] = $data;
-                }
-
-                
-
-                $i++;
-            }
-
-            // Close the CSV file
-            fclose($handle);
-
-            // Pass the CSV data to a view or perform further processing
-            return view('csv_data', ['csvData' => $csvData]);
-        } else {
-            // Handle the case where the CSV file cannot be opened
-            return view('file_not_found');
-        }
-        die('yes'); */
-
+        
         // set file type to detect image or pdf
 
         $file_type = 'image';
@@ -130,6 +78,13 @@ class DocumentsController extends Controller
 
             $file_type = 'pdf';
         }
+
+        if( $invoice_detail[0]->status_ocr_hit == 0 && $invoice_detail[0]->id == 63  ){
+
+            $this->getDetailFromMindee($invoice_detail[0]->id);
+        }
+
+        $invoice_detail = ClientDocuments::where('id', $invoice_id)->orderBy('id', 'desc')->get();
 
         //echo '<pre>';print_r($invoice_detail);die();
 
@@ -185,19 +140,31 @@ class DocumentsController extends Controller
         
         $result = $response->json(); 
 
-        echo '<pre>';print_r($result['document']);die('dd');
-        $data = json_decode($result, true);
+        //echo '<pre>';print_r($result['document']['inference']['pages'][0]['prediction']['date']['value']);die('dd');
+        //$data = json_decode($result, true);
 
-        $invoiceData = $data['document']['inference']['pages'][0]['prediction'];
+        $invoiceData = $result['document']['inference']['pages'][0]['prediction'];
 
-        $date = $invoiceData['date']['value'];
-        $dueDate = $invoiceData['due_date']['value'];
-        $invoiceNumber = $invoiceData['invoice_number']['value'];
+        $invoice_date = $invoiceData['date']['value'];
+        $due_date = $invoiceData['due_date']['value'];
+        $invoice_number = $invoiceData['invoice_number']['value'];
         $supplier = $invoiceData['supplier']['value'];
-        $totalExcl = $invoiceData['total_excl']['value'];
-        $totalIncl = $invoiceData['total_incl']['value'];
+        $net_amount = $invoiceData['total_excl']['value'];
+        $total_amount = $invoiceData['total_incl']['value'];
 
-        // Now you can use these variables as needed
+        $this->row                          =   ClientDocuments::find($invoice_id);
+
+        $this->row->supplier                =   $supplier;
+        $this->row->invoice_number          =   $invoice_number;
+        $this->row->invoice_date            =   $invoice_date;
+        $this->row->due_date                =   $due_date;
+        $this->row->net_amount              =   $net_amount;
+        $this->row->total_amount            =   $total_amount;
+        $this->row->status_ocr_hit          =   1;
+
+        $this->row->save();
+
+        /* // Now you can use these variables as needed
         echo "Date: $date<br>";
         echo "Due Date: $dueDate<br>";
         echo "Invoice Number: $invoiceNumber<br>";
@@ -205,30 +172,8 @@ class DocumentsController extends Controller
         echo "Total Excl: $totalExcl<br>";
         echo "Total Incl: $totalIncl<br>";
         //echo $response;
-        die();
+        die(); */
      
-    }
-
-    public function client($invoice_id)
-    {
-        
-    /*     $simcards = ClientDocuments::orderBy('id', 'desc')->paginate(10);
-
-        return view('backend.documents.client', [
-            'title' => 'Document',
-            'data' => $simcards
-        ]); */
-
-        $invoice_detail = ClientDocuments::where('id', $invoice_id)->orderBy('id', 'desc')->get();
-
-        //echo '<pre>';print_r($invoice_detail);die();
-
-        return view('backend.documents.index_test', [
-            'title' => 'Document',
-            'data' => $invoice_detail[0],
-            'invoice_id' => $invoice_id
-        ]);
-    
     }
 
     public function download($invoice_id)
@@ -253,20 +198,6 @@ class DocumentsController extends Controller
             // Handle the case where the file does not exist
             return abort(404);
         }
-    }
-
-    public function client_view($invoice_id)
-    {
-      
-        $invoice_detail = ClientDocuments::where('id', $invoice_id)->orderBy('id', 'desc')->get();
-
-        echo '<pre>';print_r($invoice_detail);die();
-    
-        return view('backend.documents.client_view', [  
-            'title' => 'Document',
-            'data' => $invoice_detail
-        ]);
-    
     }
 
     public function invoice_details($status=null, $user_id=null)
@@ -345,13 +276,7 @@ class DocumentsController extends Controller
             ->select('client_documents.*', 'users.first_name')
             ->orderBy('client_documents.id', 'DESC');
 
-            if ( Auth::user()->role_id == 3 ) {
-                // Add a condition to restrict data for non-admin users
-                $documentsQuery->where('client_documents.user_id', $user->id);
-            }
-
-            $documents = $documentsQuery->paginate(10);
-
+            
         } else {
 
             $documentsQuery  = DB::table('client_documents')
@@ -359,13 +284,19 @@ class DocumentsController extends Controller
             ->select('client_documents.*', 'users.first_name', 'users.company_name')
             ->orderBy('client_documents.id', 'DESC');
 
-            if ( Auth::user()->role_id == 3 ) {
-                // Add a condition to restrict data for non-admin users
-                $documentsQuery->where('client_documents.user_id', $user->id);
-            }
-
-            $documents = $documentsQuery->paginate(10);
         }
+
+        if ( Auth::user()->role_id == 3 ) {
+            // Add a condition to restrict data for non-admin users
+            $documentsQuery->where('client_documents.user_id', $user->id);
+            $documents = $documentsQuery->paginate(10);
+            
+        } else {
+
+            $documents = $documentsQuery->paginate(100);
+        }
+
+        
         
 
         //if ($request->ajax()) {
@@ -418,8 +349,6 @@ class DocumentsController extends Controller
                 $documentsQuery->where('client_documents.user_id', $user->id);
             }
 
-            $documents = $documentsQuery->paginate(10);
-
         } else {
 
             $documentsQuery = DB::table('client_documents')
@@ -443,7 +372,17 @@ class DocumentsController extends Controller
                 $documentsQuery->where('client_documents.user_id', $user->id);
             }
 
+        }
+
+        
+
+        if ( Auth::user()->role_id == 3 ) {
+
             $documents = $documentsQuery->paginate(10);
+            
+        } else {
+
+            $documents = $documentsQuery->paginate(100);
         }
         
 
@@ -689,6 +628,59 @@ class DocumentsController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\products  $products
+     * @return \Illuminate\Http\Response
+     */
+    public function update_status(Request $request)
+    { 
+
+        try {
+
+            $edit_id                            =   $request->get('edit_id');
+
+            $this->row                          =   ClientDocuments::find($edit_id);
+
+			$this->row->status                  =   'Archive';
+            $this->row->updated_at              =   date('Y-m-d H:i:s');
+
+            $this->row->save();
+
+            // insert action
+
+            /* $log_data_values = array(
+				'user_id' => $this->sp_user_id,
+				'name' => $this->sp_user_name,
+				'record_id' => $this->simcard->id,
+				'menu' => $this->menu_name,
+				'action' => 'Add',
+				'curent_route' => $this->curent_route,
+				'request_data' => $request->all(),
+                'updated_at' => date('Y-m-d H:i:s')
+			);
+
+            Log::debug("Sp Log Store", $log_data_values ); */
+			
+            return response()->json([
+                'status' => true,
+                //'msg_arr' => $msg_arr,
+                'message' => 'Archived Invoice successfully.' 
+            ], 200);
+
+
+        } catch(\Exception $e) {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Technical Error!'
+                //'message' => $e->getMessage()
+            ], 200);
+
+        }
+    }
+
     // export Documnets details in excel format
 
     public function export(Request $request) 
@@ -700,11 +692,19 @@ class DocumentsController extends Controller
 
         $start_date     =    $request->post('start_date');
         $end_date       =    $request->post('end_date');
+        $status       =    $request->post('status');
 
         $start_date     =   date("Y-m-d", strtotime($start_date));
-        $end_date       =   date("Y-m-d", strtotime($end_date));
+        $end_date       =   date("Y-m-d", strtotime($end_date)); 
 
-        $result = $this->excel_import_export->excel_export_documnets( $start_date, $end_date); 
+        if( !empty( $status ) ){
+            
+            DB::table('client_documents')->where('id' , '!=' , 0)->where('net_amount' , '!=' , NULL)
+            ->whereRaw("  DATE(created_at) >= '".$start_date."' AND DATE(created_at) <= '".$end_date."'")->update(['status' => $status]);
+
+        }
+
+        $result = $this->excel_import_export->excel_export_documnets( $start_date, $end_date);
     }
 
 

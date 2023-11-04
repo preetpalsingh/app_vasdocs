@@ -37,7 +37,7 @@
             <td>
                 <div class="n-chk align-self-center text-center">
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input contact-chkbox primary" id="checkbox8" />
+                        <input type="checkbox" class="form-check-input contact-chkbox sp_chkbox primary" id="{{ $row->id }}" />
                         <label class="form-check-label" for="checkbox8"></label>
                     </div>
                 </div>
@@ -73,7 +73,13 @@
                         <i class="ti ti-eye fs-5"></i>
                     </a>
 
-                    <a  class="btn mb-1 btn-danger btn-circle btn-sm d-inline-flex align-items-center justify-content-center modal-delete-trigger sp_ajax_tooltip" data-bs-toggle="tooltip" title="Delete Invoice" data-id="{{ $row->id }}" id="{{ $row->id }}"><i aria-hidden="true" class="fas fa-trash"></i></a>
+                    <!--a  class="btn mb-1 btn-danger btn-circle btn-sm d-inline-flex align-items-center justify-content-center modal-delete-trigger sp_ajax_tooltip" data-bs-toggle="tooltip" title="Delete Invoice" data-id="{{ $row->id }}" id="{{ $row->id }}"><i aria-hidden="true" class="fas fa-trash"></i></a-->
+
+                    @if ($row->status != 'Archive')
+
+                    <a  class="btn mb-1 btn-danger btn-circle btn-sm d-inline-flex align-items-center justify-content-center sp_put_document_to_archive sp_ajax_tooltip" data-bs-toggle="tooltip" title="Archive Invoice" data-id="{{ $row->id }}" id="{{ $row->id }}"><i aria-hidden="true" class="fas fa-undo"></i></a>
+
+                    @endif
 
                     <!--a alt="alert" class="text-danger  ms-2 img-fluid model_img" id="sa-confirm">
                         <i class="ti ti-trash fs-5"></i>

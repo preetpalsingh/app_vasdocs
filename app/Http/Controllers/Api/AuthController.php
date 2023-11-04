@@ -172,6 +172,10 @@ class AuthController extends Controller
 
                 } else {
 
+                    //$fileName = time() . '_' . str_replace(' ', '_', $originalFileName);
+
+                    //$file->move(public_path('documents'), $fileName);
+
                     $fileName = time() . '_' . str_replace(' ', '_', $originalFileNameWithoutExt).'.pdf';
                 
                     $pdf = new PdfGenerator();
@@ -189,6 +193,7 @@ class AuthController extends Controller
                         'title' => $this->client_documents->file,
                         'size' => $document_size,
                         'date' => date_format( date_create( $this->client_documents->created_at ), 'Y-m-d' ),
+                        'url' => url('documents').'/'.$this->client_documents->file,
                         //'image' => 'assets/images/pdf-icon.png',
                     );
 
@@ -255,10 +260,13 @@ class AuthController extends Controller
 
                 $document_size = $this->formatfileConvertsize( filesize(public_path('documents').'/'.$document->file) );
 
+                $title = ( !empty( $document->supplier ) ) ? $document->supplier : $document->file ;
+
                 $files[] = array(
-                    'title' => $document->file,
+                    'title' => $title,
                     'size' => $document_size,
                     'date' => date_format( date_create( $document->created_at ), 'Y-m-d' ),
+                    'url' => url('documents').'/'.$document->file,
                     //'image' => 'assets/images/pdf-icon.png',
                 );
             }
