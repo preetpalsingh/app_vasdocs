@@ -57,12 +57,12 @@ class AuthController extends Controller
                 
             } else {
 
-                return response()->json(['msg' => 'Your account is inactive.','status' => false], 401);
+                return response()->json(['msg' => 'Your account is inactive.','status' => false], 200);
             }
             
 
         } else {
-            return response()->json(['msg' => 'Wrong email or password !','status' => false], 401);
+            return response()->json(['msg' => 'Wrong email or password !','status' => false], 200);
         }
     }
 
