@@ -82,6 +82,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function(){
     Route::any('invoice-add/', [DocumentsController::class, 'invoice_add'])->name('invoiceAdd');
     Route::any('invoice-update/', [DocumentsController::class, 'invoice_update'])->name('invoiceUpdate');
     Route::any('invoice-update-status/', [DocumentsController::class, 'update_status'])->name('invoiceUpdateStatus');
+    Route::post('multiple-invoice-update-status/', [DocumentsController::class, 'multi_select_update_status'])->name('multipleInvoiceUpdateStatus');
     Route::post('invoice-export/', [DocumentsController::class, 'export'])->name('invoiceExport');
     Route::post('invoice-delete/', [DocumentsController::class, 'destroy'])->name('invoicedelete');
 

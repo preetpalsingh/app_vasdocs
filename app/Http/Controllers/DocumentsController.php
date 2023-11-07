@@ -707,6 +707,72 @@ class DocumentsController extends Controller
         $result = $this->excel_import_export->excel_export_documnets( $start_date, $end_date);
     }
 
+    // Multiple select update status
+
+    public function multi_select_update_status(Request $request) 
+    {
+
+        $validate = Validator::make([
+            'edit_ids'              =>      $request->get('edit_ids'),
+            'status'             =>      $request->get('status'),
+        ], [
+            'edit_ids'              =>      'required',
+            'status'             =>      'required',
+        ]);
+
+        // If Validations Fails
+        if($validate->fails()){
+
+            return response()->json([
+                'status' => false,
+                'message' => $validate->errors()->first()
+            ], 200);
+
+        }
+        
+        try {
+
+            $edit_ids                            =   $request->get('edit_ids');
+            $status                            =   $request->get('status');
+
+            $ids = explode(',', $edit_ids);
+
+            ClientDocuments::whereIn('id', $ids)
+                ->update(['status' => $status]);
+
+            // insert action
+
+            /* $log_data_values = array(
+				'user_id' => $this->sp_user_id,
+				'name' => $this->sp_user_name,
+				'record_id' => $this->simcard->id,
+				'menu' => $this->menu_name,
+				'action' => 'Add',
+				'curent_route' => $this->curent_route,
+				'request_data' => $request->all(),
+                'updated_at' => date('Y-m-d H:i:s')
+			);
+
+            Log::debug("Sp Log Store", $log_data_values ); */
+			
+            return response()->json([
+                'status' => true,
+                //'msg_arr' => $msg_arr,
+                'message' => 'Records status updated successfully.' 
+            ], 200);
+
+
+        } catch(\Exception $e) {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Technical Error!'
+                //'message' => $e->getMessage()
+            ], 200);
+
+        }
+    }
+
 
     /**
      * Remove the specified resource from storage.

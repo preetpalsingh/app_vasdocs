@@ -11,7 +11,7 @@
         <th>ID</th>
         <th>Company</th>
         <th>Supplier</th>
-        <th>Total Amount</th>
+        <th>Gross Amount</th>
         <th>Tax</th>
         <th>Net Amount</th>
         <th>Invoice Date</th>
@@ -33,6 +33,12 @@
     @if( count( $data ) > 0 )
 
     @foreach ($data as $row)
+
+        @php
+
+            $gross_amount = $row->net_amount + $row->tax_amount + $row->standard_vat;
+
+        @endphp
         <tr class="search-items">
             <td>
                 <div class="n-chk align-self-center text-center">
@@ -46,7 +52,7 @@
             <td><a href="{{ route('admin.documentsView', ['invoice_id' => $row->id]) }}"  data-bs-toggle="tooltip" title="View Invoice" data-trigger="hover"> @php echo 'CH-' . str_pad($row->id, 6, '0', STR_PAD_LEFT) @endphp </a> </td>
             <td>{{ $row->company_name }}</td>
             <td>{{ $row->supplier }}</td>
-            <td>{{ number_format($row->total_amount, 2) }}</td>
+            <td>{{ number_format($gross_amount, 2) }}</td>
             <td>{{ number_format($row->tax_amount, 2) }} <small>({{ $row->tax_percent }}%)<small></td>
             <td>{{ number_format($row->net_amount, 2) }}</td>
             <td>{{ $row->invoice_date }}</td>

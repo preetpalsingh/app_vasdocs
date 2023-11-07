@@ -176,9 +176,32 @@
 
                     <div class="w-100 d-flex justify-content-md-end  justify-content-end">
 
-                            <a href="javascript:void(0)" id="show_export" class="btn btn-success d-flex align-items-center me-3" data-bs-toggle="tooltip" title="Export Excel {{$title}}">
-                                <i class="ti ti-file-export text-white me-1 fs-5"></i> Export
-                            </a>
+                        @if( Auth::user()->role_id == 1 || Auth::user()->role_id == 4 )
+
+                            <form action="" class="sp_doc_status_form" method="POST">
+
+                                <input type="hidden" name="multi_doc_ids" id="multi_doc_ids" />
+
+                            </form>
+
+                            <select class="form-select sp_select_hide_cont" name="status" id="sp_doc_status" style="width: 150px;margin-right: 15px;display:none;" >
+                                <option value="">Select Status</option>
+                                <option value="Processing">Processing</option>
+                                <option value="Review">Reviewed</option>
+                                <option value="Ready">Ready</option>
+                                <option value="Archive" >Archive</option>
+                            </select>
+                            
+                            <!--a href="javascript:void(0)"  class="btn btn-success align-items-center me-3 sp_select_hide_cont" style="display:none;" data-bs-toggle="tooltip" title="Export Zip {{$title}}">
+                                <i class="ti ti-file-export text-white me-1 fs-5"></i> Export Zip
+                            </a-->
+
+                        @endif
+
+
+                        <a href="javascript:void(0)" id="show_export" class="btn btn-success d-flex align-items-center me-3" data-bs-toggle="tooltip" title="Export Excel {{$title}}">
+                            <i class="ti ti-file-export text-white me-1 fs-5"></i> Export
+                        </a>
 
                         <a href="javascript:void(0)" id="addFeed" class="btn btn-info d-flex align-items-center" data-bs-toggle="tooltip" title="Add {{$title}}">
                             <i class="ti ti-clipboard-plus text-white me-1 fs-5"></i> Add
@@ -458,6 +481,49 @@ $(".singledate").daterangepicker({
         var isChecked = $(this).prop("checked");
 
         $('.sp_chkbox').prop('checked', isChecked);
+
+        if( isChecked ){
+
+            $('.sp_select_hide_cont').fadeIn('fast');
+
+            var checkedIds = $('input.sp_chkbox[type="checkbox"]:checked').map(function () {
+                return this.id;
+            }).get().join(',');
+
+            $('#multi_doc_ids').val(checkedIds);
+
+        } else {
+
+            $('.sp_select_hide_cont').fadeOut('fast');
+
+            $('#multi_doc_ids').val('');
+        }
+
+    });
+
+    $(document).on('change', '.sp_chkbox', function(e) {
+
+        var checkedIds = $('input.sp_chkbox[type="checkbox"]:checked').map(function () {
+            return this.id;
+        }).get().join(',');
+
+        $('#multi_doc_ids').val(checkedIds);
+
+        if( checkedIds != '' ){
+
+            $('.sp_select_hide_cont').fadeIn('fast');
+
+        } else {
+
+            $('.sp_select_hide_cont').fadeOut('fast');
+        }
+
+    });
+
+    // multi select form submit for status update
+
+    $(document).on('change', '.sp_doc_status', function(e) {
+        $('#sp_doc_status_form').submit();
     });
 
     var editFeedId = 0;
@@ -829,61 +895,127 @@ $(".singledate").daterangepicker({
 
 $(document).on('click', '.sp_put_document_to_archive', function(e) {
 
-// Show loader before the request starts
-showLoader();
+    // Show loader before the request starts
+    showLoader();
 
-var edit_id = $(this).attr('data-id');
+    var edit_id = $(this).attr('data-id');
 
-$.ajax({
-    url: base_url+'/admin/invoice-update-status',
-    type: 'GET',
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-    data: { edit_id: edit_id },
-    before:{  },
-    success: function(response) {
-        //console.log(response.message);
+    $.ajax({
+        url: base_url+'/admin/invoice-update-status',
+        type: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: { edit_id: edit_id },
+        before:{  },
+        success: function(response) {
+            //console.log(response.message);
 
-        if (response.status == true) {
+            if (response.status == true) {
 
-            $.notify({
-                icon: 'ti ti-circle-check-filled fs-5 sp_notify_icon',
-                message: response.message,
-            },{
-                allow_dismiss: false,
-                type: "success",
-                placement: {
-                    from: "top",
-                    align: "right"
-                },
-                z_index: 9999,
-            });
+                $.notify({
+                    icon: 'ti ti-circle-check-filled fs-5 sp_notify_icon',
+                    message: response.message,
+                },{
+                    allow_dismiss: false,
+                    type: "success",
+                    placement: {
+                        from: "top",
+                        align: "right"
+                    },
+                    z_index: 9999,
+                });
 
-            var page = $('.pagination .active .page-link').html();
-            sp_load_records($('#search_records').val(), page);
+                var page = $('.pagination .active .page-link').html();
+                sp_load_records($('#search_records').val(), page);
 
-        } else {
+            } else {
 
-            $.notify({
-                icon: 'glyphicon glyphicon-remove-circle',
-                message: response.message,
-            },{
-                allow_dismiss: false,
-                type: "danger",
-                placement: {
-                    from: "top",
-                    align: "right"
-                },
-                z_index: 9999,
-            });
+                $.notify({
+                    icon: 'glyphicon glyphicon-remove-circle',
+                    message: response.message,
+                },{
+                    allow_dismiss: false,
+                    type: "danger",
+                    placement: {
+                        from: "top",
+                        align: "right"
+                    },
+                    z_index: 9999,
+                });
+                
+            }
+
+            hideLoader();
             
         }
+    });
 
-        hideLoader();
-        
-    }
 });
+
+// Multiple select update status 
+
+$(document).on('change', '#sp_doc_status', function(e) {
+
+    // Show loader before the request starts
+    showLoader();
+
+    var checkedIds = $('input.sp_chkbox[type="checkbox"]:checked').map(function () {
+            return this.id;
+        }).get().join(',');
+
+    var status = $(this).val();
+
+    $.ajax({
+        url: base_url+'/admin/multiple-invoice-update-status',
+        type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: { edit_ids: checkedIds,status: status },
+        before:{  },
+        success: function(response) {
+            //console.log(response.message);
+
+            if (response.status == true) {
+
+                $.notify({
+                    icon: 'ti ti-circle-check-filled fs-5 sp_notify_icon',
+                    message: response.message,
+                },{
+                    allow_dismiss: false,
+                    type: "success",
+                    placement: {
+                        from: "top",
+                        align: "right"
+                    },
+                    z_index: 9999,
+                });
+
+                var page = $('.pagination .active .page-link').html();
+                sp_load_records($('#search_records').val(), page);
+
+            } else {
+
+                $.notify({
+                    icon: 'glyphicon glyphicon-remove-circle',
+                    message: response.message,
+                },{
+                    allow_dismiss: false,
+                    type: "danger",
+                    placement: {
+                        from: "top",
+                        align: "right"
+                    },
+                    z_index: 9999,
+                });
+                
+            }
+
+            hideLoader();
+            
+        }
+    });
 
 });
 
