@@ -38,9 +38,9 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         // Add an additional condition to check user type
-        $credentials['role_id'] = 3;
+        //$credentials['role_id'] = 3;
 
-        if (Auth::attempt($credentials)) {
+        if ( Auth::attempt($credentials) && ( Auth::attempt(array_merge($credentials, ['role_id' => 3])) || Auth::attempt(array_merge($credentials, ['role_id' => 4])) ) ) {
 
             $user = Auth::user();
 
@@ -53,7 +53,7 @@ class AuthController extends Controller
                 $user->api_token = $token; 
                 $user->save();
 
-                return response()->json(['token' => $user->api_token,'status' => true], 200);
+                return response()->json(['token' => $user->api_token, 'role_id' => (String) $user->role_id, 'status' => true], 200);
                 
             } else {
 
@@ -128,6 +128,15 @@ class AuthController extends Controller
     {
         $user = $request->user();
 
+        $get_client_id = $request->post('get_client_id');
+
+        $doc_user_id = $user->id;
+
+        if( $get_client_id > 0 ){
+
+            $doc_user_id = $get_client_id;
+        }
+
         //dd($request->file('file'));
 
         $allowedFileTypes = ['jpg', 'jpeg', 'png', 'pdf'];
@@ -149,7 +158,7 @@ class AuthController extends Controller
     
                     if ($file->move(public_path('documents'), $fileName)) {
 
-                        $this->client_documents->user_id            =   $user->id;
+                        $this->client_documents->user_id            =   $doc_user_id;
                         $this->client_documents->file               =   $fileName;
                         $this->client_documents->created_at         =   date('Y-m-d H:i:s');
 
@@ -181,7 +190,7 @@ class AuthController extends Controller
                     $pdf = new PdfGenerator();
                     $pdf->SaveSinglePdf( $file_path , $fileName );
 
-                    $this->client_documents->user_id            =   $user->id;
+                    $this->client_documents->user_id            =   $doc_user_id;
                     $this->client_documents->file               =   $fileName;
                     $this->client_documents->created_at         =   date('Y-m-d H:i:s');
 
@@ -216,7 +225,7 @@ class AuthController extends Controller
 
         $user = $request->user();
 
-        
+        $get_client_id = $request->post('get_client_id');
 
         /* // Sample data (replace with your actual data)
         $files = [
@@ -244,6 +253,11 @@ class AuthController extends Controller
         $files = array();
 
         $doc_user_id = $user->id;
+
+        if( $get_client_id > 0 ){
+
+            $doc_user_id = $get_client_id;
+        }
 
         $documentsQuery = DB::table('client_documents')
             ->where('client_documents.user_id', $doc_user_id)
@@ -307,6 +321,44 @@ class AuthController extends Controller
                     'title' => $document->file,
                     'size' => $document_size,
                     'date' => date_format( date_create( $document->created_at ), 'Y-m-d' ),
+                    //'image' => 'assets/images/pdf-icon.png',
+                );
+            }
+
+            
+       }
+
+        return response()->json($files);
+    }
+
+    public function getClientList(Request $request, $last_id = null)
+    {
+        $last_id = $last_id;
+        $files = array();
+
+        $documentsQuery = DB::table('users')
+            ->select('users.*')
+            ->where('users.role_id',3)
+            ->orderBy('users.id', 'DESC');
+
+        if( !empty( $last_id ) ){
+
+            $documentsQuery->where('users.id', '<' , $last_id);
+        }
+
+       $documents = $documentsQuery->paginate(10);
+
+       //echo '<pre>';print_r($documents);die();
+
+       if( count(  $documents  ) > 0 ){
+
+            foreach( $documents as $document){
+
+                $files[] = array(
+                    'id' => $document->id,
+                    'company_name' => $document->company_name,
+                    'client_name' => $document->first_name,
+                    'image' => 'https://app.vasdocs.co.uk/dashboard-assets/images/profile/user-1-new.jpg',
                     //'image' => 'assets/images/pdf-icon.png',
                 );
             }

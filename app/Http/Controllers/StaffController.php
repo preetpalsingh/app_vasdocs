@@ -108,7 +108,7 @@ class StaffController extends Controller
             //'mobile_number'     =>      $request->get('mobile_number'),
         ], [
             'Name'              =>      'required',
-            'Email'             => 'required|unique:users,email',
+            'email'             => 'required|unique:users,email',
             //'mobile_number'     =>      'required',
         ]);
 

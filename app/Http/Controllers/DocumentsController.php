@@ -322,6 +322,8 @@ class DocumentsController extends Controller
         $query = $request->get('query');
         $doc_status = $request->get('doc_status'); 
         $doc_user_id = $request->get('doc_user_id');
+        $sp_sort_filed_name = $request->get('sp_sort_filed_name');
+        $sp_sort_filed_direction = $request->get('sp_sort_filed_direction');
 
         if( !empty( $query ) ){
 
@@ -331,8 +333,8 @@ class DocumentsController extends Controller
             ->join('users', 'users.id', '=', 'client_documents.user_id')
             //->where('client_documents.status', $doc_status)
             ->whereRaw('(client_documents.supplier like ?  )', [ '%' . $query . '%'])
-            ->select('client_documents.*', 'users.first_name', 'users.company_name')
-            ->orderBy('client_documents.id', 'DESC');
+            ->select('client_documents.*', 'users.first_name', 'users.company_name');
+            //->orderBy('client_documents.id', 'DESC');
             
             if ( $doc_status != 'all' ) {
                 
@@ -354,8 +356,8 @@ class DocumentsController extends Controller
             $documentsQuery = DB::table('client_documents')
             ->join('users', 'users.id', '=', 'client_documents.user_id')
             //->where('client_documents.status', $doc_status)
-            ->select('client_documents.*', 'users.first_name', 'users.company_name')
-            ->orderBy('client_documents.id', 'DESC');
+            ->select('client_documents.*', 'users.first_name', 'users.company_name');
+            //->orderBy('client_documents.id', 'DESC');
             
             if ( $doc_status != 'all' ) {
                 // Add a condition to restrict data for non-admin users
@@ -374,7 +376,15 @@ class DocumentsController extends Controller
 
         }
 
-        
+        if( $sp_sort_filed_name == 'company_name' ){
+
+            $documentsQuery->orderBy('users.company_name', $sp_sort_filed_direction);
+
+        } else {
+
+            $documentsQuery->orderBy('client_documents.'.$sp_sort_filed_name, $sp_sort_filed_direction);
+
+        }
 
         if ( Auth::user()->role_id == 3 ) {
 
@@ -390,7 +400,9 @@ class DocumentsController extends Controller
             return response()->json([
                 'view' => view('backend.documents.list',  [
                     'title' => 'Document',
-                    'data' => $documents
+                    'data' => $documents,
+                    'sp_sort_filed_name' => $sp_sort_filed_name,
+                    'sp_sort_filed_direction' => $sp_sort_filed_direction
                 ])->render(),
                 'pagination' => $documents->links()->toHtml(),
             ]);

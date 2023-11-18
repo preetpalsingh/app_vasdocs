@@ -113,6 +113,14 @@
     width: 100%;
 }
 
+th.sortable::after {
+    content: ' ⇅';
+}
+
+th.sortable {
+    cursor: pointer;
+}
+
 
 </style>
 
@@ -224,6 +232,9 @@
 
                 </div>
 
+
+                <input type="hidden" name="sp_sort_filed_name" id="sp_sort_filed_name" value="id">
+                <input type="hidden" name="sp_sort_filed_direction" id="sp_sort_filed_direction" value="DESC">
             </div>
         </div>
 
@@ -728,6 +739,26 @@ $(".singledate").daterangepicker({
 
     });
 
+    
+     
+    $(document).on('click', 'th.sortable', function(e) {
+
+        var direction = ( $(this).attr('data-direction') == 'ASC' ) ? 'DESC' : 'ASC';
+
+        console.log(direction);
+
+        $(this).attr('data-direction', direction);
+
+        $('#sp_sort_filed_name').val( $(this).data('val') );
+        $('#sp_sort_filed_direction').val( $(this).data('direction') );
+
+        // Show loader before the request starts
+        showLoader();
+
+        sp_load_records();
+
+    });
+
     function showLoader() {
 
         $('#sp_preloader').show();
@@ -743,13 +774,19 @@ $(".singledate").daterangepicker({
 
     function sp_load_records(query, page) {
 
+        var sp_sort_filed_name = $('#sp_sort_filed_name').val();
+        var sp_sort_filed_direction = $('#sp_sort_filed_direction').val();
+
+        console.log(sp_sort_filed_name);
+        console.log('hiittt');
+
         $.ajax({
             url: base_url+'/admin/invoice-search',
             type: 'GET',
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data: { query: query, page: page },
+            data: { query: query, page: page, sp_sort_filed_name: sp_sort_filed_name, sp_sort_filed_direction: sp_sort_filed_direction },
             before:{  },
             success: function(response) {
                 setTimeout(function() {
@@ -783,6 +820,11 @@ $(".singledate").daterangepicker({
 
         var doc_status = '{{$doc_status}}';
         var doc_user_id = '{{$doc_user_id}}';
+        var sp_sort_filed_name = $('#sp_sort_filed_name').val();
+        var sp_sort_filed_direction = $('#sp_sort_filed_direction').val();
+
+        console.log(sp_sort_filed_name);
+        console.log('hiittt');
 
         $.ajax({
             url: base_url+'/admin/invoice-search-by-status',
@@ -790,7 +832,7 @@ $(".singledate").daterangepicker({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data: { query: query, page: page, doc_status: doc_status, doc_user_id: doc_user_id },
+            data: { query: query, page: page, doc_status: doc_status, doc_user_id: doc_user_id, sp_sort_filed_name: sp_sort_filed_name, sp_sort_filed_direction: sp_sort_filed_direction },
             before:{  },
             success: function(response) {
                 setTimeout(function() {

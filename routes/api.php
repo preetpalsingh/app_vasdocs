@@ -37,6 +37,7 @@ Route::middleware(['token.validate', 'auth:api'])->group(function () {
     //Route::post('save_upload_document', [AuthController::class, 'save_upload_document']);
     
     Route::any('get-client-document-list/', [AuthController::class, 'getClientDocumentList'])->name('GetClientDocumentList');
+    Route::any('get-client-list/{last_id?}', [AuthController::class, 'getClientList'])->name('GetClientList');
     // Other protected routes...
 });
 

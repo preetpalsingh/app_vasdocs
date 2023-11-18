@@ -8,13 +8,15 @@
                     <span class="new-control-indicator"></span>
                 </div>
             </div>
-        <th>ID</th>
-        <th>Company</th>
-        <th>Supplier</th>
-        <th>Gross Amount</th>
+
+
+        <th class="sortable" data-val="id" data-direction="@php if( $sp_sort_filed_name == 'id') { echo $sp_sort_filed_direction; } else { echo 'DESC'; } @endphp" >ID</th>
+        <th class="sortable" data-val="company_name" data-direction="@php if( $sp_sort_filed_name == 'company_name') { echo $sp_sort_filed_direction; } else { echo 'DESC'; } @endphp" >Company</th>
+        <th class="sortable" data-val="supplier" data-direction="@php if( $sp_sort_filed_name == 'supplier') { echo $sp_sort_filed_direction; } else { echo 'DESC'; } @endphp" >Supplier</th>
+        <th class="sortable" data-val="total_amount" data-direction="@php if( $sp_sort_filed_name == 'total_amount') { echo $sp_sort_filed_direction; } else { echo 'DESC'; } @endphp" >Gross Amount</th>
         <th>Tax</th>
-        <th>Net Amount</th>
-        <th>Invoice Date</th>
+        <th class="sortable" data-val="net_amount" data-direction="@php if( $sp_sort_filed_name == 'net_amount') { echo $sp_sort_filed_direction; } else { echo 'DESC'; } @endphp" >Net Amount</th>
+        <th class="sortable" data-val="invoice_date" data-direction="@php if( $sp_sort_filed_name == 'invoice_date') { echo $sp_sort_filed_direction; } else { echo 'DESC'; } @endphp" >Invoice Date</th>
         <th>Status</th>
 
         {{-- @hasrole('Admin') --}}
@@ -36,7 +38,7 @@
 
         @php
 
-            $gross_amount = $row->net_amount + $row->tax_amount + $row->standard_vat;
+             /*$gross_amount = $row->net_amount + $row->tax_amount + $row->standard_vat; */
 
         @endphp
         <tr class="search-items">
@@ -52,7 +54,7 @@
             <td><a href="{{ route('admin.documentsView', ['invoice_id' => $row->id]) }}"  data-bs-toggle="tooltip" title="View Invoice" data-trigger="hover"> @php echo 'CH-' . str_pad($row->id, 6, '0', STR_PAD_LEFT) @endphp </a> </td>
             <td>{{ $row->company_name }}</td>
             <td>{{ $row->supplier }}</td>
-            <td>{{ number_format($gross_amount, 2) }}</td>
+            <td>{{ number_format($row->total_amount, 2) }}</td>
             <td>{{ number_format($row->tax_amount, 2) }} <small>({{ $row->tax_percent }}%)<small></td>
             <td>{{ number_format($row->net_amount, 2) }}</td>
             <td>{{ $row->invoice_date }}</td>
