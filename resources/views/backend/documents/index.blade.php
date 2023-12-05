@@ -86,6 +86,10 @@
             padding: 5px !important;
         }
 
+        .card {
+            margin-bottom: 1rem !important;
+        }
+
     /* Rest of your existing CSS styles */
 </style>
 
@@ -139,6 +143,17 @@
             </div>
         </div>
     </div>
+
+    <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="text-end" style="
+    margin-bottom: 1rem!important;    padding-right: 1.5rem!important;
+"><a href="javascript:void(0)" class="btn btn-danger align-items-center modal-delete-trigger" data-bs-toggle="tooltip" data-bs-original-title="Delete Invoice" data-id="{{ $data->id }}" id="{{ $data->id }}" style="font-size: 14px;">
+                            <i class="fas fa-trash text-white me-1 fs-2"></i>Delete</a></div>
+                </div>
+                
+            </div>
+
     <div class="widget-content searchable-container list">
         <!-- --------------------- start Contact ---------------- -->
 
@@ -198,8 +213,16 @@
                 <div class="card">
                     <div class="card-body" style="position: relative;">
                         <div id="sp_preloader" style="display: none;"><div class="shapes-8"></div></div>
-                        <h3 style="display: flex;flex-direction: row;justify-content: space-between;">Invoice Details:<a href="javascript:void(0)" class="btn btn-danger d-flex align-items-center modal-delete-trigger" data-bs-toggle="tooltip" data-bs-original-title="Delete Invoice" data-id="{{ $data->id }}" id="{{ $data->id }}" style="font-size: 14px;">
-                            <i class="fas fa-trash text-white me-1 fs-2"></i>Delete</a></h3>
+                        <h3 style="display: flex;flex-direction: row;justify-content: space-between;">Invoice Details:
+
+                            @if( Auth::user()->role_id == 1 || Auth::user()->role_id == 4 )
+                            
+                            <a href="{{ route('admin.documentsView', ['invoice_id' => $data->id,'ocr_hit_status' => 'ocr-true']) }}" class="btn btn-primary d-flex align-items-center " data-bs-toggle="tooltip" data-bs-original-title="Fetch Invoice Detail From OCR" data-id="{{ $data->id }}" id="{{ $data->id }}" style="font-size: 14px;">
+                            <i class="fas fa-sync text-white me-1 fs-2"></i>Fetch OCR</a>
+
+                            @endif
+                        
+                        </h3>
                         <p class="card-subtitle mb-5"></p>
                         <form class="form sp_form" method="post">
 

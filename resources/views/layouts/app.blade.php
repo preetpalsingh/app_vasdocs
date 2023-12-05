@@ -52,7 +52,7 @@
     <!-- core files -->
     <!-- ---------------------------------------------- -->
     <script src="{{asset('dashboard-assets/js/app.min.js')}}"></script>
-    <script src="{{asset('dashboard-assets/js/app.init.js')}}"></script>
+    <script src="{{asset('dashboard-assets/js/app.init.js?dd=11')}}"></script>
     <script src="{{asset('dashboard-assets/js/app-style-switcher.js')}}"></script>
     <script src="{{asset('dashboard-assets/js/sidebarmenu.js')}}"></script>
     

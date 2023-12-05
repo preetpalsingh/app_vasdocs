@@ -57,7 +57,7 @@ class DocumentsController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index($invoice_id)
+    public function index($invoice_id, $ocr_hit_status=null)
     {
 
         
@@ -79,13 +79,23 @@ class DocumentsController extends Controller
             $file_type = 'pdf';
         }
 
-        if( $invoice_detail[0]->status_ocr_hit == 0 && $invoice_detail[0]->id == 68 && $invoice_detail[0]->status == 'Processing'  ){
+        if ( Auth::user()->role_id == 1 || Auth::user()->role_id == 4 ) {
 
+            if ( $ocr_hit_status == 'ocr-true' ) {
+                $this->getDetailFromNanonets($invoice_detail[0]->id);
+
+                return redirect()->route('admin.documentsView', ['invoice_id' => $invoice_id]);exit;
+            }
+            
+        }
+
+        if( $invoice_detail[0]->status_ocr_hit == 0 && $invoice_detail[0]->id == 907 && $invoice_detail[0]->status == 'Processing'  ){
+            
             //$this->getDetailFromMindee($invoice_detail[0]->id);
             $this->getDetailFromNanonets($invoice_detail[0]->id);
         }
 
-        $invoice_detail = ClientDocuments::where('id', $invoice_id)->orderBy('id', 'desc')->get();
+        //$invoice_detail = ClientDocuments::where('id', $invoice_id)->orderBy('id', 'desc')->get();
 
         $doc_user_name = '';
 
@@ -209,28 +219,27 @@ class DocumentsController extends Controller
         ])->attach('document', file_get_contents($filePath), 'file.pdf')
           ->post('https://api.mindee.net/v1/products/mindee/invoices/v2/predict');  */
 
-        /* $response = Http::withHeaders([
+        $response = Http::withHeaders([
             'accept' => 'multipart/form-data',
             'Authorization' => 'Basic ZjU1NWRjNTUtOGUwZS0xMWVlLWI3NTUtZGU3ZmYyNDNkNjBjOg==',
         ])
         ->attach('file', file_get_contents($filePath), 'file.pdf')
-        ->post('https://app.nanonets.com/api/v2/OCR/Model/73a54b61-b96b-4efc-8a33-7b4ce3531ff4/LabelFile/'); */
+        ->post('https://app.nanonets.com/api/v2/OCR/Model/73a54b61-b96b-4efc-8a33-7b4ce3531ff4/LabelFile/');
 
-        $response = Http::attach(
+        /* $response = Http::attach(
             'file',
             file_get_contents($filePath),
             'train9.pdf'
         )->withHeaders([
             'accept' => 'multipart/form-data',
             'Authorization' => 'Basic ZjU1NWRjNTUtOGUwZS0xMWVlLWI3NTUtZGU3ZmYyNDNkNjBjOg==',
-        ])->post('https://app.nanonets.com/api/v2/OCR/Model/73a54b61-b96b-4efc-8a33-7b4ce3531ff4/LabelFile/');
+        ])->post('https://app.nanonets.com/api/v2/OCR/Model/73a54b61-b96b-4efc-8a33-7b4ce3531ff4/LabelFile/'); */
 
-        echo '<pre>';print_r($response);die();
-        die('dd'); 
+        
         $result = $response->json(); 
 
 
-        echo '<pre>';print_r($result);die();
+        //echo '<pre>';print_r($result);die();
 
         if (isset($result['result'][0]['prediction']) && is_array($result['result'][0]['prediction'])) {
 
