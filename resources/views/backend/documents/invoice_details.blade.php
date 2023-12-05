@@ -148,6 +148,7 @@ th.sortable {
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a class="text-muted " href="#">Dashboard</a></li>
+                            <li class="breadcrumb-item" aria-current="page">Clients</li>
                             <li class="breadcrumb-item" aria-current="page">{{$title}}s</li>
                         </ol>
                     </nav>

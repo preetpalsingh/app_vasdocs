@@ -108,11 +108,24 @@
         <div class="card-body px-4 py-3">
             <div class="row align-items-center">
                 <div class="col-9">
-                    <h4 class="fw-semibold mb-8">{{$title}}s</h4>
+                    <h4 class="fw-semibold mb-8">
+                        @if( !empty( $doc_user_name ) )
+
+                            {{$doc_user_name}}
+
+                        @else
+
+                            {{$title}}s
+                        
+
+                        @endif
+                    </h4>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a class="text-muted " href="#">Dashboard</a></li>
+                            <li class="breadcrumb-item" aria-current="page">Clients</li>
                             <li class="breadcrumb-item" aria-current="page">{{$title}}s</li>
+                            <li class="breadcrumb-item" aria-current="page">@php echo 'CH-' . str_pad($data->id, 6, '0', STR_PAD_LEFT) @endphp </li>
                         </ol>
                     </nav>
                 </div>
@@ -250,7 +263,7 @@
                                 <label for="example-time-input" class="col-md-3 col-form-label">Gross Amount</label>
                                 <div class="col-md-9">
                                     <input class="form-control" type="number"  value="{{ $data->total_amount }}" name="total_amount" id="total_amount" step="any" />
-                                    <small class="">(Net Amount + Tax + Standard Vat)</small>
+                                    <!--small class="">(Net Amount + Tax + Standard Vat)</small-->
                                 </div>
                             </div>
 
@@ -514,7 +527,7 @@
 
             $(document).ready(function() {
                 // Function to calculate tax amount
-                function calculateTax() {
+                /* function calculateTax() {
                     const netAmount = parseFloat($('#net_amount').val());
                     const taxPercent = parseFloat($('#tax_percent').val());
                     const standard_vat = parseFloat($('#standard_vat').val());
@@ -540,13 +553,40 @@
                     const totalAmount = netAmount + taxAmount + standard_vat;
                     $('#total_amount').val(totalAmount.toFixed(2));
 
+                } */
+
+                function calculateTax() {
+                    const total_amount = parseFloat($('#total_amount').val());
+                    //const netAmount = parseFloat($('#net_amount').val());
+                    const taxPercent = parseFloat($('#tax_percent').val());
+                    const standard_vat = parseFloat($('#standard_vat').val());
+                    netAmount = total_amount / (1 + (taxPercent / 100));
+                    const taxAmount = total_amount - netAmount;
+
+                    if( taxAmount > 0){
+
+                        $('#tax_amount').val(taxAmount.toFixed(2));
+
+                        $('.sp_tax_amount').html('Tax Value : '+taxAmount.toFixed(2));
+
+                    } else {
+
+                        
+                        $('#tax_amount').val('0.00');
+
+                        $('.sp_tax_amount').html('');
+                    }
+
+                    
+                    $('#net_amount').val(netAmount.toFixed(2));
+
                 }
 
                 // Initial calculation
                 calculateTax();
 
                 // Event listener for tax_percent dropdown change
-                $('#tax_percent,#standard_vat,#net_amount').on('change', function() {
+                $('#tax_percent,#standard_vat,#total_amount').on('change', function() {
                     calculateTax();
                 });
 

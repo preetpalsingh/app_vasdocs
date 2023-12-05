@@ -54,7 +54,20 @@ class ClientController extends Controller
     public function index()
     {
         
-        $data = User::where('role_id', 3)->orderBy('id', 'desc')->paginate(10);
+        $data = User::withCount('documents')  // 'documents_count'  will be the count of documents for each user    
+        ->where('role_id', 3)->orderBy('id', 'desc')->paginate(10);
+
+        /* $status = 'Processing'; // or 'Archive', or any other status
+        
+        $data = User::withCount(['documentsStatus' => function ($query) use ($status) {
+            $query->where('status', $status);
+        }])
+        ->where('role_id', 3)
+        ->orderBy('id', 'desc')
+        //->has('documentsStatus', '>', 0) // ensures only users with at least one document are retrieved
+        ->paginate(10); */
+
+        //echo '<pre>';print_r($data);die();
 
         return view('backend.clients.index', [
             'title' => 'Client',
@@ -73,7 +86,8 @@ class ClientController extends Controller
 
         } else {
 
-            $data = User::where('role_id', 3)->orderBy('id', 'desc')->paginate(10);
+            $data = User::withCount('documents')  // 'documents_count' will be the count of documents for each user
+            ->where('role_id', 3)->orderBy('id', 'desc')->paginate(10);
         }
         
 

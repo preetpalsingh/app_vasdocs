@@ -138,5 +138,19 @@ This e-mail was sent from Vasdocs.';
         });
     }
 
+    public function documents()
+    {
+        return $this->hasMany(ClientDocuments::class, 'user_id')
+        ->where('status', 'Processing');
+    }
+
+    
+
+    public function documentsStatus($status)
+    {
+        return $this->hasMany(ClientDocuments::class, 'user_id')
+        ->where('status', $status);
+    }
+
 
 }

@@ -12,6 +12,7 @@
         <th>Sr No.</th-->
         <th>Company Name</th>
         <th>Name</th>
+        <th>Number of Documents</th>
         <th>Email</th>
         <th>Phone</th>
         <th>Documents</th>
@@ -48,19 +49,16 @@
             <td><a href="{{ route('home', ['status' => 'all']) }}/{{$row->id}}">{{ $row->company_name }}</a></td>
 
             <td>  {{ $row->first_name }}  
-                <sub>
-
+               
                     @if ($row->status == 0)
                         <span class="mb-1 badge bg-danger" style="
                         font-size: 10px;
-                        margin-top: 10px;
                         margin-left: 5px;
                         padding: 5px 5px 7px 5px !important;
                         ">Inactive</span>
                     @elseif ($row->status == 1)
                         <span class=" badge bg-success" style="
                         font-size: 10px;
-                        margin-top: 10px;
                         margin-left: 5px;
                         padding: 5px 5px 7px 5px !important;
                         ">Active</span>
@@ -68,13 +66,13 @@
 
                     
 
-                </sub> 
             </td>
 
+            <td>{{ $row->documents_count }}</td>
             <td>{{ $row->email }}</td>
             <td>{{ $row->mobile_number }}</td>
             <td>
-            <a href="{{ route('home', ['status' => 'all']) }}/{{$row->id}}" class="btn mb-1 waves-effect waves-light btn-rounded btn-sm btn-primary">View Documents</a>
+            <a href="{{ route('home', ['status' => 'all']) }}/{{$row->id}}" class="btn waves-effect waves-light btn-rounded btn-sm btn-primary">View Documents</a>
             </td>
 
             @if( Auth::user()->role_id == 1 )

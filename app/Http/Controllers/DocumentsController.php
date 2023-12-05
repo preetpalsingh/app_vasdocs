@@ -79,12 +79,22 @@ class DocumentsController extends Controller
             $file_type = 'pdf';
         }
 
-        if( $invoice_detail[0]->status_ocr_hit == 0 && $invoice_detail[0]->id == 63  ){
+        if( $invoice_detail[0]->status_ocr_hit == 0 && $invoice_detail[0]->id == 68 && $invoice_detail[0]->status == 'Processing'  ){
 
-            $this->getDetailFromMindee($invoice_detail[0]->id);
+            //$this->getDetailFromMindee($invoice_detail[0]->id);
+            $this->getDetailFromNanonets($invoice_detail[0]->id);
         }
 
         $invoice_detail = ClientDocuments::where('id', $invoice_id)->orderBy('id', 'desc')->get();
+
+        $doc_user_name = '';
+
+        if( !empty( $invoice_detail[0]->user_id ) ){
+
+            $doc_user = User::where('id', $invoice_detail[0]->user_id)->get();
+
+            $doc_user_name = $doc_user[0]->company_name;
+        }
 
         //echo '<pre>';print_r($invoice_detail);die();
 
@@ -93,13 +103,14 @@ class DocumentsController extends Controller
             'data' => $invoice_detail[0],
             'invoice_id' => $invoice_id,
             'file_type' => $file_type,
+            'doc_user_name' => $doc_user_name,
             'account_codes' => $account_codes
         ]);
      
     }
 
     /**
-     * Get response from OCR api .
+     * Get response from Mindee OCR api .
     *
     * @return \Illuminate\Http\Response
     */
@@ -173,6 +184,144 @@ class DocumentsController extends Controller
         echo "Total Incl: $totalIncl<br>";
         //echo $response;
         die(); */
+     
+    }
+
+    
+
+    /**
+     * Get response from Nanonets OCR api .
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function getDetailFromNanonets($invoice_id)
+    {
+        
+        $invoice_detail = ClientDocuments::where('id', $invoice_id)->orderBy('id', 'desc')->get();
+
+        $filePath = public_path('documents/'.$invoice_detail[0]->file);
+        
+        //echo '<pre>';print_r($invoice_detail);
+
+
+        /* $response = Http::withHeaders([
+            'Authorization' => '55e5d68322bbfc5d2f736a6b086c9c95',
+        ])->attach('document', file_get_contents($filePath), 'file.pdf')
+          ->post('https://api.mindee.net/v1/products/mindee/invoices/v2/predict');  */
+
+        /* $response = Http::withHeaders([
+            'accept' => 'multipart/form-data',
+            'Authorization' => 'Basic ZjU1NWRjNTUtOGUwZS0xMWVlLWI3NTUtZGU3ZmYyNDNkNjBjOg==',
+        ])
+        ->attach('file', file_get_contents($filePath), 'file.pdf')
+        ->post('https://app.nanonets.com/api/v2/OCR/Model/73a54b61-b96b-4efc-8a33-7b4ce3531ff4/LabelFile/'); */
+
+        $response = Http::attach(
+            'file',
+            file_get_contents($filePath),
+            'train9.pdf'
+        )->withHeaders([
+            'accept' => 'multipart/form-data',
+            'Authorization' => 'Basic ZjU1NWRjNTUtOGUwZS0xMWVlLWI3NTUtZGU3ZmYyNDNkNjBjOg==',
+        ])->post('https://app.nanonets.com/api/v2/OCR/Model/73a54b61-b96b-4efc-8a33-7b4ce3531ff4/LabelFile/');
+
+        echo '<pre>';print_r($response);die();
+        die('dd'); 
+        $result = $response->json(); 
+
+
+        echo '<pre>';print_r($result);die();
+
+        if (isset($result['result'][0]['prediction']) && is_array($result['result'][0]['prediction'])) {
+
+            $prediction = $result['result'][0]['prediction'];
+
+            $invoiceData = array();
+
+            foreach( $prediction as $pr){
+
+                if( $pr['label'] == 'invoice_date' ){
+
+                    $invoiceData['invoice_date']['value'] = date("d/m/Y", strtotime($pr['ocr_text'])); 
+
+                }
+
+                if( $pr['label'] == 'payment_due_date' ){
+
+                    $invoiceData['due_date']['value'] = date("d/m/Y", strtotime($pr['ocr_text'])); 
+
+                }
+
+                if( $pr['label'] == 'invoice_number' ){
+
+                    $invoiceData['invoice_number']['value'] = $pr['ocr_text']; 
+
+                }
+
+                if( $pr['label'] == 'seller_name' ){
+
+                    $invoiceData['supplier']['value'] = $pr['ocr_text']; 
+
+                }
+
+                if( $pr['label'] == 'invoice_amount' ){
+
+                    $invoiceData['total_amount']['value'] = $pr['ocr_text']; 
+
+                }
+
+                if( $pr['label'] == 'subtotal' ){
+
+                    $invoiceData['net_amount']['value'] = $pr['ocr_text']; 
+
+                }
+
+                if( $pr['label'] == 'total_tax' ){
+
+                    $invoiceData['tax_amount']['value'] = $pr['ocr_text']; 
+
+                }
+
+                if( $pr['label'] == 'total_tax_%' ){
+
+                    $invoiceData['tax_percent']['value'] = (int) filter_var($pr['ocr_text'], FILTER_SANITIZE_NUMBER_INT); 
+
+                }
+
+                //echo '<pre>';print_r($pr);
+                
+            }
+
+            //echo '<pre>';print_r($invoiceData);
+            //$data = json_decode($result, true);
+
+            //die('dd');
+
+            $invoice_date = $invoiceData['invoice_date']['value'];
+            $due_date = $invoiceData['due_date']['value'];
+            $invoice_number = $invoiceData['invoice_number']['value'];
+            $supplier = $invoiceData['supplier']['value'];
+            $net_amount = $invoiceData['net_amount']['value'];
+            $total_amount = $invoiceData['total_amount']['value'];
+            $tax_amount = $invoiceData['tax_amount']['value'];
+            $tax_percent = $invoiceData['tax_percent']['value'];
+
+            $this->row                          =   ClientDocuments::find($invoice_id);
+
+            $this->row->supplier                =   $supplier;
+            $this->row->invoice_number          =   $invoice_number;
+            $this->row->invoice_date            =   $invoice_date;
+            $this->row->due_date                =   $due_date;
+            $this->row->net_amount              =   $net_amount;
+            $this->row->total_amount            =   $total_amount;
+            $this->row->tax_amount              =   $tax_amount;
+            $this->row->tax_percent             =   $tax_percent;
+            $this->row->status_ocr_hit          =   1;
+
+            $this->row->save();
+
+        }
+
      
     }
 
