@@ -175,6 +175,7 @@
                         <button class="btn btn-secondary btn-sm btn-next" onclick="pdfViewer.next(); return false;"><i class="material-icons-outlined">navigate_next</i></button>
                         <button class="btn btn-secondary btn-sm btn-last" onclick="pdfViewer.last()"><i class="material-icons-outlined">skip_next</i></button>
                         <a class="btn btn-secondary btn-sm btn-last" data-bs-toggle="tooltip" title="Download Invoice" href="{{ route('admin.documentsDownload', ['invoice_id' =>  $invoice_id ]) }}"><i class="material-icons-outlined">download</i></a>
+                        <a class="btn btn-secondary btn-sm btn-last sp_rotate" data-bs-toggle="tooltip" title="Rotate Invoice" ><i class="material-icons-outlined">refresh</i></a>
                     </div>
                     <div class="col-12 col-lg-6 my-1">
                         <button class="btn btn-secondary btn-sm" onclick="pdfViewer.setZoom('out')"><i class="material-icons-outlined">zoom_out</i></button>
@@ -628,10 +629,20 @@
                 $('#sp_preloader').hide();
             }
 
+            let rotationAngle = 0;
+
+            $(document).on("click",".sp_rotate",function(event) {
+
+                rotationAngle += 90;
+                $('.pdfpage').css('transform', 'rotate(' + rotationAngle + 'deg)');
+
+            });
+
+
             $(document).on("submit",".sp_form",function(event) {
 
                 showLoader();
- 
+
                 event.preventDefault();
 
                 $('.sp_ajax_loader').remove();
