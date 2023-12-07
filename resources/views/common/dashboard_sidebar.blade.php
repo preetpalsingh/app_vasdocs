@@ -82,7 +82,7 @@
                       <span class="hide-menu">All</span>
                     </a>
                   </li>
-                  
+                   
                   <li class="sidebar-item">
                     <a href="{{ route('admin.invoice_details', ['status' => 'Processing']) }}@if (isset ( $doc_user_id ) )/{{$doc_user_id}} @endif" class="sidebar-link">
                       <div class="round-16 d-flex align-items-center justify-content-center">

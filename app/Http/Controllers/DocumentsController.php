@@ -881,7 +881,7 @@ class DocumentsController extends Controller
 
     public function multi_select_update_status(Request $request) 
     {
-
+ 
         $validate = Validator::make([
             'edit_ids'              =>      $request->get('edit_ids'),
             'status'             =>      $request->get('status'),

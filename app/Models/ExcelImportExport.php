@@ -210,7 +210,7 @@ class ExcelImportExport extends Model
 		} else {
 			
 			$row_list = DB::select("SELECT $fileds_im  FROM client_documents t1 LEFT JOIN account_code t2 ON t1.account_code = t2.id where net_amount != '' AND  date(t1.created_at) >= '".$start_date."' AND date(t1.created_at) <=  '".$end_date."'");
-
+ 
 		}
 		
 		$file_name = 'ExportList_'.date("YmdHis");
