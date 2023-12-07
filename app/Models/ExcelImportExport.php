@@ -190,7 +190,7 @@ class ExcelImportExport extends Model
      * Get the user list from Documents table.
      */
 	 
-    public function excel_export_documnets( $start_date, $end_date )
+    public function excel_export_documnets( $start_date, $end_date, $client_id )
     { 
 		
 		require_once 'excel_import_export/php-excel.class.php';
@@ -205,12 +205,48 @@ class ExcelImportExport extends Model
 
 		if ( Auth::user()->role_id == 3 ) {
 		
-			$row_list = DB::select("SELECT $fileds_im  FROM client_documents t1 LEFT JOIN account_code t2 ON t1.account_code = t2.id where t1.user_id = ".$user->id." AND net_amount is not null AND  date(t1.created_at) >= '".$start_date."' AND date(t1.created_at) <=  '".$end_date."'");
+			$row_list = DB::select("SELECT $fileds_im  FROM client_documents t1 LEFT JOIN account_code t2 ON t1.account_code = t2.id where t1.user_id = ".$user->id." AND  date(t1.created_at) >= '".$start_date."' AND date(t1.created_at) <=  '".$end_date."'");
 
 		} else {
 			
-			$row_list = DB::select("SELECT $fileds_im  FROM client_documents t1 LEFT JOIN account_code t2 ON t1.account_code = t2.id where net_amount != '' AND  date(t1.created_at) >= '".$start_date."' AND date(t1.created_at) <=  '".$end_date."'");
- 
+			$row_list = DB::select("SELECT $fileds_im  FROM client_documents t1 LEFT JOIN account_code t2 ON t1.account_code = t2.id where t1.user_id = ".$client_id." AND  date(t1.created_at) >= '".$start_date."' AND date(t1.created_at) <=  '".$end_date."'");
+
+		}
+		
+		$file_name = 'ExportList_'.date("YmdHis");
+		
+		$created_file_name = $file_name.'.csv';
+		
+		$this->csv_export($csv_fileds_name, $row_list, $created_file_name);
+
+		exit();
+    }
+
+    /**
+     * Get the user list from Documents table.
+     */
+	 
+    public function excel_export_documnets_by_ids( $doc_ids, $client_id )
+    { 
+		
+		require_once 'excel_import_export/php-excel.class.php';
+
+		$user = Auth::user();
+
+		$fileds = array('supplier','invoice_number','invoice_date','due_date','net_amount','tax_amount','tax_percent','standard_vat','total_amount', 'status', 'payment_method', 'code', 'report_code', 'name');
+
+		$csv_fileds_name = array('Supplier','Invoice No.','Invoice Date','Due Date','Net Amount','Tax Amount','Tax Rate(%)','Standard Vat','Gross Amount', 'Status', 'Payment Board', 'Code', 'Report Code', 'Name');
+		
+		$fileds_im = implode( ',' , $fileds);
+
+		if ( Auth::user()->role_id == 3 ) {
+		
+			$row_list = DB::select("SELECT $fileds_im  FROM client_documents t1 LEFT JOIN account_code t2 ON t1.account_code = t2.id where t1.user_id = ".$user->id." AND t1.id IN(".$doc_ids.") ");
+
+		} else {
+			
+			$row_list = DB::select("SELECT $fileds_im  FROM client_documents t1 LEFT JOIN account_code t2 ON t1.account_code = t2.id where t1.user_id = ".$client_id." AND  t1.id IN(".$doc_ids.") ");
+
 		}
 		
 		$file_name = 'ExportList_'.date("YmdHis");

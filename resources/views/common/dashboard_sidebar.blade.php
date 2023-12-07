@@ -74,15 +74,15 @@
                   <span class="hide-menu">Invoice Details</span>
                 </a>
                 <ul aria-expanded="false" class="collapse first-level">
-                  <li class="sidebar-item">
+                  <!--li class="sidebar-item">
                     <a href="{{ route('home', ['status' => 'all']) }}@if (isset ( $doc_user_id ) )/{{$doc_user_id}} @endif" class="sidebar-link">
                       <div class="round-16 d-flex align-items-center justify-content-center">
                         <i class="ti ti-circle"></i>
                       </div>
                       <span class="hide-menu">All</span>
                     </a>
-                  </li>
-                   
+                  </li-->
+                  
                   <li class="sidebar-item">
                     <a href="{{ route('admin.invoice_details', ['status' => 'Processing']) }}@if (isset ( $doc_user_id ) )/{{$doc_user_id}} @endif" class="sidebar-link">
                       <div class="round-16 d-flex align-items-center justify-content-center">

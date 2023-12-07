@@ -275,19 +275,19 @@ class DocumentsController extends Controller
 
                 if( $pr['label'] == 'invoice_amount' ){
 
-                    $invoiceData['total_amount']['value'] = $pr['ocr_text']; 
+                    $invoiceData['total_amount']['value'] = $this->SPConvertToFloat( $pr['ocr_text'] ); 
 
                 }
 
                 if( $pr['label'] == 'subtotal' ){
 
-                    $invoiceData['net_amount']['value'] = $pr['ocr_text']; 
+                    $invoiceData['net_amount']['value'] = $this->SPConvertToFloat( $pr['ocr_text'] ); 
 
                 }
 
                 if( $pr['label'] == 'total_tax' ){
 
-                    $invoiceData['tax_amount']['value'] = $pr['ocr_text']; 
+                    $invoiceData['tax_amount']['value'] = $this->SPConvertToFloat( $pr['ocr_text'] ); 
 
                 }
 
@@ -332,6 +332,16 @@ class DocumentsController extends Controller
         }
 
      
+    }
+
+    public function SPConvertToFloat($stringValue) {
+        // Remove commas from the string
+        $cleanedValue = str_replace(',', '', $stringValue);
+    
+        // Cast the cleaned string to a float with two decimal places
+        $floatValue = number_format((float)$cleanedValue, 2, '.', '');
+    
+        return $floatValue;
     }
 
     public function download($invoice_id)
@@ -860,28 +870,44 @@ class DocumentsController extends Controller
         /* $start_date = '2023-09-01';
         $end_date = '2023-09-16'; */
 
-        $start_date     =    $request->post('start_date');
-        $end_date       =    $request->post('end_date');
-        $status       =    $request->post('status');
+        $client_id      =    $request->post('client_id');
+        $multi_doc_ids_for_csv      =    $request->post('multi_doc_ids_for_csv');
 
-        $start_date     =   date("Y-m-d", strtotime($start_date));
-        $end_date       =   date("Y-m-d", strtotime($end_date)); 
+        if( !empty( $multi_doc_ids_for_csv ) ){
 
-        if( !empty( $status ) ){
-            
-            DB::table('client_documents')->where('id' , '!=' , 0)->where('net_amount' , '!=' , NULL)
-            ->whereRaw("  DATE(created_at) >= '".$start_date."' AND DATE(created_at) <= '".$end_date."'")->update(['status' => $status]);
+            $doc_ids     =    $request->post('multi_doc_ids_for_csv');
+
+            $this->excel_import_export->excel_export_documnets_by_ids( $doc_ids, $client_id);
+
+        } else {
+
+            $start_date     =    $request->post('start_date');
+            $end_date       =    $request->post('end_date');
+            $status         =    $request->post('status');
+
+            $start_date     =   date("Y-m-d", strtotime($start_date));
+            $end_date       =   date("Y-m-d", strtotime($end_date)); 
+
+            if( !empty( $status ) ){
+                
+                DB::table('client_documents')->where('id' , '!=' , 0)->where('user_id' , $client_id)->where('net_amount' , '!=' , NULL)
+                ->whereRaw("  DATE(created_at) >= '".$start_date."' AND DATE(created_at) <= '".$end_date."'")->update(['status' => $status]);
+
+            }
+
+            $result = $this->excel_import_export->excel_export_documnets( $start_date, $end_date, $client_id);
+
 
         }
 
-        $result = $this->excel_import_export->excel_export_documnets( $start_date, $end_date);
+        
     }
 
     // Multiple select update status
 
     public function multi_select_update_status(Request $request) 
     {
- 
+
         $validate = Validator::make([
             'edit_ids'              =>      $request->get('edit_ids'),
             'status'             =>      $request->get('status'),

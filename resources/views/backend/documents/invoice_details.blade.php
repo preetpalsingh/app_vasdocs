@@ -154,10 +154,19 @@ th.sortable {
                     </nav>
                 </div>
                 <div class="col-3">
-                    <div class="text-center mb-n5">
-                        <!--  <img src="images/breadcrumb/ChatBc.png" alt="" class="img-fluid mb-n4">
-                <img src="images/breadcrumb/agrovista_invoice.jpeg" alt="" class="img-fluid mb-n4"> -->
+
+                    <div class="text-end"> 
+
+                        <a href="javascript:void(0)" id="show_export" class="btn btn-success me-3" data-bs-toggle="tooltip" title="Export Excel {{$title}}">
+                            <i class="ti ti-file-export text-white me-1 fs-5"></i> Export
+                        </a>
+
+                        <a href="javascript:void(0)" id="addFeed" class="btn btn-info " data-bs-toggle="tooltip" title="Add {{$title}}">
+                            <i class="ti ti-clipboard-plus text-white me-1 fs-5"></i> Add
+                        </a>
+
                     </div>
+
                 </div>
             </div>
         </div>
@@ -183,17 +192,24 @@ th.sortable {
                         <i class="ti ti-refresh text-white me-1 fs-5"></i> Reset
                     </a>
 
-                    <div class="w-100 d-flex justify-content-md-end  justify-content-end">
+                    <div class="w-100 d-flex ">
 
                         @if( Auth::user()->role_id == 1 || Auth::user()->role_id == 4 )
 
-                            <form action="" class="sp_doc_status_form" method="POST">
+                            
+                            <input type="hidden" name="multi_doc_ids" id="multi_doc_ids" />
 
-                                <input type="hidden" name="multi_doc_ids" id="multi_doc_ids" />
+                            <form action="{{route('admin.invoiceExport')}}" class="sp_doc_status_form" method="POST">
+
+                                @csrf
+
+                                <input type="hidden" name="multi_doc_ids_for_csv" id="multi_doc_ids_for_csv" />
+
+                                <input type="hidden" name="client_id" value="{{$doc_user_id}}" />
 
                             </form>
 
-                            <select class="form-select sp_select_hide_cont" name="status" id="sp_doc_status" style="width: 150px;margin-right: 15px;display:none;" >
+                            <select class="form-select sp_select_hide_cont ms-3" name="status" id="sp_doc_status" style="width: 150px;display:none;" >
                                 <option value="">Select Status</option>
                                 <option value="Processing">Processing</option>
                                 <option value="Review">Reviewed</option>
@@ -205,15 +221,23 @@ th.sortable {
                                 <i class="ti ti-file-export text-white me-1 fs-5"></i> Export Zip
                             </a-->
 
-                        @endif 
+                        @else
+
+                            <form action="{{route('admin.invoiceExport')}}" class="sp_doc_status_form" method="POST">
+
+                                @csrf
+
+                                <input type="hidden" name="multi_doc_ids_for_csv" id="multi_doc_ids_for_csv" />
+
+                                <input type="hidden" name="client_id" value="0" />
+
+                            </form>
+
+                        @endif
 
 
-                        <a href="javascript:void(0)" id="show_export" class="btn btn-success d-flex align-items-center me-3" data-bs-toggle="tooltip" title="Export Excel {{$title}}">
+                        <a href="javascript:void(0)" id="show_export" class="btn btn-success  align-items-center ms-3 sp_select_hide_cont sp_export_hit" data-bs-toggle="tooltip" title="Export Excel {{$title}}" style="display:none;">
                             <i class="ti ti-file-export text-white me-1 fs-5"></i> Export
-                        </a>
-
-                        <a href="javascript:void(0)" id="addFeed" class="btn btn-info d-flex align-items-center" data-bs-toggle="tooltip" title="Add {{$title}}">
-                            <i class="ti ti-clipboard-plus text-white me-1 fs-5"></i> Add
                         </a>
 
                     </div>
@@ -304,6 +328,7 @@ th.sortable {
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary rounded-pill"  data-bs-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-success rounded-pill upload-button" id="btn_export">Export</button>
+                        <input type="hidden" name="client_id" value="{{$doc_user_id}}" />
                     </div>
 
                 </form>
@@ -501,14 +526,15 @@ $(".singledate").daterangepicker({
             var checkedIds = $('input.sp_chkbox[type="checkbox"]:checked').map(function () {
                 return this.id;
             }).get().join(',');
-
             $('#multi_doc_ids').val(checkedIds);
+            $('#multi_doc_ids_for_csv').val(checkedIds);
 
         } else {
 
             $('.sp_select_hide_cont').fadeOut('fast');
 
             $('#multi_doc_ids').val('');
+            $('#multi_doc_ids_for_csv').val('');
         }
 
     });
@@ -520,6 +546,8 @@ $(".singledate").daterangepicker({
         }).get().join(',');
 
         $('#multi_doc_ids').val(checkedIds);
+        
+        $('#multi_doc_ids_for_csv').val(checkedIds);
 
         if( checkedIds != '' ){
 
@@ -534,8 +562,8 @@ $(".singledate").daterangepicker({
 
     // multi select form submit for status update
 
-    $(document).on('change', '.sp_doc_status', function(e) {
-        $('#sp_doc_status_form').submit();
+    $(document).on('click', '.sp_export_hit', function(e) {
+        $('.sp_doc_status_form').submit();
     });
 
     var editFeedId = 0;
