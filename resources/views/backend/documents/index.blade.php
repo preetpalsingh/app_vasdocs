@@ -218,7 +218,7 @@
 
                             @if( Auth::user()->role_id == 1 || Auth::user()->role_id == 4 )
                             
-                            <a href="{{ route('admin.documentsView', ['invoice_id' => $data->id,'ocr_hit_status' => 'ocr-true']) }}" class="btn btn-primary d-flex align-items-center " data-bs-toggle="tooltip" data-bs-original-title="Fetch Invoice Detail From OCR" data-id="{{ $data->id }}" id="{{ $data->id }}" style="font-size: 14px;">
+                            <a href="{{ route('admin.documentsView', ['invoice_id' => $data->id,'ocr_hit_status' => 'ocr-true']) }}" class="btn btn-primary d-flex align-items-center sp_fetch_ocr_btn" data-bs-toggle="tooltip" data-bs-original-title="Fetch Invoice Detail From OCR" data-id="{{ $data->id }}" id="{{ $data->id }}" style="font-size: 14px;">
                             <i class="fas fa-sync text-white me-1 fs-2"></i>Fetch OCR</a>
 
                             @endif
@@ -704,6 +704,11 @@
                 
             });
 
+
+            $(document).on("click",".sp_fetch_ocr_btn",function(event) {	
+
+                $('#main-wrapper').append('<div id="sp_preloader" style=""><div class="shapes-8"></div></div>');
+            });
 
             $(document).on("click",".modal-delete-trigger",function(event) {	
 
