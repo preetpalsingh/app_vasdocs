@@ -251,10 +251,10 @@ class DocumentsController extends Controller
             $invoiceData['due_date']['value'] = '';
             $invoiceData['invoice_number']['value'] = '';
             $invoiceData['supplier']['value'] = '';
-            $invoiceData['total_amount']['value'] = '';
-            $invoiceData['net_amount']['value'] = '';
-            $invoiceData['tax_amount']['value'] = '';
-            $invoiceData['tax_percent']['value'] = '';
+            $invoiceData['total_amount']['value'] = '0.00';
+            $invoiceData['net_amount']['value'] = '0.00';
+            $invoiceData['tax_amount']['value'] = '0.00';
+            $invoiceData['tax_percent']['value'] = '0';
 
             foreach( $prediction as $pr){
 
