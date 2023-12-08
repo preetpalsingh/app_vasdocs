@@ -247,6 +247,15 @@ class DocumentsController extends Controller
 
             $invoiceData = array();
 
+            $invoiceData['invoice_date']['value'] = '';
+            $invoiceData['due_date']['value'] = '';
+            $invoiceData['invoice_number']['value'] = '';
+            $invoiceData['supplier']['value'] = '';
+            $invoiceData['total_amount']['value'] = '';
+            $invoiceData['net_amount']['value'] = '';
+            $invoiceData['tax_amount']['value'] = '';
+            $invoiceData['tax_percent']['value'] = '';
+
             foreach( $prediction as $pr){
 
                 if( !empty( $pr['ocr_text'] ) ){
