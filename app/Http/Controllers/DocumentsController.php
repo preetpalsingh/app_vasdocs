@@ -249,53 +249,58 @@ class DocumentsController extends Controller
 
             foreach( $prediction as $pr){
 
-                if( $pr['label'] == 'invoice_date' ){
+                if( !empty( $pr['ocr_text'] ) ){
 
-                    $invoiceData['invoice_date']['value'] = date("d/m/Y", strtotime($pr['ocr_text'])); 
+                    if( $pr['label'] == 'invoice_date' ){
 
+                        $invoiceData['invoice_date']['value'] = date("d/m/Y", strtotime($pr['ocr_text'])); 
+    
+                    }
+    
+                    if( $pr['label'] == 'payment_due_date' ){
+    
+                        $invoiceData['due_date']['value'] = date("d/m/Y", strtotime($pr['ocr_text'])); 
+    
+                    }
+    
+                    if( $pr['label'] == 'invoice_number' ){
+    
+                        $invoiceData['invoice_number']['value'] = $pr['ocr_text']; 
+    
+                    }
+    
+                    if( $pr['label'] == 'seller_name' ){
+    
+                        $invoiceData['supplier']['value'] = $pr['ocr_text']; 
+    
+                    }
+    
+                    if( $pr['label'] == 'invoice_amount' ){
+    
+                        $invoiceData['total_amount']['value'] = $this->SPConvertToFloat( $pr['ocr_text'] ); 
+    
+                    }
+    
+                    if( $pr['label'] == 'subtotal' ){
+    
+                        $invoiceData['net_amount']['value'] = $this->SPConvertToFloat( $pr['ocr_text'] ); 
+    
+                    }
+    
+                    if( $pr['label'] == 'total_tax' ){
+    
+                        $invoiceData['tax_amount']['value'] = $this->SPConvertToFloat( $pr['ocr_text'] ); 
+    
+                    }
+    
+                    if( $pr['label'] == 'total_tax_%' ){
+    
+                        $invoiceData['tax_percent']['value'] = (int) filter_var($pr['ocr_text'], FILTER_SANITIZE_NUMBER_INT); 
+    
+                    }
                 }
 
-                if( $pr['label'] == 'payment_due_date' ){
-
-                    $invoiceData['due_date']['value'] = date("d/m/Y", strtotime($pr['ocr_text'])); 
-
-                }
-
-                if( $pr['label'] == 'invoice_number' ){
-
-                    $invoiceData['invoice_number']['value'] = $pr['ocr_text']; 
-
-                }
-
-                if( $pr['label'] == 'seller_name' ){
-
-                    $invoiceData['supplier']['value'] = $pr['ocr_text']; 
-
-                }
-
-                if( $pr['label'] == 'invoice_amount' ){
-
-                    $invoiceData['total_amount']['value'] = $this->SPConvertToFloat( $pr['ocr_text'] ); 
-
-                }
-
-                if( $pr['label'] == 'subtotal' ){
-
-                    $invoiceData['net_amount']['value'] = $this->SPConvertToFloat( $pr['ocr_text'] ); 
-
-                }
-
-                if( $pr['label'] == 'total_tax' ){
-
-                    $invoiceData['tax_amount']['value'] = $this->SPConvertToFloat( $pr['ocr_text'] ); 
-
-                }
-
-                if( $pr['label'] == 'total_tax_%' ){
-
-                    $invoiceData['tax_percent']['value'] = (int) filter_var($pr['ocr_text'], FILTER_SANITIZE_NUMBER_INT); 
-
-                }
+                
 
                 //echo '<pre>';print_r($pr);
                 
