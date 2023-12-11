@@ -336,7 +336,16 @@
 
                             @endphp
 
-                            <input class="form-control" type="hidden"  value="{{ $tax_amount }}" name="tax_amount" id="tax_amount" step="any" />
+                            <input class="form-control" type="hidden"  value="{{ $tax_amount }}" name="tax_amount" id="tax_amount" step="any" /><div class="mb-3 row">
+                                <label for="example-time-input" class="col-md-3 col-form-label">Payment Mode </label>
+                                <div class="col-md-9">
+                                    <select class="form-select col-12 " name="payment_method" id="payment_method" required>
+                                            <option value="Cash" @if( $data->payment_method == 'Cash' ) selected @endif>Cash</option>
+                                            <option value="Bank" @if( $data->payment_method == 'Bank' ) selected @endif>Bank</option>
+                                            <option value="Credit Card" @if( $data->payment_method == 'Credit Card' ) selected @endif>Credit Card</option>
+                                    </select>
+                                </div>
+                            </div>
                             
                             <div class="mb-3 row">
                                 <label for="example-time-input" class="col-md-3 col-form-label">Status</label>
@@ -350,16 +359,7 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3 row">
-                                <label for="example-time-input" class="col-md-3 col-form-label">Payment Board </label>
-                                <div class="col-md-9">
-                                    <select class="form-select col-12 " name="payment_method" id="payment_method" required>
-                                            <option value="Cash" @if( $data->payment_method == 'Cash' ) selected @endif>Cash</option>
-                                            <option value="Bank" @if( $data->payment_method == 'Bank' ) selected @endif>Bank</option>
-                                            <option value="Credit Card" @if( $data->payment_method == 'Credit Card' ) selected @endif>Credit Card</option>
-                                    </select>
-                                </div>
-                            </div>
+                            
 
                             <div class="mb-3">
                                 <button class=" btn rounded-pill px-4 btn-success  font-weight-medium  waves-effect waves-light " type="submit">

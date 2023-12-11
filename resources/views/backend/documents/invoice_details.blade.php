@@ -124,6 +124,13 @@ th.sortable {
 
 </style>
 
+<!-- Using request() helper function -->
+@php
+    $url_doc_status = Route::current()->parameter('status'); // "all"
+    $url_doc_user_id = Route::current()->parameter('user_id'); // "12"
+    //$url_doc_user_id = request()->segment(4); // "12"
+@endphp
+
 <div class="container-fluid">
     <div class="card bg-light-info shadow-none position-relative overflow-hidden">
         <div class="card-body px-4 py-3">
@@ -157,13 +164,24 @@ th.sortable {
 
                     <div class="text-end"> 
 
-                        <a href="javascript:void(0)" id="show_export" class="btn btn-success me-3" data-bs-toggle="tooltip" title="Export Excel {{$title}}">
-                            <i class="ti ti-file-export text-white me-1 fs-5"></i> Export
-                        </a>
+                        @if( Auth::user()->role_id == 1 || Auth::user()->role_id == 4 )
+
+                            @if( $url_doc_status != 'all' )
+
+                                <a href="javascript:void(0)" id="show_export" class="btn btn-success me-3" data-bs-toggle="tooltip" title="Export Excel {{$title}}">
+                                    <i class="ti ti-file-export text-white me-1 fs-5"></i> Export
+                                </a>
+
+                            @endif
+                        @endif
+
+                        @if( $url_doc_status == 'all' )
 
                         <a href="javascript:void(0)" id="addFeed" class="btn btn-info " data-bs-toggle="tooltip" title="Add {{$title}}">
                             <i class="ti ti-clipboard-plus text-white me-1 fs-5"></i> Add
                         </a>
+
+                        @endif
 
                     </div>
 
@@ -176,21 +194,14 @@ th.sortable {
         <!-- --------------------- start Contact ---------------- -->
         <div class="card card-body">
             <div class="row">
-                <div class="col-md-4 col-xl-3">
-                    <form class="position-relative">
-                        <input type="text" class="form-control product-search ps-5" id="search_records" placeholder="Search {{$title}}s..." />
-                        <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-                    </form>
-                </div>
+                
                 <div class="col-md-8 col-xl-9 text-end d-flex  mt-3 mt-md-0">
                     <div class="action-btn show-btn" style="display: none">
                         <a href="javascript:void(0)" class="delete-multiple btn-light-danger btn me-2 text-danger d-flex align-items-center font-medium">
                             <i class="ti ti-trash text-danger me-1 fs-5"></i> Delete All Row
                         </a>
                     </div>
-                    <a href="javascript:void(0)"  class="btn btn-success d-flex align-items-center float-start sp_reset" data-bs-toggle="tooltip" title="Reset Search" data-trigger="hover">
-                        <i class="ti ti-refresh text-white me-1 fs-5"></i> Reset
-                    </a>
+                    
 
                     <div class="w-100 d-flex ">
 
@@ -199,7 +210,7 @@ th.sortable {
                             
                             <input type="hidden" name="multi_doc_ids" id="multi_doc_ids" />
 
-                            <form action="{{route('admin.invoiceExport')}}" class="sp_doc_status_form" method="POST">
+                            <!--form action="{{route('admin.invoiceExport')}}" class="sp_doc_status_form" method="POST">
 
                                 @csrf
 
@@ -207,42 +218,69 @@ th.sortable {
 
                                 <input type="hidden" name="client_id" value="{{$doc_user_id}}" />
 
-                            </form>
+                            </form-->
 
-                            <select class="form-select sp_select_hide_cont ms-3" name="status" id="sp_doc_status" style="width: 150px;display:none;" >
-                                <option value="">Select Status</option>
-                                <option value="Processing">Processing</option>
-                                <option value="Review">Reviewed</option>
-                                <option value="Ready">Ready</option>
-                                <option value="Archive" >Archive</option>
-                            </select>
-                            
-                            <!--a href="javascript:void(0)"  class="btn btn-success align-items-center me-3 sp_select_hide_cont" style="display:none;" data-bs-toggle="tooltip" title="Export Zip {{$title}}">
-                                <i class="ti ti-file-export text-white me-1 fs-5"></i> Export Zip
-                            </a-->
-
-                        @else
-
-                            <form action="{{route('admin.invoiceExport')}}" class="sp_doc_status_form" method="POST">
+                            <form action="{{route('admin.invoiceExport')}}" class="sp_doc_status_form d-flex" method="POST">
 
                                 @csrf
 
+                                <select class="form-select  ms-3" name="status" id="sp_doc_status" style="width: 150px;" >
+                                    <option value="all">Select Status</option>
+                                    <option value="Processing" @if($url_doc_status == 'Processing') selected @endif >Processing</option>
+                                    <option value="Review" @if($url_doc_status == 'Review') selected @endif >Reviewed</option>
+                                    <option value="Ready" @if($url_doc_status == 'Ready') selected @endif >Ready</option>
+                                    <!--option value="Archive" >Archive</option-->
+                                </select>
+
+                                @if( $url_doc_status != 'all' )
+
+                                <select class="form-select  ms-3" name="action_status" id="action_status" style="width: 150px;" required>
+                                    <option value="">Select </option>
+                                    <option value="export_all">Export All</option>
+                                    <option value="export_selected" style="display:none;">Export Selected</option>
+                                    <option value="export_all_archive">Export All & Archive</option>
+                                    <option value="export_selected_archive" style="display:none;">Export Selected & Archive</option>
+                                </select>
+
+                                <button type="submit" class="btn btn-success  ms-3" style="width: 150px;">Go</button>
+
                                 <input type="hidden" name="multi_doc_ids_for_csv" id="multi_doc_ids_for_csv" />
 
-                                <input type="hidden" name="client_id" value="0" />
+                                <input type="hidden" name="client_id" value="{{$doc_user_id}}" />
+
+                                @endif
 
                             </form>
+                            
+                            <!--a href="javascript:void(0)"  class="btn btn-success align-items-center me-3 sp_select_hide_cont" style="display:none;" data-bs-toggle="tooltip" title="Export Zip {{$title}}">
+                                <i class="ti ti-file-export text-white me-1 fs-5"></i> Export Zip
+                            </a>
+
+                            <a href="javascript:void(0)" id="show_export" class="btn btn-success  align-items-center ms-3 sp_select_hide_cont sp_export_hit" data-bs-toggle="tooltip" title="Export Excel {{$title}}" style="display:none;">
+                                <i class="ti ti-file-export text-white me-1 fs-5"></i> Export
+                            </a-->
+                        
 
                         @endif
 
 
-                        <a href="javascript:void(0)" id="show_export" class="btn btn-success  align-items-center ms-3 sp_select_hide_cont sp_export_hit" data-bs-toggle="tooltip" title="Export Excel {{$title}}" style="display:none;">
-                            <i class="ti ti-file-export text-white me-1 fs-5"></i> Export
-                        </a>
+                        
 
                     </div>
 
                 </div>
+
+                <div class="col-md-4 col-xl-3 d-flex">
+                    <form class="position-relative">
+                        <input type="text" class="form-control product-search ps-5" id="search_records" placeholder="Search {{$title}}s..." />
+                        <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+                    </form>
+
+                    <a href="javascript:void(0)"  class="btn btn-success d-flex align-items-center float-start sp_reset ms-3" data-bs-toggle="tooltip" title="Reset Search" data-trigger="hover">
+                        <i class="ti ti-refresh text-white me-1 fs-5"></i> Reset
+                    </a>
+                </div>
+
             </div>
         </div>
 
@@ -510,8 +548,6 @@ $(".singledate").daterangepicker({
 
     // check all
 
-    
-
     $(document).on('click', '#contact-check-all', function(e) {
 
         // Get its current checked state
@@ -529,12 +565,18 @@ $(".singledate").daterangepicker({
             $('#multi_doc_ids').val(checkedIds);
             $('#multi_doc_ids_for_csv').val(checkedIds);
 
+            $('select#action_status option[value="export_selected"]').show();
+            $('select#action_status option[value="export_selected_archive"]').show();
+
         } else {
 
             $('.sp_select_hide_cont').fadeOut('fast');
 
             $('#multi_doc_ids').val('');
             $('#multi_doc_ids_for_csv').val('');
+
+            $('select#action_status option[value="export_selected"]').hide();
+            $('select#action_status option[value="export_selected_archive"]').hide();
         }
 
     });
@@ -553,9 +595,15 @@ $(".singledate").daterangepicker({
 
             $('.sp_select_hide_cont').fadeIn('fast');
 
+            $('select#action_status option[value="export_selected"]').show();
+            $('select#action_status option[value="export_selected_archive"]').show();
+
         } else {
 
             $('.sp_select_hide_cont').fadeOut('fast');
+
+            $('select#action_status option[value="export_selected"]').hide();
+            $('select#action_status option[value="export_selected_archive"]').hide();
         }
 
     });
@@ -1027,6 +1075,19 @@ $(document).on('click', '.sp_put_document_to_archive', function(e) {
 // Multiple select update status 
 
 $(document).on('change', '#sp_doc_status', function(e) {
+
+
+    sp_doc_status = $(this).val();
+    var baseUrl = url = "{{ route('admin.invoice_details', ['status' => '']) }}"+'/'+ sp_doc_status+'/'+"{{$url_doc_user_id}}";
+    //console.log(baseUrl);
+    window.location.href = baseUrl;
+
+});
+
+
+// Multiple select update status 
+
+$(document).on('change', '#sp_doc_status1', function(e) {
 
     // Show loader before the request starts
     showLoader();

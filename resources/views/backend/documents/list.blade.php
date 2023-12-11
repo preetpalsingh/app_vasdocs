@@ -1,5 +1,12 @@
+@php
+    $url_doc_status = request()->query('doc_status'); // "all"
+    $url_doc_user_id = request()->query('doc_user_id'); // "12"
+@endphp
 <table class="table search-table align-middle text-nowrap">
     <thead class="header-item">
+
+        @if( $url_doc_status != 'all' )
+
         <th>
             <div class="n-chk align-self-center text-center">
                 <div class="form-check">
@@ -8,11 +15,13 @@
                     <span class="new-control-indicator"></span>
                 </div>
             </div>
+        </th>
 
+        @endif
 
         <th class="sortable" data-val="id" data-direction="@php if( $sp_sort_filed_name == 'id') { echo $sp_sort_filed_direction; } else { echo 'DESC'; } @endphp" >ID</th>
-        <th class="sortable" data-val="company_name" data-direction="@php if( $sp_sort_filed_name == 'company_name') { echo $sp_sort_filed_direction; } else { echo 'DESC'; } @endphp" >Company</th>
         <th class="sortable" data-val="supplier" data-direction="@php if( $sp_sort_filed_name == 'supplier') { echo $sp_sort_filed_direction; } else { echo 'DESC'; } @endphp" >Supplier</th>
+        <th >Invoice No.</th>
         <th class="sortable" data-val="total_amount" data-direction="@php if( $sp_sort_filed_name == 'total_amount') { echo $sp_sort_filed_direction; } else { echo 'DESC'; } @endphp" >Gross Amount</th>
         <th>Tax</th>
         <th class="sortable" data-val="net_amount" data-direction="@php if( $sp_sort_filed_name == 'net_amount') { echo $sp_sort_filed_direction; } else { echo 'DESC'; } @endphp" >Net Amount</th>
@@ -42,6 +51,9 @@
 
         @endphp
         <tr class="search-items">
+
+            @if( $url_doc_status != 'all' )
+
             <td>
                 <div class="n-chk align-self-center text-center">
                     <div class="form-check">
@@ -50,10 +62,13 @@
                     </div>
                 </div>
             </td>
+
+            @endif
+
             <!--td >{{ $i }}</td-->
             <td><a href="{{ route('admin.documentsView', ['invoice_id' => $row->id]) }}"  data-bs-toggle="tooltip" title="View Invoice" data-trigger="hover"> @php echo 'CH-' . str_pad($row->id, 6, '0', STR_PAD_LEFT) @endphp </a> </td>
-            <td>{{ $row->company_name }}</td>
             <td>{{ $row->supplier }}</td>
+            <td>{{ $row->invoice_number }}</td>
             <td>{{ number_format($row->total_amount, 2) }}</td>
             <td>{{ number_format($row->tax_amount, 2) }} <small>({{ $row->tax_percent }}%)<small></td>
             <td>{{ number_format($row->net_amount, 2) }}</td>

@@ -219,11 +219,13 @@ class DocumentsController extends Controller
         ])->attach('document', file_get_contents($filePath), 'file.pdf')
           ->post('https://api.mindee.net/v1/products/mindee/invoices/v2/predict');  */
 
+        $file_name = 'CH-' . str_pad($invoice_id, 6, '0', STR_PAD_LEFT).'.pdf';
+
         $response = Http::withHeaders([
             'accept' => 'multipart/form-data',
             'Authorization' => 'Basic ZjU1NWRjNTUtOGUwZS0xMWVlLWI3NTUtZGU3ZmYyNDNkNjBjOg==',
         ])
-        ->attach('file', file_get_contents($filePath), 'file.pdf')
+        ->attach('file', file_get_contents($filePath), $file_name)
         ->post('https://app.nanonets.com/api/v2/OCR/Model/73a54b61-b96b-4efc-8a33-7b4ce3531ff4/LabelFile/');
 
         /* $response = Http::attach(
@@ -884,17 +886,19 @@ class DocumentsController extends Controller
         /* $start_date = '2023-09-01';
         $end_date = '2023-09-16'; */
 
+        $status      =    $request->post('status');
+        $action_status      =    $request->post('action_status');
         $client_id      =    $request->post('client_id');
         $multi_doc_ids_for_csv      =    $request->post('multi_doc_ids_for_csv');
 
-        if( !empty( $multi_doc_ids_for_csv ) ){
+        if( !empty( $action_status ) ){
 
-            $doc_ids     =    $request->post('multi_doc_ids_for_csv');
+            $doc_ids     =    $multi_doc_ids_for_csv;
 
-            $this->excel_import_export->excel_export_documnets_by_ids( $doc_ids, $client_id);
+            $this->excel_import_export->excel_export_documnets_by_ids( $doc_ids, $client_id, $status, $action_status );
 
         } else {
-
+die('dd');
             $start_date     =    $request->post('start_date');
             $end_date       =    $request->post('end_date');
             $status         =    $request->post('status');

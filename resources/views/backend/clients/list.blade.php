@@ -12,7 +12,7 @@
         <th>Sr No.</th-->
         <th>Company Name</th>
         <th>Name</th>
-        <th>Number of Documents</th>
+        <th>No. of Docs</th>
         <th>Email</th>
         <th>Phone</th>
         <th>Documents</th>
@@ -46,7 +46,7 @@
 </td>
             <td >{{ $i }}</td-->
 
-            <td><a href="{{ route('home', ['status' => 'all']) }}/{{$row->id}}">{{ $row->company_name }}</a></td>
+            <td><a href="{{ route('admin.invoice_details', ['status' => 'all']) }}/{{$row->id}}">{{ $row->company_name }}</a></td>
 
             <td>  {{ $row->first_name }}  
                
@@ -72,7 +72,7 @@
             <td>{{ $row->email }}</td>
             <td>{{ $row->mobile_number }}</td>
             <td>
-            <a href="{{ route('home', ['status' => 'all']) }}/{{$row->id}}" class="btn waves-effect waves-light btn-rounded btn-sm btn-primary">View Documents</a>
+            <a href="{{ route('admin.invoice_details', ['status' => 'all']) }}/{{$row->id}}" class="btn waves-effect waves-light btn-rounded btn-sm btn-primary">View Documents</a>
             </td>
 
             @if( Auth::user()->role_id == 1 )

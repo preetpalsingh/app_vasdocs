@@ -226,7 +226,7 @@ class ExcelImportExport extends Model
      * Get the user list from Documents table.
      */
 	 
-    public function excel_export_documnets_by_ids( $doc_ids, $client_id )
+    public function excel_export_documnets_by_ids( $doc_ids, $client_id, $status, $action_status )
     { 
 		
 		require_once 'excel_import_export/php-excel.class.php';
@@ -239,14 +239,41 @@ class ExcelImportExport extends Model
 		
 		$fileds_im = implode( ',' , $fileds);
 
+		$where_qry = ' AND t1.status = "'.$status.'" ';
+
+		$where_qry_up = " status = '".$status."' ";
+
+		if( $action_status == 'export_selected' || $action_status == 'export_selected_archive' ){
+
+			$where_qry .= ' AND t1.id IN('.$doc_ids.')';
+
+			$where_qry_up .= ' AND id IN('.$doc_ids.')';
+
+		}
+
 		if ( Auth::user()->role_id == 3 ) {
 		
-			$row_list = DB::select("SELECT $fileds_im  FROM client_documents t1 LEFT JOIN account_code t2 ON t1.account_code = t2.id where t1.user_id = ".$user->id." AND t1.id IN(".$doc_ids.") ");
+			$row_list = DB::select("SELECT $fileds_im  FROM client_documents t1 LEFT JOIN account_code t2 ON t1.account_code = t2.id where t1.user_id = ".$user->id." ".$where_qry);
 
 		} else {
 			
-			$row_list = DB::select("SELECT $fileds_im  FROM client_documents t1 LEFT JOIN account_code t2 ON t1.account_code = t2.id where t1.user_id = ".$client_id." AND  t1.id IN(".$doc_ids.") ");
+			$row_list = DB::select("SELECT $fileds_im  FROM client_documents t1 LEFT JOIN account_code t2 ON t1.account_code = t2.id where t1.user_id = ".$client_id." ".$where_qry);
 
+		}
+
+		if( $action_status == 'export_all_archive' || $action_status == 'export_selected_archive' ){
+
+			if ( Auth::user()->role_id == 3 ) {
+
+				DB::table('client_documents')->where('user_id' , $user->id)
+                ->whereRaw($where_qry_up)->update(['status' => 'Archive']);
+
+			} else { 
+				
+				DB::table('client_documents')->where('user_id' , $client_id)
+                ->whereRaw($where_qry_up)->update(['status' => 'Archive']);
+				
+			}
 		}
 		
 		$file_name = 'ExportList_'.date("YmdHis");
