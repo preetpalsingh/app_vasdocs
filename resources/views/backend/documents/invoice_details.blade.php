@@ -154,9 +154,20 @@ th.sortable {
 
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
+
+                            @if( Auth::user()->role_id == 1 || Auth::user()->role_id == 4 )
+
+                                <li class="breadcrumb-item"><a class="text-muted " href="{{ route('dashboard') }}">Dashboard</a></li>
+                                <li class="breadcrumb-item" aria-current="page"><a class="text-muted " href="{{ route('admin.clientList') }}">Clients</a></li>
+                                <li class="breadcrumb-item" aria-current="page">{{$title}}s</li>
+
+                            @else 
+
                             <li class="breadcrumb-item"><a class="text-muted " href="#">Dashboard</a></li>
                             <li class="breadcrumb-item" aria-current="page">Clients</li>
                             <li class="breadcrumb-item" aria-current="page">{{$title}}s</li>
+
+                            @endif
                         </ol>
                     </nav>
                 </div>

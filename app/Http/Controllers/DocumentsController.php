@@ -63,22 +63,51 @@ class DocumentsController extends Controller
         // set previous or next documnet id
 
         // Get the previous ID
-        $previousId = ClientDocuments::where('id', '<', $invoice_id)
-        ->orderBy('id', 'desc')
-        ->pluck('id')
-        ->first();
 
-        // Assign a default value if nextId is null
-        $doc_previous_id = $previousId ?? 0;
+        if( !empty( session('ses_client_id') ) ){
 
-        // Get the next ID
-        $nextId = ClientDocuments::where('id', '>', $invoice_id)
-        ->orderBy('id', 'asc')
-        ->pluck('id')
-        ->first();
-        
-        // Assign a default value if nextId is null
-        $doc_next_id = $nextId ?? 0;
+            $previousId = ClientDocuments::where('id', '<', $invoice_id)
+            ->where('user_id', session('ses_client_id'))
+            ->where('status', '!=', 'Archive')
+            ->orderBy('id', 'desc')
+            ->pluck('id')
+            ->first();
+
+            // Assign a default value if nextId is null
+            $doc_previous_id = $previousId ?? 0;
+
+            // Get the next ID
+            $nextId = ClientDocuments::where('id', '>', $invoice_id)
+            ->where('user_id', session('ses_client_id'))
+            ->where('status', '!=', 'Archive')
+            ->orderBy('id', 'asc')
+            ->pluck('id')
+            ->first();
+            
+            // Assign a default value if nextId is null
+            $doc_next_id = $nextId ?? 0;
+
+        } else {
+
+            $previousId = ClientDocuments::where('id', '<', $invoice_id)
+            ->where('status', '!=', 'Archive')
+            ->orderBy('id', 'desc')
+            ->pluck('id')
+            ->first();
+
+            // Assign a default value if nextId is null
+            $doc_previous_id = $previousId ?? 0;
+
+            // Get the next ID
+            $nextId = ClientDocuments::where('id', '>', $invoice_id)
+            ->where('status', '!=', 'Archive')
+            ->orderBy('id', 'asc')
+            ->pluck('id')
+            ->first();
+            
+            // Assign a default value if nextId is null
+            $doc_next_id = $nextId ?? 0;
+        }
 
 
         // set file type to detect image or pdf
@@ -545,6 +574,11 @@ class DocumentsController extends Controller
             if ( $doc_status != 'all' ) {
                 
                 $documentsQuery->where('client_documents.status', $doc_status);
+
+            } else {
+
+                $documentsQuery->where('client_documents.status' , '!=' , 'Archive');
+
             }
             
             if ( !empty( $doc_user_id ) ) {
@@ -568,6 +602,10 @@ class DocumentsController extends Controller
             if ( $doc_status != 'all' ) {
                 // Add a condition to restrict data for non-admin users
                 $documentsQuery->where('client_documents.status', $doc_status);
+            } else {
+
+                $documentsQuery->where('client_documents.status' , '!=' , 'Archive');
+
             }
             
             if ( !empty( $doc_user_id ) ) {
@@ -599,6 +637,16 @@ class DocumentsController extends Controller
         } else {
 
             $documents = $documentsQuery->paginate(100);
+        }
+
+        if ( !empty( $doc_user_id ) ) {
+
+            // Set a session variable
+            session(['ses_client_id' => $doc_user_id]);
+
+        } else {
+
+            session()->forget('ses_client_id');
         }
         
 

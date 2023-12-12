@@ -126,9 +126,32 @@
                     </h4>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
+
+                        @if( Auth::user()->role_id == 1 || Auth::user()->role_id == 4 )
+
+                            <li class="breadcrumb-item"><a class="text-muted " href="{{ route('dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item" aria-current="page"><a class="text-muted " href="{{ route('admin.clientList') }}">Clients</a></li>
+
+                            @if( !empty( session('ses_client_id') ) ){
+
+                                <li class="breadcrumb-item" aria-current="page"><a class="text-muted "  href="{{ route('home', ['status' => 'all']) }}/{{$data->user_id}}">{{$title}}s</a></li>
+
+                            @else
+
+                                <li class="breadcrumb-item" aria-current="page"><a class="text-muted "  href="{{ route('home', ['status' => 'all']) }}">{{$title}}s</a></li>
+
+                            @endif
+
+                            
+
+                        @else 
+
                             <li class="breadcrumb-item"><a class="text-muted " href="#">Dashboard</a></li>
                             <li class="breadcrumb-item" aria-current="page">Clients</li>
                             <li class="breadcrumb-item" aria-current="page">{{$title}}s</li>
+
+                        @endif
+
                             <li class="breadcrumb-item" aria-current="page">@php echo 'CH-' . str_pad($data->id, 6, '0', STR_PAD_LEFT) @endphp </li>
                         </ol>
                     </nav>
