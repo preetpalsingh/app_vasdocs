@@ -135,8 +135,21 @@
                 </div>
                 <div class="col-3">
                     <div class="text-end ">
-                        <a href="{{ url()->previous() }}" class="btn btn-primary">Go Back</a>
-                        <!--img src="images/breadcrumb/ChatBc.png" alt="" class="img-fluid mb-n4">
+
+                        @if( $doc_previous_id > 0)
+
+                        <a href="{{ route('admin.documentsView', ['invoice_id' => $doc_previous_id]) }}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-original-title="Open Previous Invoice">Previous Invoice</a>
+
+                        @endif
+
+                        @if( $doc_next_id > 0)
+
+                        <a href="{{ route('admin.documentsView', ['invoice_id' => $doc_next_id]) }}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-original-title="Open Next Invoice">Next Invoice</a>
+
+                        @endif
+
+                        <!--a href="{{ url()->previous() }}" class="btn btn-primary">Go Back</a>
+                        <img src="images/breadcrumb/ChatBc.png" alt="" class="img-fluid mb-n4">
                         <img src="images/breadcrumb/agrovista_invoice.jpeg" alt="" class="img-fluid mb-n4"-->
                     </div>
                 </div>

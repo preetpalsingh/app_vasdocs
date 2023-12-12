@@ -60,7 +60,27 @@ class DocumentsController extends Controller
     public function index($invoice_id, $ocr_hit_status=null)
     {
 
+        // set previous or next documnet id
+
+        // Get the previous ID
+        $previousId = ClientDocuments::where('id', '<', $invoice_id)
+        ->orderBy('id', 'desc')
+        ->pluck('id')
+        ->first();
+
+        // Assign a default value if nextId is null
+        $doc_previous_id = $previousId ?? 0;
+
+        // Get the next ID
+        $nextId = ClientDocuments::where('id', '>', $invoice_id)
+        ->orderBy('id', 'asc')
+        ->pluck('id')
+        ->first();
         
+        // Assign a default value if nextId is null
+        $doc_next_id = $nextId ?? 0;
+
+
         // set file type to detect image or pdf
 
         $file_type = 'image';
@@ -114,7 +134,9 @@ class DocumentsController extends Controller
             'invoice_id' => $invoice_id,
             'file_type' => $file_type,
             'doc_user_name' => $doc_user_name,
-            'account_codes' => $account_codes
+            'account_codes' => $account_codes,
+            'doc_previous_id' => $doc_previous_id,
+            'doc_next_id' => $doc_next_id,
         ]);
      
     }
@@ -898,7 +920,7 @@ class DocumentsController extends Controller
             $this->excel_import_export->excel_export_documnets_by_ids( $doc_ids, $client_id, $status, $action_status );
 
         } else {
-die('dd');
+
             $start_date     =    $request->post('start_date');
             $end_date       =    $request->post('end_date');
             $status         =    $request->post('status');
