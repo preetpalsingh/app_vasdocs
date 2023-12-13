@@ -132,7 +132,7 @@
                             <li class="breadcrumb-item"><a class="text-muted " href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item" aria-current="page"><a class="text-muted " href="{{ route('admin.clientList') }}">Clients</a></li>
 
-                            @if( !empty( session('ses_client_id') ) ){
+                            @if( !empty( session('ses_client_id') ) )
 
                                 <li class="breadcrumb-item" aria-current="page"><a class="text-muted "  href="{{ route('home', ['status' => 'all']) }}/{{$data->user_id}}">{{$title}}s</a></li>
 

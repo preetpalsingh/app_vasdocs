@@ -701,6 +701,8 @@ class DocumentsController extends Controller
         }
 		
         try {
+            
+            $session_id = Auth::user()->id;
 
             if ( Auth::user()->role_id == 1 || Auth::user()->role_id == 4 ) {
 
@@ -734,6 +736,7 @@ class DocumentsController extends Controller
                         if ($file->move(public_path('documents'), $fileName)) {
     
                             $this->client_documents->user_id            =   $user_id;
+                            $this->client_documents->session_id         =   $session_id;
                             $this->client_documents->file               =   $fileName;
                             $this->client_documents->created_at         =   date('Y-m-d H:i:s');
         
@@ -762,6 +765,7 @@ class DocumentsController extends Controller
                         $pdf->SaveSinglePdf( $file_path , $fileName );
 
                         $this->client_documents->user_id            =   $user_id;
+                        $this->client_documents->session_id         =   $session_id;
                         $this->client_documents->file               =   $fileName;
                         $this->client_documents->created_at         =   date('Y-m-d H:i:s');
 

@@ -128,6 +128,8 @@ class AuthController extends Controller
     {
         $user = $request->user();
 
+        $session_id = $user->id;
+
         $get_client_id = $request->post('get_client_id');
 
         $doc_user_id = $user->id;
@@ -159,6 +161,8 @@ class AuthController extends Controller
                     if ($file->move(public_path('documents'), $fileName)) {
 
                         $this->client_documents->user_id            =   $doc_user_id;
+                        $this->client_documents->session_id         =   $session_id;
+                        $this->client_documents->platform           =   'App';
                         $this->client_documents->file               =   $fileName;
                         $this->client_documents->created_at         =   date('Y-m-d H:i:s');
 
@@ -191,6 +195,8 @@ class AuthController extends Controller
                     $pdf->SaveSinglePdf( $file_path , $fileName );
 
                     $this->client_documents->user_id            =   $doc_user_id;
+                    $this->client_documents->session_id         =   $session_id;
+                    $this->client_documents->platform           =   'App';
                     $this->client_documents->file               =   $fileName;
                     $this->client_documents->created_at         =   date('Y-m-d H:i:s');
 
