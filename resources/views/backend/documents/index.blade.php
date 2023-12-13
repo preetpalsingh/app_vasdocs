@@ -134,7 +134,7 @@
 
                             @if( !empty( session('ses_client_id') ) )
 
-                                <li class="breadcrumb-item" aria-current="page"><a class="text-muted "  href="{{ route('home', ['status' => 'all']) }}/{{$data->user_id}}">{{$title}}s</a></li>
+                                <li class="breadcrumb-item" aria-current="page"><a class="text-muted "  href="{{ route('home', ['status' => 'all']) }}/{{$data->user_id}}">{{$title}}s</a></li> 
 
                             @else
 

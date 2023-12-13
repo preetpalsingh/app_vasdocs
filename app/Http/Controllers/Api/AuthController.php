@@ -197,7 +197,7 @@ class AuthController extends Controller
                     $this->client_documents->user_id            =   $doc_user_id;
                     $this->client_documents->session_id         =   $session_id;
                     $this->client_documents->platform           =   'App';
-                    $this->client_documents->file               =   $fileName;
+                    $this->client_documents->file               =   $fileName; 
                     $this->client_documents->created_at         =   date('Y-m-d H:i:s');
 
                     $this->client_documents->save();

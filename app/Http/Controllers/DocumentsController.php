@@ -734,7 +734,7 @@ class DocumentsController extends Controller
                     if( $fileExtension == 'pdf' ){
 
                         if ($file->move(public_path('documents'), $fileName)) {
-    
+     
                             $this->client_documents->user_id            =   $user_id;
                             $this->client_documents->session_id         =   $session_id;
                             $this->client_documents->file               =   $fileName;

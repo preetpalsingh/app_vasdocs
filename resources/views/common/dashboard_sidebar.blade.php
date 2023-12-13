@@ -80,7 +80,7 @@
                         <i class="ti ti-circle"></i>
                       </div>
                       <span class="hide-menu">All</span>
-                    </a>
+                    </a> 
                   </li-->
                   
                   <li class="sidebar-item">
