@@ -566,9 +566,11 @@ class DocumentsController extends Controller
 
             $documentsQuery = DB::table('client_documents')
             ->join('users', 'users.id', '=', 'client_documents.user_id')
+            ->leftJoin('users as session_users', 'session_users.id', '=', 'client_documents.session_id')
             //->where('client_documents.status', $doc_status)
             ->whereRaw('(client_documents.supplier like ?  )', [ '%' . $query . '%'])
-            ->select('client_documents.*', 'users.first_name', 'users.company_name');
+            ->select('client_documents.*', 'users.first_name', 'users.company_name', 
+            'session_users.first_name as session_first_name');
             //->orderBy('client_documents.id', 'DESC');
             
             if ( $doc_status != 'all' ) {
@@ -595,8 +597,10 @@ class DocumentsController extends Controller
 
             $documentsQuery = DB::table('client_documents')
             ->join('users', 'users.id', '=', 'client_documents.user_id')
+            ->leftJoin('users as session_users', 'session_users.id', '=', 'client_documents.session_id')
             //->where('client_documents.status', $doc_status)
-            ->select('client_documents.*', 'users.first_name', 'users.company_name');
+            ->select('client_documents.*', 'users.first_name', 'users.company_name', 
+            'session_users.first_name as session_first_name');
             //->orderBy('client_documents.id', 'DESC');
             
             if ( $doc_status != 'all' ) {

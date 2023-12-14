@@ -104,6 +104,24 @@
 
                     @endif
 
+                    <a class="btn mb-1 btn-warning btn-circle btn-sm d-inline-flex align-items-center justify-content-center " href="javascript:void(0)" id="t2" data-bs-toggle="dropdown" aria-expanded="false"  >
+                            <i class="ti ti-info-small fs-8"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="t2" style="">
+                          <li>
+                            <a class="dropdown-item" href="#">
+                              Uploaded BY : {{ $row->session_first_name }} </a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="#">
+                              Platform : {{ $row->platform }} </a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="#">
+                              Date : @php echo date("d/m/Y", strtotime( $row->created_at )); @endphp </a>
+                          </li>
+                        </ul>
+
                     <!--a alt="alert" class="text-danger  ms-2 img-fluid model_img" id="sa-confirm">
                         <i class="ti ti-trash fs-5"></i>
                     </a-->

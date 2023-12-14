@@ -82,12 +82,12 @@ class ClientController extends Controller
         $query = $request->get('query');
         if( !empty( $query ) ){
 
-            $data = User::withCount('documents')->whereRaw('(first_name like ? or email like ? or mobile_number like ? or company_name like ?)', ['%' . $query . '%', '%' . $query . '%', '%' . $query . '%', '%' . $query . '%'])->where('role_id', 3)->orderBy('id', 'desc')->paginate(10);
+            $data = User::withCount('documents')->whereRaw('(first_name like ? or email like ? or mobile_number like ? or company_name like ?)', ['%' . $query . '%', '%' . $query . '%', '%' . $query . '%', '%' . $query . '%'])->where('role_id', 3)->orderBy('company_name', 'asc')->paginate(10);
 
         } else {
 
             $data = User::withCount('documents')  // 'documents_count' will be the count of documents for each user
-            ->where('role_id', 3)->orderBy('id', 'desc')->paginate(10);
+            ->where('role_id', 3)->orderBy('company_name', 'asc')->paginate(10);
         }
         
 
