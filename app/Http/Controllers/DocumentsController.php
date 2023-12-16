@@ -60,56 +60,6 @@ class DocumentsController extends Controller
     public function index($invoice_id, $ocr_hit_status=null)
     {
 
-        // set previous or next documnet id
-
-        // Get the previous ID
-
-        if( !empty( session('ses_client_id') ) ){
-
-            $previousId = ClientDocuments::where('id', '<', $invoice_id)
-            ->where('user_id', session('ses_client_id'))
-            ->where('status', '!=', 'Archive')
-            ->orderBy('id', 'desc')
-            ->pluck('id')
-            ->first();
-
-            // Assign a default value if nextId is null
-            $doc_previous_id = $previousId ?? 0;
-
-            // Get the next ID
-            $nextId = ClientDocuments::where('id', '>', $invoice_id)
-            ->where('user_id', session('ses_client_id'))
-            ->where('status', '!=', 'Archive')
-            ->orderBy('id', 'asc')
-            ->pluck('id')
-            ->first();
-            
-            // Assign a default value if nextId is null
-            $doc_next_id = $nextId ?? 0;
-
-        } else {
-
-            $previousId = ClientDocuments::where('id', '<', $invoice_id)
-            ->where('status', '!=', 'Archive')
-            ->orderBy('id', 'desc')
-            ->pluck('id')
-            ->first();
-
-            // Assign a default value if nextId is null
-            $doc_previous_id = $previousId ?? 0;
-
-            // Get the next ID
-            $nextId = ClientDocuments::where('id', '>', $invoice_id)
-            ->where('status', '!=', 'Archive')
-            ->orderBy('id', 'asc')
-            ->pluck('id')
-            ->first();
-            
-            // Assign a default value if nextId is null
-            $doc_next_id = $nextId ?? 0;
-        }
-
-
         // set file type to detect image or pdf
 
         $file_type = 'image';
@@ -153,6 +103,54 @@ class DocumentsController extends Controller
             $doc_user = User::where('id', $invoice_detail[0]->user_id)->get();
 
             $doc_user_name = $doc_user[0]->company_name;
+        }// set previous or next documnet id
+
+        // Get the previous ID
+
+        if( !empty( session('ses_client_id') ) ){
+
+            $previousId = ClientDocuments::where('id', '<', $invoice_id)
+            ->where('user_id', session('ses_client_id'))
+            ->where('status', $invoice_detail[0]->status)
+            //->where('status', '!=', 'Archive')
+            ->orderBy('id', 'desc')
+            ->pluck('id')
+            ->first();
+
+            // Assign a default value if nextId is null
+            $doc_previous_id = $previousId ?? 0;
+
+            // Get the next ID
+            $nextId = ClientDocuments::where('id', '>', $invoice_id)
+            ->where('user_id', session('ses_client_id'))
+            ->where('status', $invoice_detail[0]->status)
+            ->orderBy('id', 'asc')
+            ->pluck('id')
+            ->first();
+            
+            // Assign a default value if nextId is null
+            $doc_next_id = $nextId ?? 0;
+
+        } else {
+
+            $previousId = ClientDocuments::where('id', '<', $invoice_id)
+            ->where('status', $invoice_detail[0]->status)
+            ->orderBy('id', 'desc')
+            ->pluck('id')
+            ->first();
+
+            // Assign a default value if nextId is null
+            $doc_previous_id = $previousId ?? 0;
+
+            // Get the next ID
+            $nextId = ClientDocuments::where('id', '>', $invoice_id)
+            ->where('status', $invoice_detail[0]->status)
+            ->orderBy('id', 'asc')
+            ->pluck('id')
+            ->first();
+            
+            // Assign a default value if nextId is null
+            $doc_next_id = $nextId ?? 0;
         }
 
         //echo '<pre>';print_r($invoice_detail);die();
@@ -842,6 +840,15 @@ class DocumentsController extends Controller
 		
         try {
 
+            $status_duplicate = 0;
+
+            $row_check = ClientDocuments::where('invoice_number', $request->get('invoice_number'))->count();
+
+            if( $row_check > 0){
+
+                $status_duplicate = 1;
+            }
+
             $edit_id                            =   $request->get('edit_id');
 
             $this->row                          =   ClientDocuments::find($edit_id);
@@ -858,6 +865,7 @@ class DocumentsController extends Controller
 			$this->row->payment_method          =   $request->get('payment_method');
 			$this->row->standard_vat            =   $request->get('standard_vat');
 			$this->row->status                  =   $request->get('status');
+			$this->row->status_duplicate        =   $status_duplicate;
             $this->row->updated_at              =   date('Y-m-d H:i:s');
 
             $this->row->save();

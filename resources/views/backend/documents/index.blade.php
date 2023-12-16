@@ -250,7 +250,7 @@
                 <div class="card">
                     <div class="card-body" style="position: relative;">
                         <div id="sp_preloader" style="display: none;"><div class="shapes-8"></div></div>
-                        <h3 style="display: flex;flex-direction: row;justify-content: space-between;">Invoice Details:
+                        <h3 style="display: flex;flex-direction: row;justify-content: space-between;"><div>Invoice Details: @if ($data->status_duplicate == '1') <span class="mb-1 badge bg-danger">Duplicate</span> @endif </div>
 
                             @if( Auth::user()->role_id == 1 || Auth::user()->role_id == 4 )
                             
@@ -322,7 +322,7 @@
                             <div class="mb-3 row">
                                 <label for="example-time-input" class="col-md-3 col-form-label">Gross Amount</label>
                                 <div class="col-md-9">
-                                    <input class="form-control" type="number"  value="{{ $data->total_amount }}" name="total_amount" id="total_amount" step="any" />
+                                    <input class="form-control" type="number"  value="{{ number_format($data->total_amount, 2) }}" name="total_amount" id="total_amount" step="any" />
                                     <!--small class="">(Net Amount + Tax + Standard Vat)</small-->
                                 </div>
                             </div>
@@ -342,14 +342,14 @@
                             <div class="mb-3 row">
                                 <label for="example-week-input" class="col-md-3 col-form-label">Standard Vat</label>
                                 <div class="col-md-9">
-                                    <input class="form-control" type="number"  value="{{ $data->standard_vat }}" name="standard_vat" id="standard_vat" step="any" />
+                                    <input class="form-control" type="number"  value="{{ number_format($data->standard_vat, 2) }}" name="standard_vat" id="standard_vat" step="any" />
                                 </div>
                             </div>
 
                             <div class="mb-3 row">
                                 <label for="example-week-input" class="col-md-3 col-form-label">Net Amount</label>
                                 <div class="col-md-9">
-                                    <input class="form-control" type="number"  value="{{ $data->net_amount }}" name="net_amount" id="net_amount" step="any" />
+                                    <input class="form-control" type="number"  value="{{ number_format($data->net_amount, 2) }}" name="net_amount" id="net_amount" step="any" />
                                 </div>
                             </div>
 
@@ -621,6 +621,7 @@
                     const taxPercent = parseFloat($('#tax_percent').val());
                     const standard_vat = parseFloat($('#standard_vat').val());
                     netAmount = total_amount / (1 + (taxPercent / 100));
+                    netAmount = netAmount - standard_vat; 
                     const taxAmount = total_amount - netAmount;
 
                     if( taxAmount > 0){
@@ -696,6 +697,18 @@
                         if (response.data.status == true) {
 
                             $('.msg_status').html('<div class="alert alert-success">'+response.data.message+'</div>');
+
+                           
+
+                            @if( $doc_next_id > 0)
+
+                                setTimeout(function(){
+
+                                    window.location.replace("{{ route('admin.documentsView', ['invoice_id' => $doc_next_id]) }}");
+
+                                },2000);
+                            
+                            @endif
 
                             /* //setTimeout(function(){location.reload();},2500);
 
