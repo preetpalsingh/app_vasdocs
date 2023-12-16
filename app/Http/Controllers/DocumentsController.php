@@ -380,6 +380,15 @@ class DocumentsController extends Controller
             $tax_amount = $invoiceData['tax_amount']['value'];
             $tax_percent = $invoiceData['tax_percent']['value'];
 
+            $status_duplicate = 0;
+
+            $row_check = ClientDocuments::where('invoice_number', $invoice_number )->count();
+
+            if( $row_check > 0){
+
+                $status_duplicate = 1;
+            }
+
             $this->row                          =   ClientDocuments::find($invoice_id);
 
             $this->row->supplier                =   $supplier;
@@ -390,6 +399,7 @@ class DocumentsController extends Controller
             $this->row->total_amount            =   $total_amount;
             $this->row->tax_amount              =   $tax_amount;
             $this->row->tax_percent             =   $tax_percent;
+            $this->row->status_duplicate        =   $status_duplicate;
             $this->row->status_ocr_hit          =   1;
 
             $this->row->save();
