@@ -93,5 +93,14 @@ a#sp_app_progress_btn {
     bottom: 10px;
 }
 
+#main-wrapper[data-layout=vertical][data-sidebartype=mini-sidebar] .left-sidebar {
+    width: 100px;
+}
+
+#main-wrapper[data-layout=vertical][data-sidebartype=mini-sidebar] .logo-img {
+    width: 50px;
+    overflow: hidden;
+}
+
     </style>
   </head>

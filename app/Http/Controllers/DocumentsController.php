@@ -483,11 +483,34 @@ class DocumentsController extends Controller
 
         $doc_user_name = '';
 
+        $statuses = ['Processing', 'Ready', 'Archive'];
+
+        // Get counts for the specified statuses in a single query
+        $statusCountsQuery = DB::table('client_documents')
+            ->select('status', DB::raw('count(*) as count'))
+            ->whereIn('status', $statuses);
+
         if( !empty( $user_id ) ){
 
             $doc_user = User::where('id', $user_id)->get();
 
             $doc_user_name = $doc_user[0]->company_name;
+
+            $statusCountsQuery->where('client_documents.user_id', $user_id);
+        }
+
+        
+        $statusCounts = $statusCountsQuery
+        ->groupBy('status')->get();
+
+        $status_count_arr = array();
+
+        // Output the counts
+        foreach ($statuses as $status) {
+            $count = $statusCounts->firstWhere('status', $status);
+
+            $status_count_arr[$status] = $count ? $count->count : 0;
+
         }
 
         return view('backend.documents.invoice_details', [
@@ -495,7 +518,8 @@ class DocumentsController extends Controller
             'clients' => $clients,
             'doc_status' => $status,
             'doc_user_id' => $user_id,
-            'doc_user_name' => $doc_user_name
+            'doc_user_name' => $doc_user_name,
+            'status_count_arr' => $status_count_arr
         ]);
     
     }
@@ -575,10 +599,11 @@ class DocumentsController extends Controller
             $documentsQuery = DB::table('client_documents')
             ->join('users', 'users.id', '=', 'client_documents.user_id')
             ->leftJoin('users as session_users', 'session_users.id', '=', 'client_documents.session_id')
+            ->leftJoin('account_code', 'account_code.id', '=', 'client_documents.account_code')
             //->where('client_documents.status', $doc_status)
             ->whereRaw('(client_documents.supplier like ?  )', [ '%' . $query . '%'])
             ->select('client_documents.*', 'users.first_name', 'users.company_name', 
-            'session_users.first_name as session_first_name');
+            'session_users.first_name as session_first_name', 'account_code.code', 'account_code.report_code', 'account_code.name as account_name');
             //->orderBy('client_documents.id', 'DESC');
             
             if ( $doc_status != 'all' ) {
@@ -606,9 +631,10 @@ class DocumentsController extends Controller
             $documentsQuery = DB::table('client_documents')
             ->join('users', 'users.id', '=', 'client_documents.user_id')
             ->leftJoin('users as session_users', 'session_users.id', '=', 'client_documents.session_id')
+            ->leftJoin('account_code', 'account_code.id', '=', 'client_documents.account_code')
             //->where('client_documents.status', $doc_status)
             ->select('client_documents.*', 'users.first_name', 'users.company_name', 
-            'session_users.first_name as session_first_name');
+            'session_users.first_name as session_first_name', 'account_code.code', 'account_code.report_code', 'account_code.name as account_name');
             //->orderBy('client_documents.id', 'DESC');
             
             if ( $doc_status != 'all' ) {

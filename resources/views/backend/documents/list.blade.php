@@ -5,7 +5,6 @@
 <table class="table search-table align-middle text-nowrap">
     <thead class="header-item">
 
-        @if( $url_doc_status != 'all' )
 
         <th>
             <div class="n-chk align-self-center text-center">
@@ -17,8 +16,6 @@
             </div>
         </th>
 
-        @endif
-
         <th class="sortable" data-val="id" data-direction="@php if( $sp_sort_filed_name == 'id') { echo $sp_sort_filed_direction; } else { echo 'DESC'; } @endphp" >ID</th>
         <th class="sortable" data-val="supplier" data-direction="@php if( $sp_sort_filed_name == 'supplier') { echo $sp_sort_filed_direction; } else { echo 'DESC'; } @endphp" >Supplier</th>
         <th >Invoice No.</th>
@@ -26,6 +23,7 @@
         <th>Tax</th>
         <th class="sortable" data-val="net_amount" data-direction="@php if( $sp_sort_filed_name == 'net_amount') { echo $sp_sort_filed_direction; } else { echo 'DESC'; } @endphp" >Net Amount</th>
         <th class="sortable" data-val="invoice_date" data-direction="@php if( $sp_sort_filed_name == 'invoice_date') { echo $sp_sort_filed_direction; } else { echo 'DESC'; } @endphp" >Invoice Date</th>
+        <th >A/c Code</th>
         <th>Status</th>
 
         {{-- @hasrole('Admin') --}}
@@ -52,7 +50,6 @@
         @endphp
         <tr class="search-items">
 
-            @if( $url_doc_status != 'all' )
 
             <td>
                 <div class="n-chk align-self-center text-center">
@@ -63,7 +60,6 @@
                 </div>
             </td>
 
-            @endif
 
             <!--td >{{ $i }}</td-->
             <td><a href="{{ route('admin.documentsView', ['invoice_id' => $row->id]) }}"  data-bs-toggle="tooltip" title="View Invoice" data-trigger="hover"> @php echo 'CH-' . str_pad($row->id, 6, '0', STR_PAD_LEFT) @endphp </a> </td>
@@ -73,6 +69,7 @@
             <td>{{ number_format($row->tax_amount, 2) }} <small>({{ $row->tax_percent }}%)<small></td>
             <td>{{ number_format($row->net_amount, 2) }}</td>
             <td>{{ $row->invoice_date }}</td>
+            <td>@if( !empty( $row->account_code ) ) {{ $row->code }}-{{ $row->report_code }}-{{ $row->account_name }} @endif</td>
             <td>
                 @if ($row->status == 'Processing')
                     <span class="mb-1 badge bg-warning">Processing</span>
@@ -91,10 +88,9 @@
                 
                 <div class="action-btn">
 
-                    <a href="{{ route('admin.documentsView', ['invoice_id' => $row->id]) }}" class="btn mb-1 btn-info btn-circle btn-sm d-inline-flex align-items-center justify-content-center sp_ajax_tooltip" data-bs-toggle="tooltip" title="View Invoice" data-trigger="hover">
-                        <!-- <i class="ti ti-trash fs-5"></i> -->
+                    <!--a href="{{ route('admin.documentsView', ['invoice_id' => $row->id]) }}" class="btn mb-1 btn-info btn-circle btn-sm d-inline-flex align-items-center justify-content-center sp_ajax_tooltip" data-bs-toggle="tooltip" title="View Invoice" data-trigger="hover">
                         <i class="ti ti-eye fs-5"></i>
-                    </a>
+                    </a-->
 
                     <!--a  class="btn mb-1 btn-danger btn-circle btn-sm d-inline-flex align-items-center justify-content-center modal-delete-trigger sp_ajax_tooltip" data-bs-toggle="tooltip" title="Delete Invoice" data-id="{{ $row->id }}" id="{{ $row->id }}"><i aria-hidden="true" class="fas fa-trash"></i></a-->
 

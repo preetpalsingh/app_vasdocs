@@ -233,9 +233,9 @@ class ExcelImportExport extends Model
 
 		$user = Auth::user();
 
-		$fileds = array('supplier','invoice_number','invoice_date','due_date','net_amount','tax_amount','tax_percent','standard_vat','total_amount', 'status', 'payment_method', 'code', 'report_code', 'name');
+		$fileds = array('t1.id','supplier','invoice_number','invoice_date','due_date','net_amount','tax_amount','tax_percent','standard_vat','total_amount', 'status', 'payment_method', 'code', 'report_code', 'name');
 
-		$csv_fileds_name = array('Supplier','Invoice No.','Invoice Date','Due Date','Net Amount','Tax Amount','Tax Rate(%)','Standard Vat','Gross Amount', 'Status', 'Payment Board', 'Code', 'Report Code', 'Name');
+		$csv_fileds_name = array('ID','Supplier','Invoice No.','Invoice Date','Due Date','Net Amount','Tax Amount','Tax Rate(%)','Standard Vat','Gross Amount', 'Status', 'Payment Board', 'Code', 'Report Code', 'Name');
 		
 		$fileds_im = implode( ',' , $fileds);
 
@@ -256,9 +256,16 @@ class ExcelImportExport extends Model
 			$row_list = DB::select("SELECT $fileds_im  FROM client_documents t1 LEFT JOIN account_code t2 ON t1.account_code = t2.id where t1.user_id = ".$user->id." ".$where_qry);
 
 		} else {
-			
-			$row_list = DB::select("SELECT $fileds_im  FROM client_documents t1 LEFT JOIN account_code t2 ON t1.account_code = t2.id where t1.user_id = ".$client_id." ".$where_qry);
 
+			if( $client_id > 0){
+
+				$row_list = DB::select("SELECT $fileds_im  FROM client_documents t1 LEFT JOIN account_code t2 ON t1.account_code = t2.id where t1.user_id = ".$client_id." ".$where_qry);
+
+			} else {
+
+				$row_list = DB::select("SELECT $fileds_im  FROM client_documents t1 LEFT JOIN account_code t2 ON t1.account_code = t2.id where t1.user_id != 0 ".$where_qry);
+			}
+			
 		}
 
 		if( $action_status == 'export_all_archive' || $action_status == 'export_selected_archive' ){
@@ -269,12 +276,23 @@ class ExcelImportExport extends Model
                 ->whereRaw($where_qry_up)->update(['status' => 'Archive']);
 
 			} else { 
+
+				if( $client_id > 0){
 				
-				DB::table('client_documents')->where('user_id' , $client_id)
-                ->whereRaw($where_qry_up)->update(['status' => 'Archive']);
+					DB::table('client_documents')->where('user_id' , $client_id)
+					->whereRaw($where_qry_up)->update(['status' => 'Archive']);
+
+				} else {
+
+					DB::table('client_documents')->whereRaw($where_qry_up)
+					->update(['status' => 'Archive']);
+					
+				}
 				
 			}
 		}
+
+		
 		
 		$file_name = 'ExportList_'.date("YmdHis");
 		
@@ -304,6 +322,8 @@ class ExcelImportExport extends Model
 		 
 		 // Write the data to the CSV file
 		 foreach ($row_list as $row) {
+
+			$row->id = 'CH-' . str_pad($row->id, 6, '0', STR_PAD_LEFT);
  
 			$row = (array) $row;
  

@@ -178,22 +178,21 @@ th.sortable {
 
                         @if( Auth::user()->role_id == 1 || Auth::user()->role_id == 4 )
 
-                            @if( $url_doc_status != 'all' )
+                            {{-- @if( $url_doc_status != 'all' ) --}}
 
                                 <a href="javascript:void(0)" id="show_export" class="btn btn-success me-3" data-bs-toggle="tooltip" title="Export Excel {{$title}}">
                                     <i class="ti ti-file-export text-white me-1 fs-5"></i> Export
                                 </a>
 
-                            @endif
+                            {{-- @endif--}}
+
                         @endif
 
-                        @if( $url_doc_status == 'all' )
 
                         <a href="javascript:void(0)" id="addFeed" class="btn btn-info " data-bs-toggle="tooltip" title="Add {{$title}}">
                             <i class="ti ti-clipboard-plus text-white me-1 fs-5"></i> Add
                         </a>
 
-                        @endif
 
                     </div>
 
@@ -232,6 +231,8 @@ th.sortable {
 
                             </form-->
 
+                            {{--
+
                             <form action="{{route('admin.invoiceExport')}}" class="sp_doc_status_form d-flex" method="POST">
 
                                 @csrf
@@ -263,6 +264,8 @@ th.sortable {
                                 @endif
 
                             </form>
+
+                            --}}
                             
                             <!--a href="javascript:void(0)"  class="btn btn-success align-items-center me-3 sp_select_hide_cont" style="display:none;" data-bs-toggle="tooltip" title="Export Zip {{$title}}">
                                 <i class="ti ti-file-export text-white me-1 fs-5"></i> Export Zip
@@ -345,6 +348,15 @@ th.sortable {
                         <div class="form-horizontal">
 
                             <div class="col-md-12">
+                                <div class="mb-3 contact-phone">
+                                    <label for="English ">Reports</label>
+                                    <select class="form-select col-12" name="reports" id="reports" >
+                                        <option value="transactions" >Transactions</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
                                 <div class="mb-3 contact-occupation">
                                     <label for="English ">Start Date</label>
                                     <input type="text" id="start_date" name="start_date" class="form-control singledate" placeholder="Start Date" required />
@@ -364,9 +376,9 @@ th.sortable {
                                     <label for="English ">Status</label>
                                     <select class="form-select col-12" name="status" id="status" >
                                         <option value="" >Select</option>
-                                        <option value="Processing" >Processing</option>
+                                        <!--option value="Processing" >Processing</option>
                                         <option value="Review" >Reviewed</option>
-                                        <option value="Ready" >Ready</option>
+                                        <option value="Ready" >Ready</option-->
                                         <option value="Archive" >Archive</option>
                                     </select>
                                 </div>
@@ -787,8 +799,14 @@ $(".singledate").daterangepicker({
             clearTimeout(typingTimer);
             var query = $(this).val();
 
-            if (query.length >= 3) {
+            if ( query.length >= 3 ) {
                 
+                typingTimer = setTimeout(function() {
+                    sp_load_records(query);
+                }, doneTypingInterval);
+
+            } else if( query.length == 0 ){
+
                 typingTimer = setTimeout(function() {
                     sp_load_records(query);
                 }, doneTypingInterval);

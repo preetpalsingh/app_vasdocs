@@ -1,11 +1,15 @@
+@php
+    
+  $url_find_doc = request()->segment(2);
 
+@endphp
 <aside class="left-sidebar">
         <!-- Sidebar scroll-->
         <div>
           <div class="brand-logo d-flex align-items-center justify-content-between">
             <a href="#" class="text-nowrap logo-img">
-              <img src="{{asset('dashboard-assets/images/logos/chathaandco-logo.png')}}" class="dark-logo" width="180" alt="" />
-              <img src="{{asset('dashboard-assets/images/logos/light-logo.svg')}}" class="light-logo"  width="180" alt="" />
+              <img src="{{asset('dashboard-assets/images/logos/logo.png')}}" class="dark-logo" width="180" alt="" style="width: 50px;" />
+              
             </a>
             <div class="close-btn d-lg-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
               <i class="ti ti-x fs-8"></i>
@@ -89,17 +93,18 @@
                         <i class="ti ti-circle"></i>
                       </div>
                       <span class="hide-menu">In Processing</span>
+                      @if( $url_find_doc == 'invoice-details' )<span class="hide-menu badge ms-auto bg-primary">  {{ $status_count_arr['Processing'] }}  </span> @endif
                     </a>
                   </li>
                   
-                  <li class="sidebar-item">
+                  <!--li class="sidebar-item">
                     <a href="{{ route('admin.invoice_details', ['status' => 'Review']) }}@if (isset ( $doc_user_id ) )/{{$doc_user_id}} @endif" class="sidebar-link">
                       <div class="round-16 d-flex align-items-center justify-content-center">
                         <i class="ti ti-circle"></i>
                       </div>
                       <span class="hide-menu">To Review</span>
                     </a>
-                  </li>
+                  </li-->
                   
                   <li class="sidebar-item">
                     <a href="{{ route('admin.invoice_details', ['status' => 'Ready']) }}@if (isset ( $doc_user_id ) )/{{$doc_user_id}} @endif" class="sidebar-link">
@@ -107,6 +112,7 @@
                         <i class="ti ti-circle"></i>
                       </div>
                       <span class="hide-menu">Ready</span>
+                      @if( $url_find_doc == 'invoice-details' )<span class="hide-menu badge ms-auto bg-primary">  {{ $status_count_arr['Ready'] }}  </span> @endif
                     </a>
                   </li>
                   
@@ -116,6 +122,7 @@
                         <i class="ti ti-circle"></i>
                       </div>
                       <span class="hide-menu">Archive</span>
+                      @if( $url_find_doc == 'invoice-details' )<span class="hide-menu badge ms-auto bg-primary">  {{ $status_count_arr['Archive'] }}  </span> @endif
                     </a>
                   </li>
 

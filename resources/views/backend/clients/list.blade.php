@@ -15,7 +15,7 @@
         <th>No. of Docs</th>
         <th>Email</th>
         <th>Phone</th>
-        <th>Documents</th>
+        <!--th>Documents</th-->
 
         @if( Auth::user()->role_id == 1 )
 
@@ -46,7 +46,7 @@
 </td>
             <td >{{ $i }}</td-->
 
-            <td><a href="{{ route('admin.invoice_details', ['status' => 'all']) }}/{{$row->id}}">{{ $row->company_name }}</a></td>
+            <td><a href="{{ route('admin.invoice_details', ['status' => 'Processing']) }}/{{$row->id}}">{{ $row->company_name }}</a></td>
 
             <td>  {{ $row->first_name }}  
                
@@ -71,9 +71,9 @@
             <td>{{ $row->documents_count }}</td>
             <td>{{ $row->email }}</td>
             <td>{{ $row->mobile_number }}</td>
-            <td>
+            <!--td>
             <a href="{{ route('admin.invoice_details', ['status' => 'all']) }}/{{$row->id}}" class="btn waves-effect waves-light btn-rounded btn-sm btn-primary">View Documents</a>
-            </td>
+            </td-->
 
             @if( Auth::user()->role_id == 1 )
 
