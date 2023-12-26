@@ -506,10 +506,10 @@ class DocumentsController extends Controller
         $status_count_arr = array();
 
         // Output the counts
-        foreach ($statuses as $status) {
-            $count = $statusCounts->firstWhere('status', $status);
+        foreach ($statuses as $stat) {
+            $count = $statusCounts->firstWhere('status', $stat);
 
-            $status_count_arr[$status] = $count ? $count->count : 0;
+            $status_count_arr[$stat] = $count ? $count->count : 0;
 
         }
 
