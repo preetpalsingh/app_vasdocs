@@ -345,11 +345,20 @@ class AuthController extends Controller
         $documentsQuery = DB::table('users')
             ->select('users.*')
             ->where('users.role_id',3)
-            ->orderBy('users.id', 'DESC');
+            ->where('users.status',1)
+            ->orderBy('users.company_name', 'ASC');
 
         if( !empty( $last_id ) ){
 
-            $documentsQuery->where('users.id', '<' , $last_id);
+            $get_company_name = DB::table('users')
+            ->where('users.id', $last_id)
+            ->pluck('company_name')
+            ->first();
+
+            //$documentsQuery->where('users.id', '<' , $last_id);
+
+            $documentsQuery->where('users.company_name', '>' , $get_company_name);
+
         }
 
        $documents = $documentsQuery->paginate(10);

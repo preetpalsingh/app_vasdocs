@@ -60,6 +60,25 @@ class DocumentsController extends Controller
     public function index($invoice_id, $ocr_hit_status=null)
     {
 
+        // check invioce exist
+
+        $curent_invoice_id = ClientDocuments::where('id', $invoice_id)
+            ->pluck('id')
+            ->first();
+
+        if( $curent_invoice_id < 1) {
+
+            if( !empty( session('ses_client_id') ) ){
+
+                return redirect()->route('admin.invoice_details', ['status' => 'Processing','user_id' => session('ses_client_id')]);exit;
+
+            } else {
+
+                return redirect()->route('admin.invoice_details', ['status' => 'Processing']);exit;
+
+            }
+        }
+
         // set file type to detect image or pdf
 
         $file_type = 'image';
