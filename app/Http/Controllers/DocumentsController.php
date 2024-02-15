@@ -464,6 +464,14 @@ class DocumentsController extends Controller
 
     public function invoice_details($status=null, $user_id=null)
     {
+
+        if($status == null){
+
+            $status = 'all';
+        }
+
+        $user = Auth::user(); // Get the authenticated user
+
         $documents = DB::table('client_documents')
         ->join('users', 'users.id', '=', 'client_documents.user_id')
         /* ->where(function($query) use ($status , $date_range , $union_name)
@@ -509,14 +517,28 @@ class DocumentsController extends Controller
             ->select('status', DB::raw('count(*) as count'))
             ->whereIn('status', $statuses);
 
-        if( !empty( $user_id ) ){
+        if ( Auth::user()->role_id == 3 ) {
 
-            $doc_user = User::where('id', $user_id)->get();
-
+            $doc_user = User::where('id', $user->id)->get();
+    
             $doc_user_name = $doc_user[0]->company_name;
 
-            $statusCountsQuery->where('client_documents.user_id', $user_id);
+            $statusCountsQuery->where('client_documents.user_id', $user->id);
+
+        } else {
+
+            if( !empty( $user_id ) ){
+
+                $doc_user = User::where('id', $user_id)->get();
+    
+                $doc_user_name = $doc_user[0]->company_name;
+    
+                $statusCountsQuery->where('client_documents.user_id', $user_id);
+            }
+
         }
+
+        
 
         
         $statusCounts = $statusCountsQuery

@@ -25,6 +25,7 @@ class ClientController extends Controller
      public function __construct(Simcard $simcard,User $user, Request $request, Auth $auth)
      { 
         $this->middleware('auth');
+        $this->middleware('permission:client-list', ['only' => ['index']]);
         $this->simcard = $simcard;
 
         $this->middleware(function ($request, $next) {
